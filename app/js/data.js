@@ -11,7 +11,7 @@ const EVENT = {
   location: 'Северный Кипр',
   brand: {
     color:     '#166534',
-    logo:      'greencode-logo.png',
+    logo:      '',
     logoEmoji: '🌿',
   },
   hotel: {

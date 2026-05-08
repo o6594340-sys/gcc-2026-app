@@ -54,8 +54,9 @@ body {
 }
 .header-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .header-logo  { height: 34px; width: auto; max-width: 80px; object-fit: contain; border-radius: 4px; flex-shrink: 0; }
-.header-title { font-family: var(--font-disp); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
-.header-sub   { font-size: 11px; opacity: 0.75; margin-top: 1px; }
+.header-organizer { font-size: 10px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 1px; }
+.header-title     { font-family: var(--font-disp); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.header-sub       { font-size: 11px; opacity: 0.75; margin-top: 1px; }
 .faq-trigger  {
   width: 34px; height: 34px; border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.45);
