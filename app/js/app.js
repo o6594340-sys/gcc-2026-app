@@ -140,6 +140,7 @@ const App = (() => {
       today:      renderToday,
       program:    renderProgram,
       location:   renderLocation,
+      excursion:  renderExcursion,
       exhibitors: renderExhibitors,
     };
     if (renderers[tab]) renderers[tab]();
@@ -476,6 +477,95 @@ const App = (() => {
     document.getElementById('tab-nearby').innerHTML = html;
   }
 
+  /* ─── EXCURSION ──────────────────────── */
+  function renderExcursion() {
+    const ex = EXCURSION;
+
+    let html = `
+      <div class="today-hero" style="background:linear-gradient(135deg,#064e3b 0%,#059669 50%,#34d399 100%)">
+        <div class="today-eyebrow">GCC 2026 · ${ex.date}</div>
+        <div class="today-name">${ex.title}</div>
+        <div class="today-theme">${ex.duration} · Сбор в ${ex.meetingTime}</div>
+      </div>
+      <div class="section-pad">
+    `;
+
+    html += `<p class="hotel-desc" style="margin-top:0">${ex.desc}</p>`;
+
+    // — Программа
+    html += `<div class="section-title" style="margin-bottom:12px">Программа</div>`;
+    html += `<div class="card"><div class="card-body">`;
+    ex.program.forEach(p => {
+      html += `
+        <div class="mini-timeline-item">
+          <span class="mini-time">${p.time}</span>
+          <span class="mini-dot" style="background:#059669"></span>
+          <div class="mini-info">
+            <div class="mini-title">${p.title}</div>
+            ${p.note ? `<div class="mini-loc">${p.note}</div>` : ''}
+          </div>
+        </div>`;
+    });
+    html += `</div></div>`;
+
+    // — Практические советы
+    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Что взять / помнить</div>`;
+    html += `<div class="hotel-tips">${ex.tips.map(t => `<div class="hotel-tip-row">💡 ${t}</div>`).join('')}</div>`;
+
+    // — Фотоспоты
+    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Где фотографировать</div>`;
+    ex.photoSpots.forEach(s => {
+      html += `
+        <div class="card" style="margin-bottom:10px">
+          <div class="card-body">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="font-size:22px">${s.icon}</span>
+              <div>
+                <div style="font-weight:600;font-size:15px;margin-bottom:2px">${s.title}</div>
+                <div style="color:var(--text-secondary);font-size:13px">${s.desc}</div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+
+    // — Галерея
+    if (ex.images?.length) {
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Фото</div>`;
+      html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">`;
+      ex.images.forEach(img => {
+        const src   = typeof img === 'string' ? img : img.src;
+        const caption = typeof img === 'object' && img.caption ? img.caption : '';
+        html += `
+          <div style="border-radius:12px;overflow:hidden;background:#f3f4f6">
+            <img src="${src}" alt="${caption}" style="width:100%;height:140px;object-fit:cover;display:block">
+            ${caption ? `<div style="padding:6px 8px;font-size:12px;color:var(--text-secondary)">${caption}</div>` : ''}
+          </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // — История
+    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Немного истории</div>`;
+    ex.history.forEach(h => {
+      html += `
+        <div class="card" style="margin-bottom:12px">
+          <div class="card-body">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="font-size:26px;flex-shrink:0">${h.icon}</span>
+              <div>
+                <div style="font-weight:700;font-size:15px;margin-bottom:6px">${h.title}</div>
+                <div style="color:var(--text-secondary);font-size:14px;line-height:1.5">${h.text}</div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+
+    html += `</div>`;
+    document.getElementById('tab-excursion').innerHTML = html;
+  }
+
   /* ─── EXHIBITORS ─────────────────────── */
   let exhibitorFilter = 'all';
 
@@ -639,6 +729,7 @@ const App = (() => {
     init, switchTab, selectProgramDay, copyWifi,
     openFAQ, closeFAQ, searchFAQ, toggleFAQ,
     filterExhibitors, renderExhibitors,
+    renderExcursion,
     callHelp,
   };
 
