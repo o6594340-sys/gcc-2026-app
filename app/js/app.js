@@ -400,6 +400,24 @@ const App = (() => {
         </div>`;
     });
 
+    // — Кипрская кухня
+    html += `<div class="section-title" style="margin-top:28px;margin-bottom:8px">Кипрская кухня</div>`;
+    html += `<p class="hotel-desc" style="margin-top:0;margin-bottom:12px">${CUISINE.intro}</p>`;
+    CUISINE.dishes.forEach(d => {
+      html += `
+        <div class="card" style="margin-bottom:10px">
+          <div class="card-body">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <span style="font-size:26px;flex-shrink:0;line-height:1">${d.icon}</span>
+              <div>
+                <div style="font-weight:700;font-size:15px;margin-bottom:4px">${d.name}</div>
+                <div style="color:var(--text-secondary);font-size:13px;line-height:1.55">${d.desc}</div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+
     html += `</div>`;
     document.getElementById('tab-location').innerHTML = html;
   }
