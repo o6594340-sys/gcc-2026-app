@@ -508,6 +508,25 @@ const App = (() => {
     });
     html += `</div></div>`;
 
+    // — Это интересно
+    if (ex.funFacts?.length) {
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Это интересно</div>`;
+      ex.funFacts.forEach(f => {
+        html += `
+          <div class="card" style="margin-bottom:10px">
+            <div class="card-body">
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <span style="font-size:26px;flex-shrink:0;line-height:1">${f.icon}</span>
+                <div>
+                  <div style="font-weight:700;font-size:15px;margin-bottom:4px">${f.title}</div>
+                  <div style="color:var(--text-secondary);font-size:13px;line-height:1.55">${f.text}</div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
     // — Практические советы
     html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Что взять / помнить</div>`;
     html += `<div class="hotel-tips">${ex.tips.map(t => `<div class="hotel-tip-row">💡 ${t}</div>`).join('')}</div>`;
