@@ -61,7 +61,7 @@ const TODAY_INDEX = 0;
 
 const DAYS = [
   {
-    id: 1, label: 'День 1', date: '2 июня, вторник',
+    id: 1, label: '2 июня', date: '2 июня, вторник',
     theme: 'Заезд', color: '#166534',
     activities: [
       { time: '[XX:XX]', title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Табличка «GCC 2026» у выхода из таможни' },
@@ -72,7 +72,7 @@ const DAYS = [
     ],
   },
   {
-    id: 2, label: 'День 2', date: '3 июня, среда',
+    id: 2, label: '3 июня', date: '3 июня, среда',
     theme: 'Воркшоп & Экскурсия', color: '#1D4ED8',
     activities: [
       { time: '07:30',   title: 'Завтрак', location: 'Главный ресторан', type: 'meal' },
@@ -84,7 +84,7 @@ const DAYS = [
     ],
   },
   {
-    id: 3, label: 'День 3', date: '4 июня, четверг',
+    id: 3, label: '4 июня', date: '4 июня, четверг',
     theme: 'Воркшоп & Гала-ужин', color: '#7C3AED',
     activities: [
       { time: '07:30',   title: 'Завтрак', location: 'Главный ресторан', type: 'meal' },
@@ -95,7 +95,7 @@ const DAYS = [
     ],
   },
   {
-    id: 4, label: 'День 4', date: '5 июня, пятница',
+    id: 4, label: '5 июня', date: '5 июня, пятница',
     theme: 'Отъезд', color: '#6B7280',
     activities: [
       { time: '07:30', title: 'Завтрак', location: 'Главный ресторан', type: 'meal' },
