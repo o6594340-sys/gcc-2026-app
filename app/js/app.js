@@ -604,43 +604,16 @@ const App = (() => {
   }
 
   /* ─── EXHIBITORS ─────────────────────── */
-  let exhibitorFilter = 'all';
-
-  const typeToLabel = {
-    organizer: 'Организатор',
-    hotel:     'Отель',
-    dmc:       'DMC',
-    agency:    'MICE-агентство',
-    corporate: 'Корпоративный клиент',
-  };
-
-  function renderExhibitors(filter) {
-    if (filter !== undefined) exhibitorFilter = filter;
-
-    const filterDefs = [
-      { id: 'all',       label: 'Все' },
-      { id: 'hotel',     label: '🏨 Отели' },
-      { id: 'dmc',       label: '🌍 DMC' },
-      { id: 'agency',    label: '🎯 Агентства' },
-      { id: 'corporate', label: '🏢 Клиенты' },
-    ];
+  function renderExhibitors() {
+    const list = getExhibitors();
 
     let html = `<div class="section-pad">`;
-    html += `<div class="filter-bar">`;
-    filterDefs.forEach(f => {
-      html += `<button class="filter-btn ${exhibitorFilter === f.id ? 'active' : ''}"
-        onclick="App.filterExhibitors('${f.id}')">${f.label}</button>`;
-    });
-    html += `</div>`;
+    html += `<div class="section-title" style="margin-bottom:12px">Экспоненты GCC 2026</div>`;
 
-    const list = getExhibitors();
-    const activeLabel = typeToLabel[exhibitorFilter];
-    const visible = exhibitorFilter === 'all' ? list : list.filter(e => e.typeLabel === activeLabel);
-
-    if (!visible.length) {
-      html += `<div class="empty-state">Участники не найдены</div>`;
+    if (!list.length) {
+      html += `<div class="empty-state">Список экспонентов появится здесь</div>`;
     } else {
-      visible.forEach(e => {
+      list.forEach(e => {
         const btns = [];
         if (e.telegram) btns.push(`<a href="${e.telegram}" class="contact-btn tg-btn" target="_blank">✈️ Telegram</a>`);
         if (e.whatsapp) btns.push(`<a href="https://wa.me/${e.whatsapp.replace(/\D/g,'')}" class="contact-btn wa-btn" target="_blank">💬 WhatsApp</a>`);
@@ -650,14 +623,13 @@ const App = (() => {
           <div class="card" style="margin-bottom:12px">
             <div class="card-body">
               <div class="exhibitor-header">
-                <div class="exhibitor-logo">${e.logo ? `<img src="${e.logo}" alt="">` : (e.logoEmoji || '🏢')}</div>
+                <div class="exhibitor-logo">${e.logoEmoji || '🏢'}</div>
                 <div class="exhibitor-main">
                   <div class="exhibitor-name">${e.company}</div>
-                  <span class="exhibitor-type" style="background:${e.typeColor}22;color:${e.typeColor}">${e.typeLabel}</span>
+                  ${e.contact ? `<div class="exhibitor-contact" style="margin-top:2px">👤 ${e.contact}${e.position ? ` · ${e.position}` : ''}</div>` : ''}
                 </div>
               </div>
-              ${e.desc    ? `<p class="exhibitor-desc">${e.desc}</p>` : ''}
-              ${e.contact ? `<div class="exhibitor-contact">👤 ${e.contact}${e.position ? ` · ${e.position}` : ''}</div>` : ''}
+              ${e.desc ? `<p class="exhibitor-desc">${e.desc}</p>` : ''}
               ${btns.length ? `<div class="exhibitor-btns">${btns.join('')}</div>` : ''}
             </div>
           </div>`;
@@ -668,9 +640,8 @@ const App = (() => {
     document.getElementById('tab-exhibitors').innerHTML = html;
   }
 
-  function filterExhibitors(filter) {
-    haptic('light');
-    renderExhibitors(filter);
+  function filterExhibitors() {
+    renderExhibitors();
   }
 
   /* ─── TRANSFER ───────────────────────── */
