@@ -26,15 +26,6 @@
   <button class="faq-trigger" onclick="App.openFAQ()" aria-label="Вопросы и ответы">?</button>
 </header>
 
-<!-- ═══ TAB BAR ═══════════════════════════ -->
-<nav class="tab-bar" id="tab-bar">
-  <button class="tab active" data-tab="today"      onclick="App.switchTab('today', this)">☀️ Сегодня</button>
-  <button class="tab"        data-tab="program"    onclick="App.switchTab('program', this)">📅 Программа</button>
-  <button class="tab"        data-tab="location"   onclick="App.switchTab('location', this)">🏨 Локация</button>
-  <button class="tab"        data-tab="excursion"  onclick="App.switchTab('excursion', this)">🏛 Экскурсия</button>
-  <button class="tab"        data-tab="exhibitors" onclick="App.switchTab('exhibitors', this)">🤝 Экспоненты</button>
-</nav>
-
 <!-- ═══ CONTENT ══════════════════════════ -->
 <main class="main-content">
   <div id="tab-today"      class="tab-panel"></div>
@@ -43,6 +34,25 @@
   <div id="tab-excursion"  class="tab-panel hidden"></div>
   <div id="tab-exhibitors" class="tab-panel hidden"></div>
 </main>
+
+<!-- ═══ TAB BAR (bottom) ════════════════ -->
+<nav class="tab-bar" id="tab-bar">
+  <button class="tab active" data-tab="today"      onclick="App.switchTab('today', this)">
+    <span class="tab-icon">☀️</span><span class="tab-label">Сегодня</span>
+  </button>
+  <button class="tab"        data-tab="program"    onclick="App.switchTab('program', this)">
+    <span class="tab-icon">📅</span><span class="tab-label">Программа</span>
+  </button>
+  <button class="tab"        data-tab="location"   onclick="App.switchTab('location', this)">
+    <span class="tab-icon">🏨</span><span class="tab-label">Локация</span>
+  </button>
+  <button class="tab"        data-tab="excursion"  onclick="App.switchTab('excursion', this)">
+    <span class="tab-icon">🏛</span><span class="tab-label">Экскурсия</span>
+  </button>
+  <button class="tab"        data-tab="exhibitors" onclick="App.switchTab('exhibitors', this)">
+    <span class="tab-icon">🤝</span><span class="tab-label">Экспоненты</span>
+  </button>
+</nav>
 
 <!-- ═══ FAB: ПОМОЩЬ ══════════════════════ -->
 <button class="fab-help" onclick="App.callHelp()" aria-label="Нужна помощь">💬</button>

@@ -132,7 +132,6 @@ const App = (() => {
     document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + tab).classList.remove('hidden');
     btn.classList.add('active');
-    btn.scrollIntoView({ inline: 'center', behavior: 'smooth' });
     state.tab = tab;
     haptic('light');
 
