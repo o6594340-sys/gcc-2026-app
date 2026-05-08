@@ -30,7 +30,7 @@ const EVENT = {
 const HOTEL = {
   name:    'Elexus Hotel & Resort & SPA',
   stars:   5,
-  image:   'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80',
+  image:   'Elexus hotel.jpeg',
   address: 'Çatalköy, Kyrenia (Girne), Северный Кипр',
   phone:   '[+90 ...]',
   checkin:  '14:00',
@@ -325,5 +325,12 @@ const EXCURSION = {
     },
   ],
 
-  images: [],
+  images: [
+    { src: 'castle.jpg',           caption: 'Киренийский замок' },
+    { src: 'Kirenia_old port.jpg', caption: 'Старая гавань Кирении' },
+    { src: 'embankment.jpg',       caption: 'Набережная Кирении' },
+    { src: 'abbatstvo.jpg',        caption: 'Аббатство Беллапаис' },
+    { src: 'northen Cyprus.jpg',   caption: 'Северный Кипр' },
+    { src: 'Northen Cyprus 2.jpg', caption: 'Северный Кипр' },
+  ],
 };
