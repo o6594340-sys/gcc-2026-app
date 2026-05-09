@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR — GCC 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0fdf4;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh;
+      padding: 32px 16px;
+    }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 48px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 20px 60px rgba(22,101,52,0.12);
+      max-width: 400px;
+      width: 100%;
+    }
+    .organizer {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+    .title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #166534;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .dates {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 32px;
+    }
+    .qr-wrap {
+      display: inline-block;
+      padding: 16px;
+      border: 2px solid #dcfce7;
+      border-radius: 16px;
+      margin-bottom: 28px;
+    }
+    canvas { display: block; }
+    .cta {
+      font-size: 14px;
+      font-weight: 600;
+      color: #166534;
+      margin-bottom: 6px;
+    }
+    .sub {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    .divider {
+      width: 40px; height: 3px;
+      background: #166534;
+      border-radius: 2px;
+      margin: 24px auto;
+    }
+    .tg-link {
+      font-size: 13px;
+      color: #0088cc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    @media print {
+      body { background: white; }
+      .card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="organizer">GreenCode International</div>
+    <div class="title">Global Corporate Club 2026</div>
+    <div class="dates">2–5 июня · Северный Кипр</div>
+
+    <div class="qr-wrap">
+      <canvas id="qr"></canvas>
+    </div>
+
+    <div class="cta">Откройте приложение мероприятия</div>
+    <div class="sub">Отсканируйте камерой телефона</div>
+
+    <div class="divider"></div>
+    <a class="tg-link" href="https://t.me/GCCapp_bot">@GCCapp_bot</a>
+  </div>
+
+  <script>
+    QRCode.toCanvas(document.getElementById('qr'), 'https://t.me/GCCapp_bot', {
+      width: 220,
+      margin: 1,
+      color: { dark: '#166534', light: '#ffffff' }
+    });
+  </script>
+</body>
+</html>
