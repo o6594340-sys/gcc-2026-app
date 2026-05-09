@@ -164,7 +164,7 @@ const App = (() => {
       : 'Добро пожаловать';
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(135deg,#1a3a0a 0%,#4a7a15 45%,${day.color} 80%,#8dc63f 100%)">
+      <div class="today-hero" style="background:linear-gradient(135deg,#9DD645 0%,#8DC63F 45%,${day.color} 80%,#5A8A1F 100%)">
         <div class="today-eyebrow">GCC 2026 · ${short}</div>
         <div class="today-name">${greeting}</div>
         <div class="today-theme">${day.theme}</div>
