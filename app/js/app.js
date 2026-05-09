@@ -6,8 +6,8 @@
 /* ─── SUPABASE CONFIG ─────────────────────
    Замените на ваши значения из supabase.com → Settings → API
 ──────────────────────────────────────────── */
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://jhtdcddqjuaqdksdrdhy.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_9ameNQDhrCsZNwuGpUwkOw_ElbnfwaX';
 
 const App = (() => {
 
