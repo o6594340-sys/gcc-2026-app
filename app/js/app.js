@@ -627,15 +627,20 @@ const App = (() => {
   }
 
   function getChatUser() {
-    if (tgUser) {
-      return {
-        id:   String(tgUser.id),
-        name: tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : ''),
-      };
-    }
-    let uid = localStorage.getItem('gcc_chat_uid');
+    let uid  = localStorage.getItem('gcc_chat_uid');
+    let name = localStorage.getItem('gcc_chat_name');
     if (!uid) { uid = Math.random().toString(36).slice(2); localStorage.setItem('gcc_chat_uid', uid); }
-    return { id: 'anon_' + uid, name: 'Участник' };
+
+    if (tgUser?.first_name) {
+      const tgName = tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '');
+      if (!name) { localStorage.setItem('gcc_chat_name', tgName); name = tgName; }
+      return { id: String(tgUser.id), name };
+    }
+    return { id: 'anon_' + uid, name: name || '' };
+  }
+
+  function hasChatName() {
+    return !!(tgUser?.first_name || localStorage.getItem('gcc_chat_name'));
   }
 
   function buildMsgHTML(msg, isOwn) {
@@ -654,6 +659,20 @@ const App = (() => {
 
   function renderChat() {
     const el = document.getElementById('tab-chat');
+    if (!hasChatName()) {
+      el.innerHTML = `
+        <div class="chat-name-screen">
+          <div class="chat-name-title">Как вас представить?</div>
+          <div class="chat-name-sub">Имя будет видно другим участникам</div>
+          <input class="chat-name-input" id="chat-name-input" type="text"
+            placeholder="Имя и фамилия"
+            maxlength="40"
+            onkeydown="if(event.key==='Enter')App.saveChatName()">
+          <button class="chat-name-btn" onclick="App.saveChatName()">Войти в чат</button>
+        </div>`;
+      setTimeout(() => document.getElementById('chat-name-input')?.focus(), 100);
+      return;
+    }
     el.innerHTML = `
       <div class="chat-messages" id="chat-messages">
         <div class="chat-loading">Загрузка сообщений...</div>
@@ -667,6 +686,15 @@ const App = (() => {
       </div>`;
     loadChatMessages();
     subscribeToChatMessages();
+  }
+
+  function saveChatName() {
+    const input = document.getElementById('chat-name-input');
+    const name  = input?.value.trim();
+    if (!name) { input?.classList.add('shake'); setTimeout(() => input?.classList.remove('shake'), 400); return; }
+    localStorage.setItem('gcc_chat_name', name);
+    haptic('light');
+    renderChat();
   }
 
   async function loadChatMessages() {
@@ -883,7 +911,7 @@ const App = (() => {
     filterExhibitors, renderExhibitors,
     renderExcursion,
     callHelp,
-    sendChatMessage, resizeChatInput,
+    sendChatMessage, resizeChatInput, saveChatName,
   };
 
 })();
