@@ -34,6 +34,7 @@ index.html           — редирект на app/index.html (для GitHub Pag
 - Чистый HTML/CSS/JS — без фреймворков и сборщиков
 - [Telegram Web App SDK](https://core.telegram.org/bots/webapps)
 - `localStorage` с префиксом `gcc_` для override данных
+- [Supabase](https://supabase.com) — Realtime чат участников
 - PWA (`manifest.json`, service worker запланирован)
 
 ## Вкладки
@@ -45,6 +46,7 @@ index.html           — редирект на app/index.html (для GitHub Pag
 | `location` | 🏨 Локация | Отель, кухня, трансферы, достопримечательности рядом |
 | `excursion` | 🏛 Экскурсия | Программа экскурсии, история Кирении, советы, фототочки, галерея |
 | `exhibitors` | 🤝 Экспоненты | Карточки участников с контактами |
+| `chat` | 💬 Чат | Групповой чат участников в реальном времени |
 
 ## Деплой
 

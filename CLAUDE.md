@@ -29,9 +29,10 @@ app/
 - Чистый HTML/CSS/JS, без фреймворков и сборщиков
 - Telegram Web App SDK (`window.Telegram.WebApp`)
 - localStorage с префиксом `gcc_` для override данных
+- Supabase (Realtime Database) — чат участников
 - PWA (manifest + service worker планируется)
 
-## 5 вкладок (финальные, не менять без причины)
+## 6 вкладок (финальные, не менять без причины)
 | tab id | label | что внутри |
 |--------|-------|-----------|
 | `today` | ☀️ Сегодня | герой-блок, сейчас/следующее, wifi, программа дня, совет |
@@ -39,6 +40,7 @@ app/
 | `location` | 🏨 Локация | отель + кухня + трансферы + рядом с отелем (всё в одном) |
 | `excursion` | 🏛 Экскурсия | программа, история Кирении, советы, фототочки, галерея |
 | `exhibitors` | 🤝 Экспоненты | карточки 10 участников с контактами (без фильтров) |
+| `chat` | 💬 Чат | групповой чат участников в реальном времени (Supabase Realtime) |
 
 ## Ключевые соглашения
 
@@ -76,6 +78,16 @@ hotel=голубой, key=красный, arrival=голубой
 ## Что НЕ трогать
 - `mini-app/app/` — это ДРУГОЙ проект (Пекинский форум), не связан с GCC 2026. Не изменять.
 - Программу мероприятия не комментировать и не корректировать — мы не организатор.
+
+## Чат (Supabase)
+- Конфиг: `SUPABASE_URL` и `SUPABASE_KEY` в начале `app/js/app.js`
+- Проект: `jhtdcddqjuaqdksdrdhy.supabase.co` (Frankfurt)
+- Таблица `messages`: id, user_id, user_name, text, created_at
+- RLS включён: политики `read_all` (SELECT) и `insert_all` (INSERT)
+- Realtime включён через Publications → supabase_realtime
+- Имя пользователя: берётся из `tgUser.first_name` или из localStorage (`gcc_chat_name`)
+- При первом входе без Telegram-данных показывается экран ввода имени
+- FAB-кнопка помощи: 📞 (вызов организатора/экстренный)
 
 ## Планы (ещё не сделано)
 - [ ] Telegram-бот (Python): /start → открывает Mini App, FAQ по ключевым словам
