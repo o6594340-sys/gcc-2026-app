@@ -67,7 +67,7 @@ const App = (() => {
   function applyBranding() {
     const ev    = getEvent();
     const brand = ev.brand || {};
-    const color = brand.color || '#166534';
+    const color = brand.color || '#6B9E2A';
 
     document.documentElement.style.setProperty('--accent',       color);
     document.documentElement.style.setProperty('--accent-dark',  shadeColor(color, -15));
@@ -100,7 +100,7 @@ const App = (() => {
 
   function applyGradient() {
     const root   = document.documentElement;
-    const accent = root.style.getPropertyValue('--accent').trim() || '#166534';
+    const accent = root.style.getPropertyValue('--accent').trim() || '#6B9E2A';
     const dark   = shadeColor(accent, -40);
     root.style.setProperty('--header-bg', accent);
     root.style.setProperty('--now-bg',    `linear-gradient(135deg, ${accent} 0%, ${dark} 100%)`);
@@ -164,7 +164,7 @@ const App = (() => {
       : 'Добро пожаловать';
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(135deg,#052e16 0%,#166534 45%,${day.color} 80%,#4ade80 100%)">
+      <div class="today-hero" style="background:linear-gradient(135deg,#1a3a0a 0%,#4a7a15 45%,${day.color} 80%,#8dc63f 100%)">
         <div class="today-eyebrow">GCC 2026 · ${short}</div>
         <div class="today-name">${greeting}</div>
         <div class="today-theme">${day.theme}</div>

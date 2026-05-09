@@ -10,7 +10,7 @@ const EVENT = {
   dates:    '2–5 июня 2026',
   location: 'Северный Кипр',
   brand: {
-    color:     '#166534',
+    color:     '#6B9E2A',
     logo:      '',
     logoEmoji: '🌿',
   },
@@ -62,7 +62,7 @@ const TODAY_INDEX = 0;
 const DAYS = [
   {
     id: 1, label: '2 июня', date: '2 июня, вторник',
-    theme: 'Заезд', color: '#166534',
+    theme: 'Заезд', color: '#6B9E2A',
     activities: [
       { time: '[XX:XX]', title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Табличка «GCC 2026» у выхода из таможни' },
       { time: '[XX:XX]', title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: '~45 мин от аэропорта' },
@@ -168,7 +168,7 @@ const TRANSFERS = {
   arrival: [
     {
       label: 'Заезд · 2 июня',
-      color: '#166534',
+      color: '#6B9E2A',
       items: [
         { time: '[XX:XX]', title: 'Встреча в аэропорту Эрджан (ECN)', note: 'Табличка «GCC 2026» у выхода из таможни' },
         { time: '[XX:XX]', title: 'Выезд из аэропорта', note: '~45 мин до отеля' },
