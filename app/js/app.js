@@ -641,7 +641,7 @@ const App = (() => {
   function buildMsgHTML(msg, isOwn) {
     const time = new Date(msg.created_at).toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
     return `<div class="chat-msg ${isOwn ? 'own' : 'other'}">
-      ${!isOwn ? `<div class="chat-msg-name">${escapeHtml(msg.user_name)}</div>` : ''}
+      <div class="chat-msg-name">${escapeHtml(msg.user_name)}</div>
       ${escapeHtml(msg.text)}
       <div class="chat-msg-time">${time}</div>
     </div>`;
@@ -889,3 +889,4 @@ const App = (() => {
 })();
 
 document.addEventListener('DOMContentLoaded', App.init);
+

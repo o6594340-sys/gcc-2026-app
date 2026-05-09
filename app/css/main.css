@@ -421,6 +421,9 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   margin-bottom: 3px;
   color: var(--accent);
 }
+.chat-msg.own .chat-msg-name {
+  color: rgba(255,255,255,0.8);
+}
 .chat-msg-time {
   font-size: 10px;
   opacity: 0.5;
