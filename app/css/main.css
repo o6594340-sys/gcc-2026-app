@@ -543,6 +543,9 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   75%      { transform: translateX(8px); }
 }
 
+/* Скрываем FAB в чате чтобы не перекрывал кнопку отправки */
+body:has(#tab-chat:not(.hidden)) .fab-help { display: none !important; }
+
 /* 6-tab bar: уменьшаем label чуть */
 .tab-bar .tab:nth-child(n+6) ~ .tab .tab-label,
 .tab-bar:has(.tab:nth-child(6)) .tab-label { font-size: 9px; }
