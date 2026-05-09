@@ -12,7 +12,7 @@ Telegram Mini App для корпоративного инсентив-тура 
 app/
   index.html         — разметка, 5 вкладок
   manifest.json      — PWA манифест
-  css/main.css       — дизайн-система, зелёная тема #166534
+  css/main.css       — дизайн-система, бренд-палитра GreenCode (лайм #6B9E2A)
   js/data.js         — все данные (EVENT, DAYS, HOTEL, NEARBY, CUISINE,
                        EXHIBITORS, TRANSFERS, FAQ, PRACTICAL, EXCURSION)
   js/app.js          — вся логика (App IIFE)
@@ -43,6 +43,21 @@ app/
 | `chat` | 💬 Чат | групповой чат участников в реальном времени (Supabase Realtime) |
 
 ## Ключевые соглашения
+
+### Палитра (бренд GreenCode International)
+Источник: сайт greencode.travel — лаймово-авокадный зелёный на тёплом кремовом.
+- `--accent: #6B9E2A` — основной лайм (кнопки, активные табы, точки)
+- `--accent-dark: #4A7A15` — тёмный лайм (фон хедера)
+- `--accent-light: #F0F7E6` — светлый лайм (подсветки, фоны карточек)
+- `--bg: #F7F4EF` — тёплый кремовый фон (не холодная мята)
+- `--bg-secondary: #EDE9E2` — вторичный тёплый фон
+- `--text: #2A1E14` — тёплый тёмно-коричневый текст
+- Хедер: `--header-bg` устанавливается JS через `applyGradient()` = brand.color из data.js
+- `brand.color` в data.js = `#6B9E2A` (ВАЖНО: JS перезаписывает CSS-переменные при старте)
+- Герои (today-hero, excursion-hero): `linear-gradient(135deg,#9DD645 0%,#8DC63F 45%,#5A8A1F 100%)` + `${day.color}` на 80% для «сегодня»
+
+### Анимированные волны в хедере
+SVG `.header-waves` внутри `<header>` — 3 пути, stroke rgba(196,150,122,0.28), 18s бесшовный цикл translateX(-50%). Header имеет `overflow: hidden`.
 
 ### Заголовок (header)
 Текстовый бренд без логотипа:

@@ -15,7 +15,7 @@ Telegram Mini App для корпоративного инсентив-тура 
 app/
   index.html         — разметка, 5 вкладок
   manifest.json      — PWA манифест
-  css/main.css       — дизайн-система, зелёная тема #166534
+  css/main.css       — дизайн-система, бренд-палитра GreenCode (лайм #6B9E2A, кремовый фон)
   js/data.js         — все данные (EVENT, DAYS, HOTEL, NEARBY, CUISINE,
                        EXHIBITORS, TRANSFERS, FAQ, PRACTICAL, EXCURSION)
   js/app.js          — вся логика (App IIFE)
@@ -27,6 +27,7 @@ app/
   northen Cyprus.jpg — Северный Кипр
   Northen Cyprus 2.jpg — Северный Кипр
 index.html           — редирект на app/index.html (для GitHub Pages)
+qr.html              — брендированный QR-код → @GCCapp_bot (для рассылки материалов)
 ```
 
 ## Стек
@@ -54,9 +55,19 @@ index.html           — редирект на app/index.html (для GitHub Pag
 Корневой `index.html` перенаправляет на `app/index.html` через JS.  
 Для работы Telegram Mini App обязателен HTTPS — GitHub Pages это обеспечивает.
 
+## Дизайн
+
+Палитра приведена к бренду **GreenCode International** (сайт greencode.travel):
+- Основной: лайм `#6B9E2A` (фирменный авокадо-зелёный логотипа)
+- Фон: тёплый кремовый `#F7F4EF` вместо холодной мяты
+- Текст: тёплый тёмно-коричневый `#2A1E14`
+- Хедер: анимированные SVG-волны (розово-коричневый stroke, 18s цикл)
+- Герои (Сегодня, Экскурсия): `linear-gradient(135deg, #9DD645→#8DC63F→#5A8A1F)`
+
 ## Что ещё запланировано
 
 - [ ] Telegram-бот (Python): `/start` открывает Mini App, FAQ по ключевым словам
 - [ ] Service Worker для офлайн-режима
 - [ ] Заполнить реальные данные: WiFi, телефоны, экспоненты (10 компаний)
 - [ ] Заполнить время событий в программе (`[XX:XX]` → реальное время)
+- [ ] Привязать FAB 📞 к конкретному Telegram-нику координатора
