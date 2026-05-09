@@ -6,7 +6,6 @@
   <title>QR — GCC 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -88,7 +87,7 @@
     <div class="dates">2–5 июня · Северный Кипр</div>
 
     <div class="qr-wrap">
-      <canvas id="qr"></canvas>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Ft.me%2FGCCapp_bot&color=166534&bgcolor=ffffff&margin=4" alt="QR code" width="220" height="220">
     </div>
 
     <div class="cta">Откройте приложение мероприятия</div>
@@ -98,12 +97,5 @@
     <a class="tg-link" href="https://t.me/GCCapp_bot">@GCCapp_bot</a>
   </div>
 
-  <script>
-    QRCode.toCanvas(document.getElementById('qr'), 'https://t.me/GCCapp_bot', {
-      width: 220,
-      margin: 1,
-      color: { dark: '#166534', light: '#ffffff' }
-    });
-  </script>
 </body>
 </html>
