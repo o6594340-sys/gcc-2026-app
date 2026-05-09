@@ -3,6 +3,12 @@
    GreenCode International · App Logic
 ═══════════════════════════════════════════ */
 
+/* ─── SUPABASE CONFIG ─────────────────────
+   Замените на ваши значения из supabase.com → Settings → API
+──────────────────────────────────────────── */
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
 const App = (() => {
 
   /* ─── TELEGRAM ───────────────────────── */
@@ -141,6 +147,7 @@ const App = (() => {
       location:   renderLocation,
       excursion:  renderExcursion,
       exhibitors: renderExhibitors,
+      chat:       renderChat,
     };
     if (renderers[tab]) renderers[tab]();
   }
@@ -602,6 +609,144 @@ const App = (() => {
     document.getElementById('tab-excursion').innerHTML = html;
   }
 
+  /* ─── CHAT ───────────────────────────── */
+  let _sb       = null;
+  let _chatSub  = null;
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function getSupabase() {
+    if (!_sb && typeof supabase !== 'undefined' && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+      _sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }
+    return _sb;
+  }
+
+  function getChatUser() {
+    if (tgUser) {
+      return {
+        id:   String(tgUser.id),
+        name: tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : ''),
+      };
+    }
+    let uid = localStorage.getItem('gcc_chat_uid');
+    if (!uid) { uid = Math.random().toString(36).slice(2); localStorage.setItem('gcc_chat_uid', uid); }
+    return { id: 'anon_' + uid, name: 'Участник' };
+  }
+
+  function buildMsgHTML(msg, isOwn) {
+    const time = new Date(msg.created_at).toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
+    return `<div class="chat-msg ${isOwn ? 'own' : 'other'}">
+      ${!isOwn ? `<div class="chat-msg-name">${escapeHtml(msg.user_name)}</div>` : ''}
+      ${escapeHtml(msg.text)}
+      <div class="chat-msg-time">${time}</div>
+    </div>`;
+  }
+
+  function scrollChatToBottom() {
+    const el = document.getElementById('chat-messages');
+    if (el) el.scrollTop = el.scrollHeight;
+  }
+
+  function renderChat() {
+    const el = document.getElementById('tab-chat');
+    el.innerHTML = `
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-loading">Загрузка сообщений...</div>
+      </div>
+      <div class="chat-input-bar">
+        <textarea class="chat-input" id="chat-input" rows="1"
+          placeholder="Написать сообщение..."
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();App.sendChatMessage()}"
+          oninput="App.resizeChatInput(this)"></textarea>
+        <button class="chat-send-btn" onclick="App.sendChatMessage()" aria-label="Отправить">➤</button>
+      </div>`;
+    loadChatMessages();
+    subscribeToChatMessages();
+  }
+
+  async function loadChatMessages() {
+    const sb = getSupabase();
+    const listEl = document.getElementById('chat-messages');
+    if (!listEl) return;
+
+    if (!sb) {
+      listEl.innerHTML = '<div class="chat-empty">Чат не настроен.<br>Укажите Supabase URL и ключ в app.js</div>';
+      return;
+    }
+
+    const { data, error } = await sb
+      .from('messages')
+      .select('*')
+      .order('created_at', { ascending: true })
+      .limit(200);
+
+    if (!listEl) return;
+    if (error) { listEl.innerHTML = '<div class="chat-empty">Ошибка загрузки сообщений</div>'; return; }
+
+    const me = getChatUser();
+    listEl.innerHTML = data.length
+      ? data.map(m => buildMsgHTML(m, m.user_id === me.id)).join('')
+      : '<div class="chat-empty">Пока нет сообщений.<br>Начните общение первыми!</div>';
+
+    scrollChatToBottom();
+  }
+
+  function subscribeToChatMessages() {
+    const sb = getSupabase();
+    if (!sb) return;
+    if (_chatSub) { sb.removeChannel(_chatSub); _chatSub = null; }
+
+    _chatSub = sb.channel('gcc_chat')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+        const me    = getChatUser();
+        if (payload.new.user_id === me.id) return; // already shown optimistically
+        const listEl = document.getElementById('chat-messages');
+        if (!listEl) return;
+        const emptyEl = listEl.querySelector('.chat-empty');
+        if (emptyEl) emptyEl.remove();
+        listEl.insertAdjacentHTML('beforeend', buildMsgHTML(payload.new, false));
+        scrollChatToBottom();
+      })
+      .subscribe();
+  }
+
+  async function sendChatMessage() {
+    const input = document.getElementById('chat-input');
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+
+    const sb = getSupabase();
+    if (!sb) return;
+
+    const me = getChatUser();
+    input.value = '';
+    resizeChatInput(input);
+    haptic('light');
+
+    const listEl = document.getElementById('chat-messages');
+    if (listEl) {
+      const emptyEl = listEl.querySelector('.chat-empty');
+      if (emptyEl) emptyEl.remove();
+      listEl.insertAdjacentHTML('beforeend', buildMsgHTML(
+        { user_id: me.id, user_name: me.name, text, created_at: new Date().toISOString() }, true
+      ));
+      scrollChatToBottom();
+    }
+
+    await sb.from('messages').insert({ user_id: me.id, user_name: me.name, text });
+  }
+
+  function resizeChatInput(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
   /* ─── EXHIBITORS ─────────────────────── */
   function renderExhibitors() {
     const list = getExhibitors();
@@ -738,6 +883,7 @@ const App = (() => {
     filterExhibitors, renderExhibitors,
     renderExcursion,
     callHelp,
+    sendChatMessage, resizeChatInput,
   };
 
 })();
