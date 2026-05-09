@@ -7,16 +7,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --accent:       #166534;
-  --accent-light: #F0FDF4;
-  --accent-text:  #14532D;
-  --accent-dark:  #0F4C25;
+  --accent:       #6B9E2A;
+  --accent-light: #F0F7E6;
+  --accent-text:  #3D5A1A;
+  --accent-dark:  #4A7A15;
 
-  --bg:           #F8FAF8;
-  --bg-secondary: #EFF4EF;
+  --bg:           #F7F4EF;
+  --bg-secondary: #EDE9E2;
   --surface:      #FFFFFF;
-  --border:       #E2EAE2;
-  --text:         #0F1A0F;
+  --border:       #E0DAD0;
+  --text:         #2A1E14;
   --text-secondary: #6B7280;
   --text-hint:    #9CA3AF;
 
@@ -53,8 +53,9 @@ body {
   height: var(--header-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 16px;
-  background: var(--header-bg, var(--accent));
+  background: var(--header-bg, var(--accent-dark));
   color: white;
+  overflow: hidden;
 }
 .header-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .header-logo  { height: 34px; width: auto; max-width: 80px; object-fit: contain; border-radius: 4px; flex-shrink: 0; }
@@ -118,7 +119,7 @@ body {
 }
 .ann-info    { background: #EFF6FF; color: #1E40AF; border-bottom: 1px solid #BFDBFE; }
 .ann-warning { background: #FFFBEB; color: #92400E; border-bottom: 1px solid #FDE68A; }
-.ann-success { background: #F0FDF4; color: #166534; border-bottom: 1px solid #BBF7D0; }
+.ann-success { background: var(--accent-light); color: var(--accent-text); border-bottom: 1px solid #C8E6A0; }
 
 /* ===== TODAY HERO ===== */
 .today-hero {
@@ -320,7 +321,7 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   background: var(--accent);
   color: white; font-size: 22px;
   border: none; cursor: pointer;
-  box-shadow: 0 4px 20px rgba(22,101,52,0.4);
+  box-shadow: 0 4px 20px rgba(107,158,42,0.4);
   z-index: 100;
   display: flex; align-items: center; justify-content: center;
   transition: transform 0.15s;
@@ -549,3 +550,23 @@ body:has(#tab-chat:not(.hidden)) .fab-help { display: none !important; }
 /* 6-tab bar: уменьшаем label чуть */
 .tab-bar .tab:nth-child(n+6) ~ .tab .tab-label,
 .tab-bar:has(.tab:nth-child(6)) .tab-label { font-size: 9px; }
+
+/* ─── HEADER WAVES ───────────────────────── */
+.header-waves {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 200%; height: 100%;
+  pointer-events: none;
+  animation: waveDrift 18s linear infinite;
+}
+.header-waves path {
+  fill: none;
+  stroke: rgba(196,150,122,0.28);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.header-waves path:nth-child(2) { stroke-opacity: 0.18; animation: none; }
+.header-waves path:nth-child(3) { stroke-width: 1; stroke-opacity: 0.15; }
+@keyframes waveDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
