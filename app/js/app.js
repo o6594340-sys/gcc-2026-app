@@ -506,7 +506,7 @@ const App = (() => {
     const ex = EXCURSION;
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(135deg,#064e3b 0%,#059669 50%,#34d399 100%)">
+      <div class="today-hero" style="background:linear-gradient(135deg,#9DD645 0%,#8DC63F 45%,#5A8A1F 100%)">
         <div class="today-eyebrow">GCC 2026 · ${ex.date}</div>
         <div class="today-name">${ex.title}</div>
         <div class="today-theme">${ex.duration} · Сбор в ${ex.meetingTime}</div>
