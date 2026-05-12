@@ -109,7 +109,12 @@ const App = (() => {
 
   /* ─── INIT ────────────────────────────── */
   function init() {
-    if (tg) { tg.ready(); tg.expand(); tg.BackButton?.hide(); }
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      tg.BackButton?.hide();
+      setTimeout(() => { tg.expand(); tg.requestFullscreen?.(); }, 300);
+    }
     applyBranding();
     applyGradient();
     renderAnnouncement();
