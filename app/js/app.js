@@ -67,7 +67,7 @@ const App = (() => {
   function applyBranding() {
     const ev    = getEvent();
     const brand = ev.brand || {};
-    const color = brand.color || '#6B9E2A';
+    const color = brand.color || '#C9A84C';
 
     document.documentElement.style.setProperty('--accent',       color);
     document.documentElement.style.setProperty('--accent-dark',  shadeColor(color, -15));
@@ -100,11 +100,9 @@ const App = (() => {
 
   function applyGradient() {
     const root   = document.documentElement;
-    const accent = root.style.getPropertyValue('--accent').trim() || '#6B9E2A';
-    const dark   = shadeColor(accent, -40);
-    root.style.setProperty('--header-bg', accent);
-    root.style.setProperty('--now-bg',    `linear-gradient(135deg, ${accent} 0%, ${dark} 100%)`);
-    root.style.setProperty('--now-shadow', `0 4px 20px ${hexToRgba(accent, 0.35)}`);
+    root.style.setProperty('--header-bg', '#0D2B1A');
+    root.style.setProperty('--now-bg',    'linear-gradient(135deg, #0D2B1A 0%, #162B1D 100%)');
+    root.style.setProperty('--now-shadow', '0 4px 20px rgba(201,168,76,0.2)');
   }
 
   /* ─── INIT ────────────────────────────── */
@@ -169,7 +167,7 @@ const App = (() => {
       : 'Добро пожаловать';
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(135deg,#9DD645 0%,#8DC63F 45%,${day.color} 80%,#5A8A1F 100%)">
+      <div class="today-hero" style="background:linear-gradient(160deg,#0a2218 0%,#0D2B1A 55%,${day.color} 100%)">
         <div class="today-eyebrow">GCC 2026 · ${short}</div>
         <div class="today-name">${greeting}</div>
         <div class="today-theme">${day.theme}</div>
@@ -511,7 +509,7 @@ const App = (() => {
     const ex = EXCURSION;
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(135deg,#9DD645 0%,#8DC63F 45%,#5A8A1F 100%)">
+      <div class="today-hero" style="background:linear-gradient(160deg,#0a2218 0%,#0D2B1A 55%,#C9A84C 100%)">
         <div class="today-eyebrow">GCC 2026 · ${ex.date}</div>
         <div class="today-name">${ex.title}</div>
         <div class="today-theme">${ex.duration} · Сбор в ${ex.meetingTime}</div>

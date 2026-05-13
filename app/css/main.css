@@ -7,21 +7,21 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --accent:       #6B9E2A;
-  --accent-light: #F0F7E6;
-  --accent-text:  #3D5A1A;
-  --accent-dark:  #4A7A15;
+  --accent:       #C9A84C;
+  --accent-light: rgba(201,168,76,0.12);
+  --accent-text:  #A8841E;
+  --accent-dark:  #A8841E;
 
-  --bg:           #F7F4EF;
-  --bg-secondary: #EDE9E2;
-  --surface:      #FFFFFF;
-  --border:       #E0DAD0;
-  --text:         #2A1E14;
-  --text-secondary: #6B7280;
-  --text-hint:    #9CA3AF;
+  --bg:           #111D14;
+  --bg-secondary: #0D2B1A;
+  --surface:      #162B1D;
+  --border:       rgba(201,168,76,0.18);
+  --text:         #EDE8DC;
+  --text-secondary: rgba(237,232,220,0.65);
+  --text-hint:    rgba(237,232,220,0.35);
 
-  --shadow:    0 1px 3px rgba(0,0,0,0.06), 0 6px 20px rgba(0,0,0,0.05);
-  --shadow-lg: 0 4px 6px rgba(0,0,0,0.04), 0 16px 40px rgba(0,0,0,0.09);
+  --shadow:    0 1px 3px rgba(0,0,0,0.4), 0 6px 20px rgba(0,0,0,0.5);
+  --shadow-lg: 0 4px 6px rgba(0,0,0,0.4), 0 16px 40px rgba(0,0,0,0.6);
 
   --radius:    16px;
   --radius-sm: 10px;
@@ -32,17 +32,16 @@
   --header-h:  60px;
   --tabbar-h:  56px;
 
-  /* Telegram theme variable aliases (fallback to design system) */
-  --tab-active-color:   var(--tg-theme-button-color,       var(--accent));
-  --tab-inactive-color: var(--tg-theme-hint-color,         var(--text-hint));
-  --tab-bg:             var(--tg-theme-bg-color,           var(--surface));
+  --tab-active-color:   var(--accent);
+  --tab-inactive-color: var(--text-hint);
+  --tab-bg:             var(--bg-secondary);
 }
 
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font);
-  background: var(--tg-theme-secondary-bg-color, var(--bg));
-  color: var(--tg-theme-text-color, var(--text));
+  background: var(--bg);
+  color: var(--text);
   min-height: 100dvh;
   overflow-x: hidden;
 }
@@ -117,9 +116,9 @@ body {
   padding: 12px 16px; font-size: 13px; font-weight: 600;
   line-height: 1.5; display: none;
 }
-.ann-info    { background: #EFF6FF; color: #1E40AF; border-bottom: 1px solid #BFDBFE; }
-.ann-warning { background: #FFFBEB; color: #92400E; border-bottom: 1px solid #FDE68A; }
-.ann-success { background: var(--accent-light); color: var(--accent-text); border-bottom: 1px solid #C8E6A0; }
+.ann-info    { background: rgba(201,168,76,0.08); color: #C9A84C; border-bottom: 1px solid rgba(201,168,76,0.2); }
+.ann-warning { background: rgba(201,168,76,0.08); color: #C9A84C; border-bottom: 1px solid rgba(201,168,76,0.2); }
+.ann-success { background: rgba(201,168,76,0.08); color: #C9A84C; border-bottom: 1px solid rgba(201,168,76,0.2); }
 
 /* ===== TODAY HERO ===== */
 .today-hero {
@@ -141,12 +140,12 @@ body {
 .today-theme { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
 .today-live  { display: flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(255,255,255,0.6); }
 .live-dot {
-  width: 7px; height: 7px; background: #4ADE80;
+  width: 7px; height: 7px; background: #C9A84C;
   border-radius: 50%; flex-shrink: 0; position: relative;
 }
 .live-dot::after {
   content: ''; position: absolute; inset: -4px;
-  border-radius: 50%; background: #4ADE80;
+  border-radius: 50%; background: #C9A84C;
   animation: pulseLive 2s ease-out infinite;
 }
 @keyframes pulseLive {
@@ -213,7 +212,7 @@ body {
 .wifi-net  { color: var(--text-secondary); }
 .wifi-sep  { color: var(--border); }
 .wifi-pass { font-weight: 700; color: var(--text); }
-.wifi-copy { margin-left: auto; font-size: 11px; font-weight: 700; color: #22C55E; opacity: 0; transition: opacity 0.3s; }
+.wifi-copy { margin-left: auto; font-size: 11px; font-weight: 700; color: #C9A84C; opacity: 0; transition: opacity 0.3s; }
 
 /* ===== CARD ===== */
 .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.6); overflow: hidden; }
@@ -254,14 +253,14 @@ body {
 /* ===== HOTEL ===== */
 .hotel-photo   { width: 100%; height: 220px; object-fit: cover; display: block; }
 .hotel-name-block { margin-bottom: 16px; }
-.hotel-stars   { color: #F59E0B; font-size: 16px; letter-spacing: 2px; margin-bottom: 4px; }
+.hotel-stars   { color: #C9A84C; font-size: 16px; letter-spacing: 2px; margin-bottom: 4px; }
 .hotel-name    { font-size: 20px; font-weight: 800; font-family: var(--font-disp); color: var(--text); margin-bottom: 2px; }
 .hotel-quickgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
 .hotel-quickitem { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; }
 .hotel-quick-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-hint); margin-bottom: 4px; }
 .hotel-quick-val   { font-size: 15px; font-weight: 700; color: var(--text); }
 .hotel-desc    { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
-.hotel-breakfast { background: #FFF8E7; border: 1px solid #FDE68A; border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; color: #92400E; margin-bottom: 20px; }
+.hotel-breakfast { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; color: #C9A84C; margin-bottom: 20px; }
 .hotel-amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 8px; }
 .hotel-amenity { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 10px; text-align: center; }
 .hotel-amenity-icon  { font-size: 22px; margin-bottom: 4px; }
@@ -321,7 +320,7 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   background: var(--accent);
   color: white; font-size: 22px;
   border: none; cursor: pointer;
-  box-shadow: 0 4px 20px rgba(107,158,42,0.4);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.35);
   z-index: 100;
   display: flex; align-items: center; justify-content: center;
   transition: transform 0.15s;
@@ -560,7 +559,7 @@ body:has(#tab-chat:not(.hidden)) .fab-help { display: none !important; }
 }
 .header-waves path {
   fill: none;
-  stroke: rgba(196,150,122,0.28);
+  stroke: rgba(201,168,76,0.25);
   stroke-width: 1.5;
   stroke-linecap: round;
 }
