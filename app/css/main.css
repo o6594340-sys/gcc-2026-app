@@ -7,15 +7,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --accent:       #C8973A;
-  --accent-light: rgba(200,151,58,0.12);
-  --accent-text:  #A87830;
-  --accent-dark:  #A87830;
+  --accent:       #B8862A;
+  --accent-light: rgba(184,134,42,0.12);
+  --accent-text:  #966E20;
+  --accent-dark:  #966E20;
 
-  --bg:           #0C1F10;
-  --bg-secondary: #091C0E;
-  --surface:      #112618;
-  --border:       rgba(200,151,58,0.18);
+  --bg:           #050F07;
+  --bg-secondary: #040C06;
+  --surface:      #0C1E0E;
+  --border:       rgba(184,134,42,0.18);
   --text:         #EDE8DC;
   --text-secondary: rgba(237,232,220,0.65);
   --text-hint:    rgba(237,232,220,0.35);
@@ -40,7 +40,8 @@
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font);
-  background: var(--bg);
+  background: radial-gradient(ellipse at 40% 30%, #0C1E0E 0%, #050F07 55%, #030A05 100%);
+  background-attachment: fixed;
   color: var(--text);
   min-height: 100dvh;
   overflow-x: hidden;

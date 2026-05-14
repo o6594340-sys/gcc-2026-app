@@ -10,7 +10,7 @@ const EVENT = {
   dates:    '2–5 июня 2026',
   location: 'Северный Кипр',
   brand: {
-    color:     '#C8973A',
+    color:     '#B8862A',
     logo:      '',
     logoEmoji: '🌿',
   },
