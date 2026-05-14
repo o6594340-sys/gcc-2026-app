@@ -67,7 +67,7 @@ const App = (() => {
   function applyBranding() {
     const ev    = getEvent();
     const brand = ev.brand || {};
-    const color = brand.color || '#B8862A';
+    const color = brand.color || '#CCA040';
 
     document.documentElement.style.setProperty('--accent',       color);
     document.documentElement.style.setProperty('--accent-dark',  shadeColor(color, -15));
@@ -102,7 +102,7 @@ const App = (() => {
     const root   = document.documentElement;
     root.style.setProperty('--header-bg', '#030A05');
     root.style.setProperty('--now-bg',    'linear-gradient(135deg, #040C06 0%, #0C1E0E 100%)');
-    root.style.setProperty('--now-shadow', '0 4px 20px rgba(184,134,42,0.2)');
+    root.style.setProperty('--now-shadow', '0 4px 20px rgba(204,160,64,0.2)');
   }
 
   /* ─── INIT ────────────────────────────── */
@@ -509,7 +509,7 @@ const App = (() => {
     const ex = EXCURSION;
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(160deg,#020704 0%,#050F07 55%,#B8862A 100%)">
+      <div class="today-hero" style="background:linear-gradient(160deg,#020704 0%,#050F07 55%,#CCA040 100%)">
         <div class="today-eyebrow">GCC 2026 · ${ex.date}</div>
         <div class="today-name">${ex.title}</div>
         <div class="today-theme">${ex.duration} · Сбор в ${ex.meetingTime}</div>

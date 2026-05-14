@@ -7,15 +7,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --accent:       #B8862A;
-  --accent-light: rgba(184,134,42,0.12);
-  --accent-text:  #966E20;
-  --accent-dark:  #966E20;
+  --accent:       #CCA040;
+  --accent-light: rgba(204,160,64,0.12);
+  --accent-text:  #A8802A;
+  --accent-dark:  #A8802A;
 
   --bg:           #050F07;
   --bg-secondary: #040C06;
   --surface:      #0C1E0E;
-  --border:       rgba(184,134,42,0.18);
+  --border:       rgba(204,160,64,0.18);
   --text:         #EDE8DC;
   --text-secondary: rgba(237,232,220,0.65);
   --text-hint:    rgba(237,232,220,0.35);
@@ -40,7 +40,17 @@
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font);
-  background: radial-gradient(ellipse at 40% 30%, #0C1E0E 0%, #050F07 55%, #030A05 100%);
+  background:
+    repeating-linear-gradient(
+      125deg,
+      transparent 0px,
+      transparent 90px,
+      rgba(35,120,65,0.07) 90px,
+      rgba(35,120,65,0.07) 92px,
+      transparent 92px,
+      transparent 180px
+    ),
+    radial-gradient(ellipse at 40% 30%, #0C1E0E 0%, #050F07 55%, #030A05 100%);
   background-attachment: fixed;
   color: var(--text);
   min-height: 100dvh;
