@@ -62,46 +62,48 @@ const TODAY_INDEX = 0;
 const DAYS = [
   {
     id: 1, label: '2 июня', date: '2 июня, вторник',
-    theme: 'Заезд', color: '#C9A84C',
+    theme: 'Заезд', color: '#D4A838',
     activities: [
-      { time: '[XX:XX]', title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Табличка «GCC 2026» у выхода из таможни' },
-      { time: '[XX:XX]', title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: '~45 мин от аэропорта' },
-      { time: '14:00',   title: 'Заселение', location: 'Стойка регистрации', type: 'hotel', note: 'Получить бейдж и Welcome-kit' },
-      { time: '[XX:XX]', title: 'Ужин в основном ресторане отеля', location: 'Главный ресторан', type: 'dinner', note: 'Включён в программу' },
-      { time: '[XX:XX]', title: 'Вечер Караоке', location: 'Elexus Hotel', type: 'dinner', note: 'Добро пожаловать на GCC 2026!' },
+      { time: '[XX:XX]',     title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Табличка «GCC 2026» у выхода из таможни' },
+      { time: '[XX:XX]',     title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: '~45 мин от аэропорта' },
+      { time: '14:00',       title: 'Заселение', location: 'Стойка регистрации', type: 'hotel', note: 'Получить бейдж и Welcome-kit' },
+      { time: '18:00–21:30', title: 'Ужин', location: 'Ресторан Reflection', type: 'dinner', note: 'Включён в программу' },
+      { time: '22:00–02:00', title: 'After-party', location: 'The Gazino', type: 'gala' },
     ],
   },
   {
     id: 2, label: '3 июня', date: '3 июня, среда',
     theme: 'Воркшоп & Экскурсия', color: '#1D4ED8',
     activities: [
-      { time: '07:30',   title: 'Завтрак', location: 'Главный ресторан', type: 'meal' },
-      { time: '[XX:XX]', title: 'Воркшоп', location: '[Конференц-зал]', type: 'business', note: 'Деловая программа GCC 2026' },
-      { time: '[XX:XX]', title: 'Обед', location: '[Ресторан]', type: 'meal' },
-      { time: '[XX:XX]', title: 'Выезд на экскурсию', location: 'Главный вход отеля', type: 'excursion', note: 'Удобная обувь, солнцезащитный крем, головной убор' },
-      { time: '[XX:XX]', title: 'Свободное время · 1 час', type: 'free' },
-      { time: '[XX:XX]', title: 'Вечеринка у бассейна', location: 'Бассейн Elexus', type: 'gala', note: 'Купальник, лёгкая одежда' },
+      { time: '07:00',       title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
+      { time: '10:00–13:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026' },
+      { time: '13:00–14:30', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
+      { time: '14:30',       title: 'Сбор в лобби · отправление на экскурсию', location: 'Лобби отеля', type: 'transfer', note: 'Удобная обувь, солнцезащитный крем, головной убор' },
+      { time: '14:30–19:00', title: 'Экскурсионная программа', location: 'Кирения', type: 'excursion' },
+      { time: '19:30–00:00', title: 'Пляжная вечеринка', location: 'Mia Beach', type: 'gala', note: 'Купальник, лёгкая одежда' },
+      { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner' },
     ],
   },
   {
     id: 3, label: '4 июня', date: '4 июня, четверг',
     theme: 'Воркшоп & Гала-ужин', color: '#7C3AED',
     activities: [
-      { time: '07:30',   title: 'Завтрак', location: 'Главный ресторан', type: 'meal' },
-      { time: '[XX:XX]', title: 'Воркшоп', location: '[Конференц-зал]', type: 'business', note: 'Деловая программа GCC 2026' },
-      { time: '[XX:XX]', title: 'Обед', location: '[Ресторан]', type: 'meal' },
-      { time: '[XX:XX]', title: 'Свободное время', type: 'free', note: 'СПА, пляж, бассейн — на ваш выбор' },
-      { time: '[XX:XX]', title: 'Гала-ужин GCC 2026', location: '[Площадка]', type: 'gala', note: 'Smart casual' },
+      { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
+      { time: '10:00–13:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026' },
+      { time: '13:00–14:00', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
+      { time: '14:00–16:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business' },
+      { time: '16:00–20:00', title: 'Свободное время', type: 'free', note: 'СПА, пляж, бассейн — на ваш выбор' },
+      { time: '20:00–00:00', title: 'Гала-ужин GCC 2026', location: 'Elexus 3', type: 'gala', note: 'Smart casual' },
+      { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner' },
     ],
   },
   {
     id: 4, label: '5 июня', date: '5 июня, пятница',
     theme: 'Отъезд', color: '#6B7280',
     activities: [
-      { time: '07:30', title: 'Завтрак', location: 'Главный ресторан', type: 'meal' },
-      { time: '[XX:XX]', title: 'Обед', location: '[Ресторан]', type: 'meal' },
-      { time: '12:00', title: 'Выселение', location: 'Стойка регистрации', type: 'hotel', note: 'Багаж можно оставить у консьержа до отъезда' },
-      { time: '[XX:XX]', title: 'Трансферы в аэропорт Эрджан', location: 'Аэропорт Эрджан (ECN)', type: 'transfer', note: 'Расписание по рейсам — уточните у координатора' },
+      { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
+      { time: '12:00',       title: 'Выезд из отеля', location: 'Стойка регистрации', type: 'hotel', note: 'Багаж можно оставить у консьержа до отъезда' },
+      { time: '[XX:XX]',     title: 'Трансферы в аэропорт Эрджан', location: 'Аэропорт Эрджан (ECN)', type: 'transfer', note: 'Расписание по рейсам — уточните у координатора' },
     ],
   },
 ];
@@ -168,7 +170,7 @@ const TRANSFERS = {
   arrival: [
     {
       label: 'Заезд · 2 июня',
-      color: '#C9A84C',
+      color: '#D4A838',
       items: [
         { time: '[XX:XX]', title: 'Встреча в аэропорту Эрджан (ECN)', note: 'Табличка «GCC 2026» у выхода из таможни' },
         { time: '[XX:XX]', title: 'Выезд из аэропорта', note: '~45 мин до отеля' },
@@ -193,7 +195,7 @@ const TRANSFERS = {
 };
 
 const FAQ = [
-  { q: 'Во сколько завтрак?',              a: 'Завтрак в ресторане Reflection — шведский стол, включён в программу. При входе укажите, что вы в составе группы GCC 2026.' },
+  { q: 'Во сколько завтрак?',              a: 'Завтрак в ресторане Reflection — 07:00–10:00, шведский стол, включён в программу. При входе укажите, что вы в составе группы GCC 2026.' },
   { q: 'Как вызвать трансфер?',            a: 'Расписание трансферов — во вкладке «Локация». По индивидуальным вопросам обращайтесь к координатору или на ресепшн.' },
   { q: 'Где получить бейдж?',              a: 'Бейдж и Welcome-kit выдаются при заселении на стойке регистрации. По любым вопросам — координатор GreenCode.' },
   { q: 'Есть ли Wi-Fi в конференц-зале?',  a: 'Да. Название сети и пароль — на главном экране приложения.' },
