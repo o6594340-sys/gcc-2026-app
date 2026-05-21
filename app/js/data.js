@@ -17,7 +17,7 @@ const EVENT = {
   hotel: {
     name:     'Elexus Hotel & Resort & SPA',
     address:  'Çatalköy, Kyrenia (Girne), Северный Кипр',
-    phone:    '[+90 ...]',
+    phone:    '+90 392 444 0 650',
     maps:     '',
     checkin:  '14:00',
     checkout: '12:00',
