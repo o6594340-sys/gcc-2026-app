@@ -22,7 +22,7 @@ const EVENT = {
     checkin:  '14:00',
     checkout: '12:00',
   },
-  wifi:      { network: '[Название сети]', password: '[Пароль]' },
+  wifi:      { network: 'Global Corporate Club', password: 'welcome2gcc' },
   organizer: { name: 'GreenCode International', telegram: 'https://t.me/greencode_intl' },
   emergency: '[Экстренный номер]',
 };
