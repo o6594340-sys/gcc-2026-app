@@ -194,9 +194,10 @@ const App = (() => {
     const ev = getEvent();
     html += `
       <div class="wifi-row" onclick="App.copyWifi()">
-        <span>📶</span>
+        <span class="wifi-label">Wi-Fi:</span>
         <span class="wifi-net">${ev.wifi.network}</span>
         <span class="wifi-sep">·</span>
+        <span class="wifi-label">Пароль:</span>
         <span class="wifi-pass">${ev.wifi.password}</span>
         <span class="wifi-copy" id="wifi-copied">Скопировано ✓</span>
       </div>
