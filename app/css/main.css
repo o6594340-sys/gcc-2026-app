@@ -144,6 +144,8 @@ body {
   color: white; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 4px;
 }
 .today-theme { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+.today-weather-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.today-weather { font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 500; }
 .today-live  { display: flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(255,255,255,0.6); }
 .live-dot {
   width: 7px; height: 7px; background: #C8973A;
@@ -241,7 +243,8 @@ body {
 .day-tab.active { transform: scale(1.04); }
 
 /* ===== PROGRAM ===== */
-.program-meta  { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
+.program-meta  { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.program-weather { font-size: 12px; color: var(--accent); font-weight: 600; }
 .program-item  { display: flex; gap: 10px; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--border); }
 .program-item:last-child { border-bottom: none; }
 .program-time  { font-size: 12px; font-weight: 700; width: 48px; flex-shrink: 0; padding-top: 2px; font-variant-numeric: tabular-nums; }

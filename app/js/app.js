@@ -171,7 +171,10 @@ const App = (() => {
         <div class="today-eyebrow">GCC 2026 · ${short}</div>
         <div class="today-name">${greeting}</div>
         <div class="today-theme">${day.theme}</div>
-        <div class="today-live"><span class="live-dot"></span> Программа актуальна</div>
+        <div class="today-weather-row">
+          ${day.weather ? `<span class="today-weather">${day.weather.icon} ${day.weather.temp} · ${day.weather.note}</span>` : ''}
+          <span class="today-live"><span class="live-dot"></span> Программа актуальна</span>
+        </div>
       </div>
       <div class="section-pad">
     `;
@@ -263,7 +266,10 @@ const App = (() => {
     });
     tabs += '</div>';
 
-    let items = `<div class="program-meta">${day.date} · ${day.theme}</div>`;
+    const wBlock = day.weather
+      ? `<span class="program-weather">${day.weather.icon} ${day.weather.temp}</span>`
+      : '';
+    let items = `<div class="program-meta">${day.date} · ${day.theme}${wBlock ? ' ' + wBlock : ''}</div>`;
     items += `<div class="card"><div class="card-body">`;
     day.activities.forEach(a => {
       const active = a.isNow ? 'active' : '';
@@ -325,7 +331,7 @@ const App = (() => {
         </div>
         <div class="hotel-quickitem">
           <div class="hotel-quick-label">Wi-Fi</div>
-          <div class="hotel-quick-val" style="font-size:12px">${ev.wifi.network}</div>
+          <div class="hotel-quick-val" style="font-size:12px">${ev.wifi.network}<br><span style="font-size:11px;opacity:0.65">${ev.wifi.password}</span></div>
         </div>
         <div class="hotel-quickitem" onclick="window.location='tel:${h.phone}'" style="cursor:pointer">
           <div class="hotel-quick-label">Телефон</div>

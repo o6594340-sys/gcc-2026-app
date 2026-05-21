@@ -63,6 +63,7 @@ const DAYS = [
   {
     id: 1, label: '2 июня', date: '2 июня, вторник',
     theme: 'Заезд', color: '#D4A838',
+    weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
       { time: '[XX:XX]',     title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Табличка «GCC 2026» у выхода из таможни' },
       { time: '[XX:XX]',     title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: '~45 мин от аэропорта' },
@@ -74,6 +75,7 @@ const DAYS = [
   {
     id: 2, label: '3 июня', date: '3 июня, среда',
     theme: 'Воркшоп & Экскурсия', color: '#1D4ED8',
+    weather: { icon: '☀️', temp: '+30°C', note: 'ясно' },
     activities: [
       { time: '07:00',       title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
       { time: '10:00–13:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026' },
@@ -87,6 +89,7 @@ const DAYS = [
   {
     id: 3, label: '4 июня', date: '4 июня, четверг',
     theme: 'Воркшоп & Гала-ужин', color: '#7C3AED',
+    weather: { icon: '⛅', temp: '+28°C', note: 'переменная облачность' },
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
       { time: '10:00–13:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026' },
@@ -100,6 +103,7 @@ const DAYS = [
   {
     id: 4, label: '5 июня', date: '5 июня, пятница',
     theme: 'Отъезд', color: '#6B7280',
+    weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
       { time: '12:00',       title: 'Выезд из отеля', location: 'Стойка регистрации', type: 'hotel', note: 'Багаж можно оставить у консьержа до отъезда' },
