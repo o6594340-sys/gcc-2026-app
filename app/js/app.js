@@ -228,8 +228,12 @@ const App = (() => {
                    : hour >= 12 && hour < 18 ? 'afternoon'
                    : hour >= 18 && hour < 23 ? 'evening'
                    : 'any';
-    const candidates = PRACTICAL.filter(p => p.time === timeSlot || p.time === 'any');
-    const pool = candidates.length ? candidates : PRACTICAL;
+    const currentDayId = getDays()[TODAY_INDEX].id;
+    const candidates = PRACTICAL.filter(p =>
+      (p.days === null || !p.days || p.days.includes(currentDayId)) &&
+      (p.time === timeSlot || p.time === 'any')
+    );
+    const pool = candidates.length ? candidates : PRACTICAL.filter(p => p.days === null || !p.days);
     const tip = pool[Math.floor(Math.random() * pool.length)];
     html += `
       <div class="tip-card">
