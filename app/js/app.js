@@ -628,8 +628,16 @@ const App = (() => {
   }
 
   /* ─── CHAT ───────────────────────────── */
+  const ADMIN_IDS = ['1220760254'];
+
+  function isAdmin() {
+    const me = getChatUser();
+    return ADMIN_IDS.includes(me.id);
+  }
+
   let _sb       = null;
   let _chatSub  = null;
+  let _pollSub  = null;
 
   function escapeHtml(str) {
     return String(str)
@@ -692,6 +700,7 @@ const App = (() => {
       return;
     }
     el.innerHTML = `
+      <div id="chat-polls"></div>
       <div class="chat-messages" id="chat-messages">
         <div class="chat-loading">Загрузка сообщений...</div>
       </div>
@@ -700,10 +709,27 @@ const App = (() => {
           placeholder="Написать сообщение..."
           onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();App.sendChatMessage()}"
           oninput="App.resizeChatInput(this)"></textarea>
+        ${isAdmin() ? `<button class="chat-poll-btn" onclick="App.openPollCreator()" title="Создать опрос">🗳</button>` : ''}
         <button class="chat-send-btn" onclick="App.sendChatMessage()" aria-label="Отправить">➤</button>
+      </div>
+      <div class="poll-modal-overlay hidden" id="poll-modal">
+        <div class="poll-modal-sheet">
+          <div class="poll-modal-title">Создать опрос</div>
+          <input class="poll-modal-input" id="poll-question" placeholder="Вопрос..." maxlength="140">
+          <input class="poll-modal-input" id="poll-opt-0" placeholder="Вариант 1" maxlength="80">
+          <input class="poll-modal-input" id="poll-opt-1" placeholder="Вариант 2" maxlength="80">
+          <input class="poll-modal-input" id="poll-opt-2" placeholder="Вариант 3 (необязательно)" maxlength="80">
+          <input class="poll-modal-input" id="poll-opt-3" placeholder="Вариант 4 (необязательно)" maxlength="80">
+          <div class="poll-modal-actions">
+            <button class="poll-modal-cancel" onclick="App.closePollCreator()">Отмена</button>
+            <button class="poll-modal-submit" onclick="App.submitPoll()">Опубликовать</button>
+          </div>
+        </div>
       </div>`;
     loadChatMessages();
     subscribeToChatMessages();
+    loadPolls();
+    subscribeToPollUpdates();
   }
 
   function saveChatName() {
@@ -791,6 +817,109 @@ const App = (() => {
   function resizeChatInput(el) {
     el.style.height = 'auto';
     el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  /* ─── POLLS ──────────────────────────── */
+  function openPollCreator() {
+    haptic('light');
+    document.getElementById('poll-modal')?.classList.remove('hidden');
+  }
+
+  function closePollCreator() {
+    document.getElementById('poll-modal')?.classList.add('hidden');
+    ['poll-question','poll-opt-0','poll-opt-1','poll-opt-2','poll-opt-3']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  }
+
+  async function submitPoll() {
+    const q = document.getElementById('poll-question')?.value.trim();
+    if (!q) return;
+    const opts = [0,1,2,3]
+      .map(i => document.getElementById(`poll-opt-${i}`)?.value.trim())
+      .filter(Boolean);
+    if (opts.length < 2) { haptic('medium'); return; }
+
+    const sb = getSupabase();
+    if (!sb) return;
+    const me = getChatUser();
+    await sb.from('polls').insert({ question: q, options: opts, created_by: me.id });
+    haptic('medium');
+    closePollCreator();
+    loadPolls();
+  }
+
+  async function loadPolls() {
+    const sb = getSupabase();
+    const el = document.getElementById('chat-polls');
+    if (!sb || !el) return;
+
+    const me = getChatUser();
+    const { data: polls } = await sb.from('polls').select('*').eq('is_active', true).order('created_at', { ascending: false });
+    if (!polls?.length) { el.innerHTML = ''; return; }
+
+    const { data: myVotes } = await sb.from('poll_votes').select('*').eq('user_id', me.id);
+    const { data: allVotes } = await sb.from('poll_votes').select('*');
+
+    el.innerHTML = polls.map(p => buildPollHTML(p, myVotes, allVotes)).join('');
+  }
+
+  function buildPollHTML(poll, myVotes, allVotes) {
+    const myVote = myVotes?.find(v => v.poll_id === poll.id);
+    const pollVotes = allVotes?.filter(v => v.poll_id === poll.id) || [];
+    const total = pollVotes.length;
+    const voted = !!myVote;
+
+    const optionsHTML = poll.options.map((opt, i) => {
+      const count = pollVotes.filter(v => v.option_index === i).length;
+      const pct = total ? Math.round(count / total * 100) : 0;
+      const isChosen = myVote?.option_index === i;
+      return voted
+        ? `<div class="poll-result ${isChosen ? 'chosen' : ''}">
+            <div class="poll-result-bar" style="width:${pct}%"></div>
+            <span class="poll-result-text">${escapeHtml(opt)}</span>
+            <span class="poll-result-pct">${pct}%</span>
+           </div>`
+        : `<button class="poll-option" onclick="App.votePoll('${poll.id}',${i})">${escapeHtml(opt)}</button>`;
+    }).join('');
+
+    const adminClose = isAdmin()
+      ? `<button class="poll-close-btn" onclick="App.closePoll('${poll.id}')">✕ Закрыть</button>`
+      : '';
+
+    return `<div class="poll-card">
+      <div class="poll-card-header">
+        <span class="poll-badge">🗳 Голосование</span>${adminClose}
+      </div>
+      <div class="poll-question">${escapeHtml(poll.question)}</div>
+      <div class="poll-options">${optionsHTML}</div>
+      ${voted ? `<div class="poll-meta">${total} ${total===1?'голос':total<5?'голоса':'голосов'}</div>` : ''}
+    </div>`;
+  }
+
+  async function votePoll(pollId, optionIndex) {
+    const sb = getSupabase();
+    if (!sb) return;
+    const me = getChatUser();
+    haptic('medium');
+    await sb.from('poll_votes').insert({ poll_id: pollId, option_index: optionIndex, user_id: me.id });
+    loadPolls();
+  }
+
+  async function closePoll(pollId) {
+    const sb = getSupabase();
+    if (!sb) return;
+    await sb.from('polls').update({ is_active: false }).eq('id', pollId);
+    loadPolls();
+  }
+
+  function subscribeToPollUpdates() {
+    const sb = getSupabase();
+    if (!sb) return;
+    if (_pollSub) { sb.removeChannel(_pollSub); _pollSub = null; }
+    _pollSub = sb.channel('gcc_polls')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'poll_votes' }, () => loadPolls())
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'polls' }, () => loadPolls())
+      .subscribe();
   }
 
   /* ─── EXHIBITORS ─────────────────────── */
@@ -930,6 +1059,7 @@ const App = (() => {
     renderExcursion,
     callHelp,
     sendChatMessage, resizeChatInput, saveChatName,
+    openPollCreator, closePollCreator, submitPoll, votePoll, closePoll,
   };
 
 })();
