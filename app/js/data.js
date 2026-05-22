@@ -10,7 +10,7 @@ const EVENT = {
   dates:    '2–5 июня 2026',
   location: 'Северный Кипр',
   brand: {
-    color:     '#D4A838',
+    color:     '#8A4FFF',
     logo:      '',
     logoEmoji: '🌿',
   },
@@ -62,7 +62,7 @@ const TODAY_INDEX = 0;
 const DAYS = [
   {
     id: 1, label: '2 июня', date: '2 июня, вторник',
-    theme: 'Заезд', color: '#D4A838',
+    theme: 'Заезд', color: '#6E00FF', pillar: 'Power of Community',
     weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
       { time: '[XX:XX]',     title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Табличка «GCC 2026» у выхода из таможни' },
@@ -74,7 +74,7 @@ const DAYS = [
   },
   {
     id: 2, label: '3 июня', date: '3 июня, среда',
-    theme: 'Воркшоп & Экскурсия', color: '#1D4ED8',
+    theme: 'Воркшоп & Экскурсия', color: '#C200D4', pillar: 'Power of Experience',
     weather: { icon: '☀️', temp: '+30°C', note: 'ясно' },
     activities: [
       { time: '07:00',       title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
@@ -88,7 +88,7 @@ const DAYS = [
   },
   {
     id: 3, label: '4 июня', date: '4 июня, четверг',
-    theme: 'Воркшоп & Гала-ужин', color: '#7C3AED',
+    theme: 'Воркшоп & Гала-ужин', color: '#0077FF', pillar: 'Power of Ideas',
     weather: { icon: '⛅', temp: '+28°C', note: 'переменная облачность' },
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
@@ -102,7 +102,7 @@ const DAYS = [
   },
   {
     id: 4, label: '5 июня', date: '5 июня, пятница',
-    theme: 'Отъезд', color: '#6B7280',
+    theme: 'Отъезд', color: '#3D2E6B', pillar: null,
     weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },

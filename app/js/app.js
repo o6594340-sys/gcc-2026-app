@@ -67,7 +67,7 @@ const App = (() => {
   function applyBranding() {
     const ev    = getEvent();
     const brand = ev.brand || {};
-    const color = brand.color || '#D4A838';
+    const color = brand.color || '#8A4FFF';
 
     document.documentElement.style.setProperty('--accent',       color);
     document.documentElement.style.setProperty('--accent-dark',  shadeColor(color, -15));
@@ -100,9 +100,9 @@ const App = (() => {
 
   function applyGradient() {
     const root   = document.documentElement;
-    root.style.setProperty('--header-bg', '#030A05');
-    root.style.setProperty('--now-bg',    'linear-gradient(135deg, #040C06 0%, #0C1E0E 100%)');
-    root.style.setProperty('--now-shadow', '0 4px 20px rgba(212,168,56,0.2)');
+    root.style.setProperty('--header-bg', '#0D0818');
+    root.style.setProperty('--now-bg',    'linear-gradient(135deg, #0D0818 0%, #1A0D35 100%)');
+    root.style.setProperty('--now-shadow', '0 4px 20px rgba(138,79,255,0.25)');
   }
 
   /* ─── INIT ────────────────────────────── */
@@ -167,10 +167,11 @@ const App = (() => {
       : 'Добро пожаловать';
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(160deg,#020704 0%,#050F07 55%,${day.color} 100%)">
+      <div class="today-hero" style="background:linear-gradient(160deg,#050408 0%,#0D0818 55%,${day.color} 100%)">
         <div class="today-eyebrow">GCC 2026 · ${short}</div>
         <div class="today-name">${greeting}</div>
         <div class="today-theme">${day.theme}</div>
+        ${day.pillar ? `<div class="today-pillar">✦ ${day.pillar}</div>` : ''}
         <div class="today-weather-row">
           ${day.weather ? `<span class="today-weather">${day.weather.icon} ${day.weather.temp} · ${day.weather.note}</span>` : ''}
           <span class="today-live"><span class="live-dot"></span> Программа актуальна</span>
@@ -273,7 +274,10 @@ const App = (() => {
     const wBlock = day.weather
       ? `<span class="program-weather">${day.weather.icon} ${day.weather.temp}</span>`
       : '';
-    let items = `<div class="program-meta">${day.date} · ${day.theme}${wBlock ? ' ' + wBlock : ''}</div>`;
+    const pillarBlock = day.pillar
+      ? `<div class="program-pillar">✦ ${day.pillar}</div>`
+      : '';
+    let items = `<div class="program-meta">${day.date} · ${day.theme}${wBlock ? ' ' + wBlock : ''}</div>${pillarBlock}`;
     items += `<div class="card"><div class="card-body">`;
     day.activities.forEach(a => {
       const active = a.isNow ? 'active' : '';
@@ -520,7 +524,7 @@ const App = (() => {
     const ex = EXCURSION;
 
     let html = `
-      <div class="today-hero" style="background:linear-gradient(160deg,#020704 0%,#050F07 55%,#D4A838 100%)">
+      <div class="today-hero" style="background:linear-gradient(160deg,#050408 0%,#0D0818 55%,#6E00FF 100%)">
         <div class="today-eyebrow">GCC 2026 · ${ex.date}</div>
         <div class="today-name">${ex.title}</div>
         <div class="today-theme">${ex.duration} · Сбор в ${ex.meetingTime}</div>
