@@ -632,7 +632,11 @@ const App = (() => {
 
   function isAdmin() {
     const me = getChatUser();
-    return ADMIN_IDS.includes(me.id);
+    if (ADMIN_IDS.includes(me.id)) {
+      localStorage.setItem('gcc_is_admin', '1');
+      return true;
+    }
+    return localStorage.getItem('gcc_is_admin') === '1';
   }
 
   let _sb       = null;
