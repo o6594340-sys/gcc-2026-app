@@ -417,6 +417,7 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
 }
 
 .chat-msg {
+  position: relative;
   max-width: 78%;
   padding: 8px 12px;
   border-radius: 16px;
@@ -459,6 +460,24 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   font-size: 10px;
   opacity: 0.5;
 }
+.chat-msg-delete-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: #ff4444;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.9;
+  line-height: 1;
+}
+.chat-msg.own .chat-msg-delete-btn { right: auto; left: -8px; }
+.chat-msg-delete-btn:active { opacity: 1; transform: scale(1.1); }
 .chat-msg-reply-btn {
   background: none;
   border: none;

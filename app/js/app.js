@@ -687,7 +687,11 @@ const App = (() => {
       : '';
     const safeText = escapeHtml((msg.text || '').slice(0, 60).replace(/\n/g, ' '));
     const safeName = escapeHtml(msg.user_name);
-    return `<div class="chat-msg ${isOwn ? 'own' : 'other'}">
+    const deleteBtn = (isAdmin() && msg.id)
+      ? `<button class="chat-msg-delete-btn" onclick="App.deleteMessage(${msg.id})" aria-label="Удалить">✕</button>`
+      : '';
+    return `<div class="chat-msg ${isOwn ? 'own' : 'other'}" data-msg-id="${msg.id || ''}">
+      ${deleteBtn}
       <div class="chat-msg-name">${safeName}</div>
       ${quoteBlock}${escapeHtml(msg.text)}
       <div class="chat-msg-footer">
@@ -809,13 +813,17 @@ const App = (() => {
     _chatSub = sb.channel('gcc_chat')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
         const me    = getChatUser();
-        if (payload.new.user_id === me.id) return; // already shown optimistically
+        if (payload.new.user_id === me.id) return;
         const listEl = document.getElementById('chat-messages');
         if (!listEl) return;
         const emptyEl = listEl.querySelector('.chat-empty');
         if (emptyEl) emptyEl.remove();
         listEl.insertAdjacentHTML('beforeend', buildMsgHTML(payload.new, false));
         scrollChatToBottom();
+      })
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'messages' }, payload => {
+        const el = document.querySelector(`[data-msg-id="${payload.old.id}"]`);
+        if (el) el.remove();
       })
       .subscribe();
   }
@@ -859,6 +867,15 @@ const App = (() => {
   function resizeChatInput(el) {
     el.style.height = 'auto';
     el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  /* ─── DELETE MESSAGE ─────────────────── */
+  async function deleteMessage(id) {
+    haptic('medium');
+    const el = document.querySelector(`[data-msg-id="${id}"]`);
+    if (el) el.remove();
+    const sb = getSupabase();
+    if (sb) await sb.from('messages').delete().eq('id', id);
   }
 
   /* ─── REPLY ──────────────────────────── */
@@ -1119,7 +1136,7 @@ const App = (() => {
     renderExcursion,
     callHelp,
     sendChatMessage, resizeChatInput, saveChatName,
-    setReplyToBtn, cancelReply,
+    deleteMessage, setReplyToBtn, cancelReply,
     openPollCreator, closePollCreator, submitPoll, votePoll, closePoll,
   };
 
