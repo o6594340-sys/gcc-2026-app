@@ -642,6 +642,7 @@ const App = (() => {
   let _sb       = null;
   let _chatSub  = null;
   let _pollSub  = null;
+  let _replyTo  = null;
 
   function escapeHtml(str) {
     return String(str)
@@ -675,10 +676,25 @@ const App = (() => {
 
   function buildMsgHTML(msg, isOwn) {
     const time = new Date(msg.created_at).toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
+    const quoteBlock = msg.reply_to_text
+      ? `<div class="chat-msg-quote">
+          <div class="chat-msg-quote-name">${escapeHtml(msg.reply_to_name || '')}</div>
+          <div class="chat-msg-quote-text">${escapeHtml(msg.reply_to_text || '')}</div>
+         </div>`
+      : '';
+    const safeText = escapeHtml((msg.text || '').slice(0, 60).replace(/\n/g, ' '));
+    const safeName = escapeHtml(msg.user_name);
     return `<div class="chat-msg ${isOwn ? 'own' : 'other'}">
-      <div class="chat-msg-name">${escapeHtml(msg.user_name)}</div>
-      ${escapeHtml(msg.text)}
-      <div class="chat-msg-time">${time}</div>
+      <div class="chat-msg-name">${safeName}</div>
+      ${quoteBlock}${escapeHtml(msg.text)}
+      <div class="chat-msg-footer">
+        <button class="chat-msg-reply-btn"
+          data-reply-id="${msg.id || ''}"
+          data-reply-name="${safeName}"
+          data-reply-text="${safeText}"
+          onclick="App.setReplyToBtn(this)">↩</button>
+        <span class="chat-msg-time">${time}</span>
+      </div>
     </div>`;
   }
 
@@ -707,6 +723,16 @@ const App = (() => {
       <div id="chat-polls"></div>
       <div class="chat-messages" id="chat-messages">
         <div class="chat-loading">Загрузка сообщений...</div>
+      </div>
+      <div class="chat-reply-bar hidden" id="chat-reply-bar">
+        <div class="chat-reply-content">
+          <span style="color:var(--accent);font-size:15px;flex-shrink:0">↩</span>
+          <div style="flex:1;min-width:0">
+            <div class="chat-reply-bar-name" id="chat-reply-bar-name"></div>
+            <div class="chat-reply-bar-text" id="chat-reply-bar-text"></div>
+          </div>
+          <button class="chat-reply-cancel" onclick="App.cancelReply()">✕</button>
+        </div>
       </div>
       <div class="chat-input-bar">
         <textarea class="chat-input" id="chat-input" rows="1"
@@ -801,26 +827,53 @@ const App = (() => {
     if (!sb) return;
 
     const me = getChatUser();
+    const reply = _replyTo ? { ..._replyTo } : null;
+    cancelReply();
     input.value = '';
     resizeChatInput(input);
     haptic('light');
+
+    const optimistic = {
+      user_id: me.id, user_name: me.name, text,
+      created_at: new Date().toISOString(),
+      ...(reply ? { reply_to_name: reply.name, reply_to_text: reply.text } : {}),
+    };
 
     const listEl = document.getElementById('chat-messages');
     if (listEl) {
       const emptyEl = listEl.querySelector('.chat-empty');
       if (emptyEl) emptyEl.remove();
-      listEl.insertAdjacentHTML('beforeend', buildMsgHTML(
-        { user_id: me.id, user_name: me.name, text, created_at: new Date().toISOString() }, true
-      ));
+      listEl.insertAdjacentHTML('beforeend', buildMsgHTML(optimistic, true));
       scrollChatToBottom();
     }
 
-    await sb.from('messages').insert({ user_id: me.id, user_name: me.name, text });
+    await sb.from('messages').insert({
+      user_id: me.id, user_name: me.name, text,
+      ...(reply ? { reply_to_id: reply.id || null, reply_to_name: reply.name, reply_to_text: reply.text } : {}),
+    });
   }
 
   function resizeChatInput(el) {
     el.style.height = 'auto';
     el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  /* ─── REPLY ──────────────────────────── */
+  function setReplyToBtn(btn) {
+    haptic('light');
+    _replyTo = { id: btn.dataset.replyId, name: btn.dataset.replyName, text: btn.dataset.replyText };
+    const bar = document.getElementById('chat-reply-bar');
+    if (bar) {
+      bar.classList.remove('hidden');
+      document.getElementById('chat-reply-bar-name').textContent = _replyTo.name;
+      document.getElementById('chat-reply-bar-text').textContent = _replyTo.text;
+    }
+    document.getElementById('chat-input')?.focus();
+  }
+
+  function cancelReply() {
+    _replyTo = null;
+    document.getElementById('chat-reply-bar')?.classList.add('hidden');
   }
 
   /* ─── POLLS ──────────────────────────── */
@@ -1063,6 +1116,7 @@ const App = (() => {
     renderExcursion,
     callHelp,
     sendChatMessage, resizeChatInput, saveChatName,
+    setReplyToBtn, cancelReply,
     openPollCreator, closePollCreator, submitPoll, votePoll, closePoll,
   };
 

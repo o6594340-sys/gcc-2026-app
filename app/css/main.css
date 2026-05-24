@@ -447,13 +447,98 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
 .chat-msg.own .chat-msg-name {
   color: rgba(255,255,255,0.8);
 }
+.chat-msg-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+}
+.chat-msg.other .chat-msg-footer { justify-content: flex-start; }
 .chat-msg-time {
   font-size: 10px;
   opacity: 0.5;
-  margin-top: 3px;
-  text-align: right;
 }
-.chat-msg.other .chat-msg-time { text-align: left; }
+.chat-msg-reply-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0.4;
+  padding: 0;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s;
+  order: -1;
+}
+.chat-msg.own .chat-msg-reply-btn { order: 1; }
+.chat-msg-reply-btn:active { opacity: 1; }
+.chat-msg-quote {
+  background: rgba(255,255,255,0.1);
+  border-left: 3px solid rgba(255,255,255,0.45);
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.chat-msg.other .chat-msg-quote {
+  background: rgba(138,79,255,0.1);
+  border-left-color: var(--accent);
+}
+.chat-msg-quote-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2px;
+}
+.chat-msg.other .chat-msg-quote-name { color: var(--accent); }
+.chat-msg-quote-text {
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat-reply-bar {
+  padding: 6px 12px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.chat-reply-bar.hidden { display: none; }
+.chat-reply-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+.chat-reply-bar-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1px;
+}
+.chat-reply-bar-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat-reply-cancel {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 2px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1;
+}
 
 .chat-input-bar {
   display: flex;
