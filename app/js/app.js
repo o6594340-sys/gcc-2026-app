@@ -229,12 +229,15 @@ const App = (() => {
                    : hour >= 12 && hour < 18 ? 'afternoon'
                    : hour >= 18 && hour < 23 ? 'evening'
                    : 'any';
+    const nowMins = hour * 60 + now.getMinutes();
+    const parseUntil = u => { if (!u) return Infinity; const [h,m] = u.split(':').map(Number); return h*60+m; };
     const currentDayId = getDays()[TODAY_INDEX].id;
     const candidates = PRACTICAL.filter(p =>
       (p.days === null || !p.days || p.days.includes(currentDayId)) &&
-      (p.time === timeSlot || p.time === 'any')
+      (p.time === timeSlot || p.time === 'any') &&
+      nowMins < parseUntil(p.until)
     );
-    const pool = candidates.length ? candidates : PRACTICAL.filter(p => p.days === null || !p.days);
+    const pool = candidates.length ? candidates : PRACTICAL.filter(p => (p.days === null || !p.days) && nowMins < parseUntil(p.until));
     const tip = pool[Math.floor(Math.random() * pool.length)];
     html += `
       <div class="tip-card">

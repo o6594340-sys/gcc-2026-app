@@ -226,29 +226,29 @@ const FAQ = [
 // time: 'morning' (6-11) | 'afternoon' (12-17) | 'evening' (17-22) | 'any'
 const PRACTICAL = [
   // День 1 — заезд
-  { icon: '🔌', title: 'Розетки',              text: 'Тип G (британский стандарт).',                                                                                                              time: 'any',       days: [1] },
-  { icon: '🏷️', title: 'Бейдж и Welcome-kit',  text: 'Получите при заселении. Бейдж нужен на всех деловых мероприятиях.',                                                                        time: 'afternoon', days: [1] },
-  { icon: '📶', title: 'Wi-Fi в отеле',         text: 'Сеть: Global Corporate Club · Пароль: welcome2gcc.',                                                                                       time: 'any',       days: [1] },
+  { icon: '🔌', title: 'Розетки',              text: 'Тип G (британский стандарт).',                                                             time: 'any',       until: null,    days: [1] },
+  { icon: '🏷️', title: 'Бейдж и Welcome-kit',  text: 'Получите при заселении. Бейдж нужен на всех деловых мероприятиях.',                        time: 'afternoon', until: null,    days: [1] },
+  { icon: '📶', title: 'Wi-Fi в отеле',         text: 'Сеть: Global Corporate Club · Пароль: welcome2gcc.',                                       time: 'any',       until: null,    days: [1] },
 
   // День 2 — воркшоп + экскурсия
-  { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                                                                        time: 'morning',   days: [2] },
-  { icon: '🧴', title: 'Крем и головной убор',  text: '+30°C. SPF 30+.',                                                                                                                          time: 'morning',   days: [2] },
-  { icon: '👙', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                                                                               time: 'afternoon', days: [2] },
-  { icon: '👔', title: 'Dress code',             text: 'Casual и удобная обувь. Начало в 19:30.',                                                                                                  time: 'afternoon', days: [2] },
+  { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                        time: 'morning',   until: '14:30', days: [2] },
+  { icon: '🧴', title: 'Крем и головной убор',  text: '+30°C. SPF 30+.',                                                                          time: 'morning',   until: '14:30', days: [2] },
+  { icon: '👙', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                               time: 'afternoon', until: '19:30', days: [2] },
+  { icon: '👔', title: 'Dress code',             text: 'Casual и удобная обувь. Начало в 19:30.',                                                  time: 'afternoon', until: '19:30', days: [2] },
 
   // День 3 — воркшоп + гала-ужин
-  { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                                                                          time: 'morning',   days: [3] },
-  { icon: '🧖', title: 'Свободное время',        text: 'С 16:00 — спа/пляж/бассейн. Запись в Zoya Spa через ресепшн.',                                                                           time: 'afternoon', days: [3] },
-  { icon: '🤝', title: 'Workshop',               text: 'Во вкладке «Экспоненты».',                                                                                                                time: 'any',       days: [3] },
+  { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                          time: 'morning',   until: '20:00', days: [3] },
+  { icon: '🧖', title: 'Свободное время',        text: 'С 16:00 — спа/пляж/бассейн. Запись в Zoya Spa через ресепшн.',                           time: 'afternoon', until: '16:00', days: [3] },
+  { icon: '🤝', title: 'Workshop',               text: 'Во вкладке «Экспоненты».',                                                                time: 'any',       until: null,    days: [3] },
 
   // День 4 — отъезд
-  { icon: '🧳', title: 'Выезд сегодня',          text: 'Расчётный час 12:00. Багаж можно оставить в багажной комнате.',                                                                           time: 'morning',   days: [4] },
-  { icon: '✈️', title: 'Трансфер в аэропорт',   text: 'Согласно рейсам. По вопросам — представитель GreenCode Малик: +90 530 385 01 11.',                                                        time: 'morning',   days: [4] },
+  { icon: '🧳', title: 'Выезд сегодня',          text: 'Расчётный час 12:00. Багаж можно оставить в багажной комнате.',                           time: 'morning',   until: '12:00', days: [4] },
+  { icon: '✈️', title: 'Трансфер в аэропорт',   text: 'Согласно рейсам. По вопросам — представитель GreenCode Малик: +90 530 385 01 11.',         time: 'morning',   until: null,    days: [4] },
 
   // Каждый день
-  { icon: '☀️', title: 'Завтрак',               text: 'Ресторан Reflection, шведский стол с 07:00.',                                                                                              time: 'morning',   days: null },
-  { icon: '🚕', title: 'Такси',                  text: 'Через ресепшн или Uber/Bolt.',                                                                                                            time: 'any',       days: null },
-  { icon: '🌡️', title: 'Погода',                text: '+28–32°C, солнечно. SPF 30+.',                                                                                                             time: 'any',       days: null },
+  { icon: '☀️', title: 'Завтрак',               text: 'Ресторан Reflection, шведский стол с 07:00.',                                              time: 'morning',   until: '10:00', days: null },
+  { icon: '🚕', title: 'Такси',                  text: 'Через ресепшн или Uber/Bolt.',                                                            time: 'any',       until: null,    days: null },
+  { icon: '🌡️', title: 'Погода',                text: '+28–32°C, солнечно. SPF 30+.',                                                             time: 'any',       until: null,    days: null },
 ];
 
 const CUISINE = {
