@@ -302,6 +302,7 @@ const EXCURSION = {
   duration:     '~3 часа',
   meetingPoint: 'Главный вход отеля',
   meetingTime:  '[XX:XX]',
+  formUrl:      'https://docs.google.com/forms/d/e/1FAIpQLSf3EkTWq9xR-tSLXcSteLA-xxfgd9yATEihu58TWHk0-vdDTg/viewform',
   desc:         'Выездная экскурсия в Кирению (Girne) — главный исторический город Северного Кипра. От отеля 20–30 минут на комфортабельном транспорте.',
 
   program: [

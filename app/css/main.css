@@ -283,6 +283,8 @@ body {
 .hotel-quick-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-hint); margin-bottom: 4px; }
 .hotel-quick-val   { font-size: 15px; font-weight: 700; color: var(--text); }
 .hotel-desc    { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
+.excursion-signup-btn { display: block; width: 100%; padding: 14px 20px; margin: 4px 0 20px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; border: none; border-radius: 14px; cursor: pointer; text-align: center; letter-spacing: 0.01em; }
+.excursion-signup-btn:active { opacity: 0.85; transform: scale(0.98); }
 .hotel-breakfast { background: rgba(138,79,255,0.08); border: 1px solid rgba(138,79,255,0.25); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; color: #C49DFF; margin-bottom: 20px; }
 .hotel-amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 8px; }
 .hotel-amenity { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 10px; text-align: center; }

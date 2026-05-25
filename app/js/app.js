@@ -537,6 +537,13 @@ const App = (() => {
 
     html += `<p class="hotel-desc" style="margin-top:0">${ex.desc}</p>`;
 
+    if (ex.formUrl) {
+      html += `
+        <button class="excursion-signup-btn" onclick="App.openLink('${ex.formUrl}');haptic('medium')">
+          Записаться на экскурсию →
+        </button>`;
+    }
+
     // — Программа
     html += `<div class="section-title" style="margin-bottom:12px">Программа</div>`;
     html += `<div class="card"><div class="card-body">`;
