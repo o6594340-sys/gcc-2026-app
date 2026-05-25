@@ -1021,7 +1021,7 @@ const App = (() => {
               <div class="exhibitor-header">
                 <div class="exhibitor-logo">${e.logoEmoji || '🏢'}</div>
                 <div class="exhibitor-main">
-                  <div class="exhibitor-name">${e.company}</div>
+                  <div class="exhibitor-name">${e.company}${e.flag ? ' ' + e.flag : ''}</div>
                   ${e.contact ? `<div class="exhibitor-contact" style="margin-top:2px">👤 ${e.contact}${e.position ? ` · ${e.position}` : ''}</div>` : ''}
                 </div>
               </div>
