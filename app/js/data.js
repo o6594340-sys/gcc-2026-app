@@ -32,7 +32,7 @@ const HOTEL = {
   stars:   5,
   image:   'Elexus hotel.jpeg',
   address: 'Çatalköy, Kyrenia (Girne), Северный Кипр',
-  phone:   '[+90 ...]',
+  phone:   '+90 392 444 0 650',
   checkin:  '14:00',
   checkout: '12:00',
   breakfast: 'Ресторан Reflection · шведский стол · включён в программу',
