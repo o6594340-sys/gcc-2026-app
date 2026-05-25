@@ -421,74 +421,68 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
 
 .chat-msg {
   position: relative;
-  max-width: 78%;
-  padding: 8px 12px;
-  border-radius: 16px;
+  max-width: 85%;
+  padding: 2px 0 6px;
   font-size: 14px;
-  line-height: 1.45;
+  line-height: 1.5;
   word-break: break-word;
   white-space: pre-wrap;
+  color: var(--text);
 }
 .chat-msg.own {
   align-self: flex-end;
-  background: var(--accent);
-  color: white;
-  border-bottom-right-radius: 4px;
+  text-align: right;
 }
 .chat-msg.other {
   align-self: flex-start;
-  background: var(--surface);
-  color: var(--text);
-  border-bottom-left-radius: 4px;
-  box-shadow: var(--shadow);
 }
 .chat-msg-name {
   font-size: 11px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   color: var(--accent);
 }
 .chat-msg.own .chat-msg-name {
-  color: rgba(255,255,255,0.8);
+  color: var(--accent-dark);
 }
 .chat-msg-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 6px;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 .chat-msg.other .chat-msg-footer { justify-content: flex-start; }
 .chat-msg-time {
   font-size: 10px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 .chat-msg-delete-btn {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 20px; height: 20px;
+  top: 2px;
+  right: -20px;
+  width: 16px; height: 16px;
   border-radius: 50%;
   border: none;
   background: #ff4444;
   color: white;
-  font-size: 10px;
+  font-size: 9px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   -webkit-tap-highlight-color: transparent;
-  opacity: 0.9;
+  opacity: 0.7;
   line-height: 1;
 }
-.chat-msg.own .chat-msg-delete-btn { right: auto; left: -8px; }
+.chat-msg.own .chat-msg-delete-btn { right: auto; left: -20px; }
 .chat-msg-delete-btn:active { opacity: 1; transform: scale(1.1); }
 .chat-msg-reply-btn {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 12px;
-  opacity: 0.4;
+  opacity: 0.35;
   padding: 0;
-  color: inherit;
+  color: var(--accent);
   -webkit-tap-highlight-color: transparent;
   transition: opacity 0.15s;
   order: -1;
@@ -496,22 +490,19 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
 .chat-msg.own .chat-msg-reply-btn { order: 1; }
 .chat-msg-reply-btn:active { opacity: 1; }
 .chat-msg-quote {
-  background: rgba(255,255,255,0.1);
-  border-left: 3px solid rgba(255,255,255,0.45);
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
   border-radius: 4px;
   padding: 4px 8px;
   margin-bottom: 6px;
   font-size: 12px;
   line-height: 1.4;
-}
-.chat-msg.other .chat-msg-quote {
-  background: rgba(138,79,255,0.1);
-  border-left-color: var(--accent);
+  text-align: left;
 }
 .chat-msg-quote-name {
   font-size: 11px;
   font-weight: 700;
-  color: rgba(255,255,255,0.85);
+  color: var(--accent-dark);
   margin-bottom: 2px;
 }
 .chat-msg.other .chat-msg-quote-name { color: var(--accent); }
