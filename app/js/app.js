@@ -598,7 +598,7 @@ const App = (() => {
         const src   = typeof img === 'string' ? img : img.src;
         const caption = typeof img === 'object' && img.caption ? img.caption : '';
         html += `
-          <div style="border-radius:12px;overflow:hidden;background:#f3f4f6">
+          <div style="border-radius:12px;overflow:hidden">
             <img src="${src}" alt="${caption}" style="width:100%;height:140px;object-fit:cover;display:block">
             ${caption ? `<div style="padding:6px 8px;font-size:12px;color:var(--text-secondary)">${caption}</div>` : ''}
           </div>`;
