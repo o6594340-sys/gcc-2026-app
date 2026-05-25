@@ -579,10 +579,6 @@ const App = (() => {
       });
     }
 
-    // — Практические советы
-    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Что взять / помнить</div>`;
-    html += `<div class="hotel-tips">${ex.tips.map(t => `<div class="hotel-tip-row">💡 ${t}</div>`).join('')}</div>`;
-
     // — Фотоспоты
     html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Где фотографировать</div>`;
     ex.photoSpots.forEach(s => {
