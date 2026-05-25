@@ -378,7 +378,10 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
 }
 .exhibitor-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
 .exhibitor-main    { flex: 1; }
-.exhibitor-name    { font-weight: 700; font-size: 16px; color: var(--text); margin-bottom: 4px; }
+.exhibitor-name         { font-weight: 700; font-size: 16px; color: var(--text); margin-bottom: 4px; }
+.exhibitor-name-link    { cursor: pointer; color: var(--accent); }
+.exhibitor-name-link:active { opacity: 0.7; }
+.exhibitor-link-icon    { font-size: 12px; opacity: 0.6; }
 .exhibitor-type    { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
 .exhibitor-desc    { font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin: 0 0 8px; }
 .exhibitor-contact { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }

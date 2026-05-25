@@ -1021,7 +1021,7 @@ const App = (() => {
               <div class="exhibitor-header">
                 <div class="exhibitor-logo">${e.logoEmoji || '🏢'}</div>
                 <div class="exhibitor-main">
-                  <div class="exhibitor-name">${e.company}${e.flag ? ' ' + e.flag : ''}</div>
+                  <div class="exhibitor-name${e.website ? ' exhibitor-name-link' : ''}"${e.website ? ` onclick="App.openLink('${e.website}')"` : ''}>${e.company}${e.flag ? ' ' + e.flag : ''}${e.website ? ' <span class="exhibitor-link-icon">↗</span>' : ''}</div>
                   ${e.contact ? `<div class="exhibitor-contact" style="margin-top:2px">👤 ${e.contact}${e.position ? ` · ${e.position}` : ''}</div>` : ''}
                 </div>
               </div>
@@ -1128,6 +1128,12 @@ const App = (() => {
     else if (ev.emergency)      window.location.href = 'tel:' + ev.emergency;
   }
 
+  function openLink(url) {
+    haptic('light');
+    if (window.Telegram?.WebApp?.openLink) window.Telegram.WebApp.openLink(url);
+    else window.open(url, '_blank');
+  }
+
   /* ─── PUBLIC ──────────────────────────── */
   return {
     init, switchTab, selectProgramDay, copyWifi,
@@ -1135,6 +1141,7 @@ const App = (() => {
     filterExhibitors, renderExhibitors,
     renderExcursion,
     callHelp,
+    openLink,
     sendChatMessage, resizeChatInput, saveChatName,
     deleteMessage, setReplyToBtn, cancelReply,
     openPollCreator, closePollCreator, submitPoll, votePoll, closePoll,
