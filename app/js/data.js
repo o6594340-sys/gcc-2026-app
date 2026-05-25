@@ -226,30 +226,29 @@ const FAQ = [
 // time: 'morning' (6-11) | 'afternoon' (12-17) | 'evening' (17-22) | 'any'
 const PRACTICAL = [
   // День 1 — заезд
-  { icon: '🔌', title: 'Розетки',         text: 'Тип G (британский стандарт, три прямоугольных контакта). Адаптер можно получить на ресепшн.',                         time: 'any',       days: [1] },
-  { icon: '🏷', title: 'Бейдж и Welcome-kit', text: 'Получите при заселении на стойке регистрации. Бейдж нужен на всех деловых мероприятиях GCC 2026.',                time: 'afternoon', days: [1] },
-  { icon: '📶', title: 'Wi-Fi в отеле',   text: 'Сеть: Global Corporate Club · Пароль: welcome2gcc. Работает во всех зонах отеля.',                                     time: 'any',       days: [1] },
-  { icon: '💳', title: 'Оплата',          text: 'Принимают TRY и евро, банковские карты — везде. Банкомат на территории отеля.',                                        time: 'any',       days: [1] },
+  { icon: '🔌', title: 'Розетки',              text: 'Тип G (британский стандарт).',                                                                                                              time: 'any',       days: [1] },
+  { icon: '🏷️', title: 'Бейдж и Welcome-kit',  text: 'Получите при заселении. Бейдж нужен на всех деловых мероприятиях.',                                                                        time: 'afternoon', days: [1] },
+  { icon: '📶', title: 'Wi-Fi в отеле',         text: 'Сеть: Global Corporate Club · Пароль: welcome2gcc.',                                                                                       time: 'any',       days: [1] },
 
   // День 2 — воркшоп + экскурсия
-  { icon: '👟', title: 'Экскурсия сегодня', text: 'Сбор в лобби в 14:30. Удобная обувь обязательна — мощёные улицы старой Кирении.',                                  time: 'morning',   days: [2] },
-  { icon: '🧴', title: 'Крем и головной убор', text: 'На улице +30°C. SPF 30+ и головной убор — особенно на экскурсии и на пляжной вечеринке.',                        time: 'morning',   days: [2] },
-  { icon: '👙', title: 'Пляжная вечеринка', text: 'Вечером на Mia Beach — возьмите купальник и лёгкую одежду. Начало в 19:30.',                                        time: 'afternoon', days: [2] },
-  { icon: '🌅', title: 'Вечер на Кипре',  text: 'Закат с набережной Кирении — море, замок и горы Бешпармак в одном кадре.',                                           time: 'evening',   days: [2] },
+  { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                                                                        time: 'morning',   days: [2] },
+  { icon: '🧴', title: 'Крем и головной убор',  text: '+30°C. SPF 30+.',                                                                                                                          time: 'morning',   days: [2] },
+  { icon: '👙', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                                                                               time: 'afternoon', days: [2] },
+  { icon: '👔', title: 'Dress code',             text: 'Casual и удобная обувь. Начало в 19:30.',                                                                                                  time: 'afternoon', days: [2] },
 
   // День 3 — воркшоп + гала-ужин
-  { icon: '👔', title: 'Дресс-код сегодня', text: 'Гала-ужин GCC 2026 в 20:00 в зале Elexus 3. Дресс-код: Smart casual.',                                            time: 'morning',   days: [3] },
-  { icon: '🧖', title: 'Свободное время', text: 'С 16:00 — спа, пляж или бассейн на ваш выбор. Запись в Zoya Spa через ресепшн.',                                      time: 'afternoon', days: [3] },
-  { icon: '🤝', title: 'Нетворкинг',      text: 'Во вкладке «Экспоненты» — контакты всех участников GCC 2026 с прямой связью.',                                       time: 'any',       days: [3] },
+  { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                                                                          time: 'morning',   days: [3] },
+  { icon: '🧖', title: 'Свободное время',        text: 'С 16:00 — спа/пляж/бассейн. Запись в Zoya Spa через ресепшн.',                                                                           time: 'afternoon', days: [3] },
+  { icon: '🤝', title: 'Workshop',               text: 'Во вкладке «Экспоненты».',                                                                                                                time: 'any',       days: [3] },
 
   // День 4 — отъезд
-  { icon: '🧳', title: 'Выезд сегодня',   text: 'Расчётный час — 12:00. Багаж можно оставить у консьержа до отправления в аэропорт.',                                 time: 'morning',   days: [4] },
-  { icon: '✈️', title: 'Трансфер в аэропорт', text: 'Расписание трансферов по рейсам — уточните у координатора или на ресепшн.',                                     time: 'morning',   days: [4] },
+  { icon: '🧳', title: 'Выезд сегодня',          text: 'Расчётный час 12:00. Багаж можно оставить в багажной комнате.',                                                                           time: 'morning',   days: [4] },
+  { icon: '✈️', title: 'Трансфер в аэропорт',   text: 'Согласно рейсам. По вопросам — представитель GreenCode Малик: +90 530 385 01 11.',                                                        time: 'morning',   days: [4] },
 
-  // Любой день
-  { icon: '☀️', title: 'Завтрак',         text: 'Ресторан Reflection · шведский стол · с 07:00. Столы зарезервированы для группы GCC 2026.',                           time: 'morning',   days: null },
-  { icon: '🚕', title: 'Такси',           text: 'Заказ через ресепшн — быстро и надёжно. Uber и Bolt тоже работают в Кирении.',                                        time: 'any',       days: null },
-  { icon: '🌡', title: 'Погода',          text: '+28–32°C, солнечно. Рекомендуем солнцезащитный крем с SPF 30 и выше.',                                                time: 'any',       days: null },
+  // Каждый день
+  { icon: '☀️', title: 'Завтрак',               text: 'Ресторан Reflection, шведский стол с 07:00.',                                                                                              time: 'morning',   days: null },
+  { icon: '🚕', title: 'Такси',                  text: 'Через ресепшн или Uber/Bolt.',                                                                                                            time: 'any',       days: null },
+  { icon: '🌡️', title: 'Погода',                text: '+28–32°C, солнечно. SPF 30+.',                                                                                                             time: 'any',       days: null },
 ];
 
 const CUISINE = {
