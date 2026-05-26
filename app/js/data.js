@@ -197,7 +197,7 @@ const EXHIBITORS = [
 ];
 
 const TRANSFERS = {
-  info: 'Все трансферы организованы GreenCode International. При изменениях вы получите уведомление.',
+  info: 'Трансферы аэропорт–отель–аэропорт организованы GreenCode International. Координация: Малик +90 530 385 01 11',
   arrival: [
     {
       label: 'Заезд · 2 июня',
