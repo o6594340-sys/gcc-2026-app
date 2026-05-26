@@ -75,7 +75,7 @@ const DAYS = [
     theme: 'Заезд', color: '#6E00FF', pillar: 'Power of Community',
     weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
-      { time: '—',           title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Согласно полётным данным · Табличка «GCC 2026» у выхода из таможни' },
+      { time: '—',           title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Согласно полётным данным · Табличка «GCC 2026» у выхода из таможни · Координатор: Малик +90 530 385 01 11' },
       { time: '—',           title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: 'Согласно полётным данным · ~45 мин от аэропорта' },
       { time: '14:00',       title: 'Заселение', location: 'Стойка регистрации', type: 'hotel', note: 'Получить бейдж и Welcome-kit' },
       { time: '18:00–21:30', title: 'Ужин', location: 'Ресторан Reflection', type: 'dinner', note: 'Включён в программу · Dress code: Casual' },
@@ -117,7 +117,7 @@ const DAYS = [
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
       { time: '12:00',       title: 'Выезд из отеля', location: 'Стойка регистрации', type: 'hotel', note: 'Багаж можно оставить у консьержа до отъезда' },
-      { time: '—',           title: 'Трансферы в аэропорт Эрджан', location: 'Аэропорт Эрджан (ECN)', type: 'transfer', note: 'Согласно полётным данным' },
+      { time: '—',           title: 'Трансферы в аэропорт Эрджан', location: 'Аэропорт Эрджан (ECN)', type: 'transfer', note: 'Согласно полётным данным · Координатор: Малик +90 530 385 01 11' },
     ],
   },
 ];
@@ -218,9 +218,7 @@ const TRANSFERS = {
       ],
     },
   ],
-  contacts: [
-    { role: 'Трансферный координатор', name: 'Малик', phone: '+90 530 385 01 11', telegram: '' },
-  ],
+  contacts: [],
 };
 
 const FAQ = [
