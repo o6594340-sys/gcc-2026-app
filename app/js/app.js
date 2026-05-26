@@ -628,13 +628,29 @@ const App = (() => {
 
   /* ─── EXCURSION ──────────────────────── */
   function renderExcursion() {
-    const ex = EXCURSION;
+    const raw  = EXCURSION;
+    const exTr = getLang() === 'en' ? (TRANSLATIONS.en.excursion || {}) : {};
+    const ex = {
+      ...raw,
+      title:      exTr.title      || raw.title,
+      date:       exTr.date       || raw.date,
+      duration:   exTr.duration   || raw.duration,
+      desc:       exTr.desc       || raw.desc,
+      program:    raw.program.map((p, i)    => ({ ...p,   ...((exTr.program    || [])[i] || {}) })),
+      funFacts:   raw.funFacts.map((f, i)   => ({ ...f,   ...((exTr.funFacts   || [])[i] || {}) })),
+      photoSpots: raw.photoSpots.map((s, i) => ({ ...s,   ...((exTr.photoSpots || [])[i] || {}) })),
+      history:    raw.history.map((h, i)    => ({ ...h,   ...((exTr.history    || [])[i] || {}) })),
+      images:     raw.images.map((img, i)   => {
+        const cap = (exTr.imageCaptions || [])[i];
+        return cap ? { ...img, caption: cap } : img;
+      }),
+    };
 
     let html = `
       <div class="today-hero" style="background:linear-gradient(160deg,#050408 0%,#0D0818 55%,#6E00FF 100%)">
         <div class="today-eyebrow">GCC 2026 · ${ex.date}</div>
         <div class="today-name">${ex.title}</div>
-        <div class="today-theme">${ex.duration} · Сбор в ${ex.meetingTime}</div>
+        <div class="today-theme">${ex.duration} · ${T('Сбор в', 'Meet at')} ${raw.meetingTime}</div>
       </div>
       <div class="section-pad">
     `;
@@ -644,12 +660,11 @@ const App = (() => {
     if (ex.formUrl) {
       html += `
         <button class="excursion-signup-btn" onclick="App.openLink('${ex.formUrl}');haptic('medium')">
-          Записаться на экскурсию →
+          ${T('Записаться на экскурсию →', 'Book the excursion →')}
         </button>`;
     }
 
-    // — Программа
-    html += `<div class="section-title" style="margin-bottom:12px">Программа</div>`;
+    html += `<div class="section-title" style="margin-bottom:12px">${T('Программа', 'Itinerary')}</div>`;
     html += `<div class="card"><div class="card-body">`;
     ex.program.forEach(p => {
       html += `
@@ -664,9 +679,8 @@ const App = (() => {
     });
     html += `</div></div>`;
 
-    // — Это интересно
     if (ex.funFacts?.length) {
-      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Это интересно</div>`;
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Это интересно', 'Did You Know')}</div>`;
       ex.funFacts.forEach(f => {
         html += `
           <div class="card" style="margin-bottom:10px">
@@ -683,8 +697,7 @@ const App = (() => {
       });
     }
 
-    // — Фотоспоты
-    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Где фотографировать</div>`;
+    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Где фотографировать', 'Photo Spots')}</div>`;
     ex.photoSpots.forEach(s => {
       html += `
         <div class="card" style="margin-bottom:10px">
@@ -700,12 +713,11 @@ const App = (() => {
         </div>`;
     });
 
-    // — Галерея
     if (ex.images?.length) {
-      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Фото</div>`;
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Фото', 'Gallery')}</div>`;
       html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">`;
       ex.images.forEach(img => {
-        const src   = typeof img === 'string' ? img : img.src;
+        const src     = typeof img === 'string' ? img : img.src;
         const caption = typeof img === 'object' && img.caption ? img.caption : '';
         html += `
           <div style="border-radius:12px;overflow:hidden">
@@ -716,8 +728,7 @@ const App = (() => {
       html += `</div>`;
     }
 
-    // — История
-    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Немного истории</div>`;
+    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Немного истории', 'History')}</div>`;
     ex.history.forEach(h => {
       html += `
         <div class="card" style="margin-bottom:12px">

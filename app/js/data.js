@@ -438,6 +438,42 @@ const TRANSLATIONS = {
         ],
       },
     ],
+    excursion: {
+      title:    'Kyrenia · City Tour',
+      date:     'June 3, Wednesday',
+      duration: '~3 hours',
+      desc:     'A guided tour to Kyrenia (Girne) — the main historic city of Northern Cyprus. 20–30 minutes from the hotel by comfortable coach.',
+      program: [
+        { title: 'Gather at hotel main entrance',          note: 'Departure strictly on schedule' },
+        { title: 'Drive to Kyrenia',                       note: '~20–30 min from hotel' },
+        { title: 'Kyrenia Castle',                         note: '~40–60 min including entrance and photo stops' },
+        { title: 'Walk along the old harbour waterfront',  note: 'Narrow streets of the historic centre' },
+        { title: 'Free Time · 20–25 min',                  note: 'Coffee with a sea view, photos, souvenirs' },
+        { title: 'Return to hotel',                        note: '~20–30 min' },
+      ],
+      funFacts: [
+        { title: 'The word "carat" comes from Cyprus',   text: 'Cypriot carob trees produced beans of remarkably consistent weight. Jewellers used them as counterweights — and the word "carat" derives from the Greek "keratia" (carob tree).' },
+        { title: 'Sea turtles choose Northern Cyprus',   text: 'The Karpaz Peninsula is one of the few places in the Mediterranean where Caretta caretta sea turtles nest directly on wild beaches. Nesting season: May–August.' },
+        { title: 'Cyprus gave copper its name',          text: 'The Latin word "cuprum" (copper) derives from "Kypros" — the ancient name for the island. Cyprus was the primary source of copper for the entire ancient world.' },
+        { title: 'Zivania — a drink with history',       text: 'Zivania is a traditional Cypriot grape-pomace distillate produced in Northern Cyprus for over 500 years. Strong, clear, unaged — somewhat like grappa. Often served as an aperitif or after dinner.' },
+        { title: 'Five Fingers Mountain',                text: 'The mountain ridge above Kyrenia is called Beşparmak — "Five Fingers" in Turkish. Legend has it that this is the imprint of a giant who leaned on the mountains as he emerged from the sea.' },
+        { title: 'Over 300 sunny days a year',           text: 'Northern Cyprus averages 320 sunny days per year. Swimming season runs from April to November. In June the sea temperature reaches +26–28°C.' },
+        { title: 'Halloumi — only from Cyprus',          text: 'Halloumi has been made on the island for thousands of years. It is the only cheese that can be fried or grilled without melting. In 2021 it received EU Protected Designation of Origin status.' },
+      ],
+      photoSpots: [
+        { title: 'Harbour view from the castle tower', desc: 'Panorama of the old harbour, yachts and the Beşparmak mountain range — from the castle\'s upper gallery.' },
+        { title: 'Castle gates',                       desc: '15th-century gates — a great shot at any time of day.' },
+        { title: 'Old harbour waterfront',             desc: 'Fishing boats, waterfront restaurants, the reflection of the castle walls — the iconic view of Kyrenia.' },
+        { title: 'Old town streets',                   desc: 'White walls, wooden shutters, shaded alleyways — Kyrenia away from the tourist crowds.' },
+      ],
+      history: [
+        { title: 'Kyrenia Castle',                text: 'A 12th–15th century castle with four watchtowers and walls up to 3 metres thick. Rebuilt by the Lusignans, then the Venetians — who reinforced the walls specifically against artillery. In 1570 it surrendered to the Ottoman army with almost no resistance.' },
+        { title: 'The Kyrenia Ship · 300 BC',     text: 'Inside the castle — one of the island\'s greatest wonders: a merchant vessel around 2,300 years old, discovered in 1967 on the bay floor. It is the oldest fully preserved wooden ship in the world. On board: amphorae of wine, almonds and millstones — a rare snapshot of ancient Mediterranean trade.' },
+        { title: 'The Old Harbour',               text: 'Kyrenia harbour has functioned continuously since the Bronze Age. Today — restaurants right at the water\'s edge, yachts, fishing boats. The castle walls reflected in the water — the city\'s most recognisable view.' },
+        { title: 'Bellapais Abbey · 13th century', text: 'In the mountain village of Bellapais, a few kilometres from Kyrenia, stands a rare example of Gothic architecture for this part of the Mediterranean. Built by Augustinian monks in the early 13th century. British author Lawrence Durrell lived here in the 1950s and wrote Bitter Lemons of Cyprus.' },
+      ],
+      imageCaptions: ['Kyrenia Castle', 'Kyrenia Old Harbour', 'Kyrenia Waterfront', 'Bellapais Abbey', 'Northern Cyprus', 'Northern Cyprus'],
+    },
     location: {
       hotel: {
         desc: 'A resort complex in the Çatalköy area, 10 km from Kyrenia city centre. On site: private sandy beach with a pier, outdoor and indoor pools, waterpark, Zoya Spa & Wellness, gym, casino and several restaurants.',
