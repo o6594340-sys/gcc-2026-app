@@ -219,7 +219,7 @@ const TRANSFERS = {
     },
   ],
   contacts: [
-    { role: 'Трансферный координатор', name: 'Малик', phone: '[Телефон]', telegram: '' },
+    { role: 'Трансферный координатор', name: 'Малик', phone: '+90 530 385 01 11', telegram: '' },
   ],
 };
 
