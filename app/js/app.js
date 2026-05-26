@@ -229,7 +229,7 @@ const App = (() => {
                    : hour >= 12 && hour < 18 ? 'afternoon'
                    : hour >= 18 && hour < 23 ? 'evening'
                    : 'any';
-    const nowMins = hour * 60 + now.getMinutes();
+    const nowMins = hour * 60 + new Date().getMinutes();
     const parseUntil = u => { if (!u) return Infinity; const [h,m] = u.split(':').map(Number); return h*60+m; };
     const currentDayId = getDays()[TODAY_INDEX].id;
     const candidates = PRACTICAL.filter(p =>
