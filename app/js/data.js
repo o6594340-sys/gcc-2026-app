@@ -82,11 +82,11 @@ const DAYS = [
   },
   {
     id: 2, label: '3 июня', date: '3 июня, среда',
-    theme: 'Воркшоп & Экскурсия', color: '#C200D4', pillar: 'Power of Experience',
+    theme: 'Workshop & Экскурсия', color: '#C200D4', pillar: 'Power of Experience',
     weather: { icon: '☀️', temp: '+30°C', note: 'ясно' },
     activities: [
       { time: '07:00',       title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
-      { time: '10:00–13:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026 · Dress code: Business casual' },
+      { time: '10:00–13:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026 · Dress code: Business casual' },
       { time: '13:00–14:30', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
       { time: '14:30',       title: 'Сбор в лобби · отправление на экскурсию', location: 'Лобби отеля', type: 'transfer', note: 'Удобная обувь, солнцезащитный крем, головной убор' },
       { time: '14:30–19:00', title: 'Экскурсионная программа', location: 'Кирения', type: 'excursion' },
@@ -96,13 +96,13 @@ const DAYS = [
   },
   {
     id: 3, label: '4 июня', date: '4 июня, четверг',
-    theme: 'Воркшоп & Гала-ужин', color: '#0077FF', pillar: 'Power of Ideas',
+    theme: 'Workshop & Гала-ужин', color: '#0077FF', pillar: 'Power of Ideas',
     weather: { icon: '⛅', temp: '+28°C', note: 'переменная облачность' },
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
-      { time: '10:00–13:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026 · Dress code: Business casual' },
+      { time: '10:00–13:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026 · Dress code: Business casual' },
       { time: '13:00–14:00', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
-      { time: '14:00–16:00', title: 'Воркшоп', location: 'Elexus 1', type: 'business', note: 'Dress code: Business casual' },
+      { time: '14:00–16:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Dress code: Business casual' },
       { time: '16:00–20:00', title: 'Свободное время', type: 'free', note: 'СПА, пляж, бассейн — на ваш выбор' },
       { time: '20:00–00:00', title: 'Гала-ужин GCC 2026', location: 'Elexus 3', type: 'gala', note: 'Dress code: Smart casual' },
       { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Casual' },
