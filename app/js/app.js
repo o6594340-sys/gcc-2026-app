@@ -150,6 +150,24 @@ const App = (() => {
   }
 
   /* ─── INIT ────────────────────────────── */
+  function ensureLangBtn() {
+    if (document.getElementById('lang-btn')) return;
+    const faq = document.querySelector('.faq-trigger');
+    if (!faq) return;
+    const btn = document.createElement('button');
+    btn.id = 'lang-btn';
+    btn.className = 'lang-toggle';
+    btn.setAttribute('aria-label', 'Switch language');
+    btn.onclick = toggleLang;
+    btn.textContent = 'EN';
+    const wrapper = faq.parentElement;
+    if (wrapper && wrapper !== document.querySelector('.app-header')) {
+      wrapper.insertBefore(btn, faq);
+    } else {
+      faq.insertAdjacentElement('beforebegin', btn);
+    }
+  }
+
   function init() {
     if (tg) {
       tg.ready();
@@ -159,6 +177,7 @@ const App = (() => {
     }
     applyBranding();
     applyGradient();
+    ensureLangBtn();
     updateLangUI();
     renderAnnouncement();
     renderToday();
