@@ -306,19 +306,15 @@ const CUISINE = {
 const EXCURSION = {
   title:        'Кирения · Обзорная экскурсия',
   date:         '3 июня, среда',
-  duration:     '~3 часа',
+  duration:     '~5 часов',
   meetingPoint: 'Главный вход отеля',
-  meetingTime:  '[XX:XX]',
+  meetingTime:  '14:30',
   formUrl:      'https://forms.gle/hMeiKMGcaQ2LhtE99',
   desc:         'Выездная экскурсия в Кирению (Girne) — главный исторический город Северного Кипра. От отеля 20–30 минут на комфортабельном транспорте.',
 
   program: [
-    { time: '[XX:XX]',        title: 'Сбор у главного входа отеля',       note: 'Отправление строго по расписанию' },
-    { time: '[XX:XX]',        title: 'Переезд в Кирению',                  note: '~20–30 мин от отеля' },
-    { time: '[XX:XX]–[XX:XX]', title: 'Киренийский замок',                 note: '~40–60 мин с учётом входа и фотостопов' },
-    { time: '[XX:XX]',        title: 'Прогулка по набережной старой гавани', note: 'Узкие улочки исторического центра' },
-    { time: '[XX:XX]',        title: 'Свободное время · 20–25 мин',        note: 'Кофе с видом на море, фото, сувениры' },
-    { time: '[XX:XX]',        title: 'Возвращение в отель',                note: '~20–30 мин' },
+    { time: '14:30', title: 'Сбор у главного входа отеля', note: 'Отправление строго по расписанию' },
+    { time: '19:30', title: 'Возвращение в отель',          note: '' },
   ],
 
   funFacts: [
@@ -441,15 +437,11 @@ const TRANSLATIONS = {
     excursion: {
       title:    'Kyrenia · City Tour',
       date:     'June 3, Wednesday',
-      duration: '~3 hours',
+      duration: '~5 hours',
       desc:     'A guided tour to Kyrenia (Girne) — the main historic city of Northern Cyprus. 20–30 minutes from the hotel by comfortable coach.',
       program: [
-        { title: 'Gather at hotel main entrance',          note: 'Departure strictly on schedule' },
-        { title: 'Drive to Kyrenia',                       note: '~20–30 min from hotel' },
-        { title: 'Kyrenia Castle',                         note: '~40–60 min including entrance and photo stops' },
-        { title: 'Walk along the old harbour waterfront',  note: 'Narrow streets of the historic centre' },
-        { title: 'Free Time · 20–25 min',                  note: 'Coffee with a sea view, photos, souvenirs' },
-        { title: 'Return to hotel',                        note: '~20–30 min' },
+        { title: 'Gather at hotel main entrance', note: 'Departure strictly on schedule' },
+        { title: 'Return to hotel',               note: '' },
       ],
       funFacts: [
         { title: 'The word "carat" comes from Cyprus',   text: 'Cypriot carob trees produced beans of remarkably consistent weight. Jewellers used them as counterweights — and the word "carat" derives from the Greek "keratia" (carob tree).' },
