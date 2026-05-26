@@ -5,6 +5,7 @@ Telegram Mini App для корпоративного инсентив-тура 
 Организатор: **GreenCode International**. Мероприятие: 2–5 июня 2026, Северный Кипр, ~100 участников.
 Аудитория: отели, DMC, MICE-агентства, корпоративные клиенты.
 Деплой: https://o6594340-sys.github.io/gcc-2026-app/
+Telegram-бот: @GCCapp_bot (открывает Mini App через /start)
 Репозиторий: https://github.com/o6594340-sys/gcc-2026-app.git
 
 ## Структура проекта
@@ -161,7 +162,6 @@ hotel=голубой, key=красный, arrival=голубой
 - [ ] Имя/телефон координатора трансфера
 - [ ] Перенести Google Form экскурсии на аккаунт организатора (обновить `EXCURSION.formUrl`)
 - [ ] Заменить кнопку помощи на WhatsApp организатора (когда решат чей номер)
-- [ ] Telegram-бот (Python): /start → открывает Mini App
 
 ## Сделано (для истории)
 - [x] Service Worker для офлайн-режима (`app/sw.js`)
@@ -173,6 +173,7 @@ hotel=голубой, key=красный, arrival=голубой
 - [x] isAdmin() с кешем, URL param strips after activation
 - [x] WiFi пароль `welcome2gcc` подтверждён
 - [x] Emergency: Малик +905303850111
+- [x] Telegram-бот: @GCCapp_bot — /start открывает Mini App
 
 ## Стиль кода
 - Функции рендеринга: `render{TabName}()` возвращают HTML строку в `document.getElementById('tab-{name}')`
