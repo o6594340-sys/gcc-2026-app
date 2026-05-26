@@ -3,9 +3,9 @@
   "short_name": "GCC 2026",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#166534",
-  "theme_color": "#166534",
+  "background_color": "#0D0818",
+  "theme_color": "#0D0818",
   "icons": [
-    { "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "photo%20icon.jpg", "sizes": "any", "type": "image/jpeg", "purpose": "any maskable" }
   ]
 }
