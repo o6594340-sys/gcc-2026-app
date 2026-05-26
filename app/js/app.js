@@ -320,6 +320,7 @@ const App = (() => {
 
     const html = `
       <div class="countdown-hero">
+        <img src="photo%20icon.jpg" class="countdown-logo" alt="GCC 2026">
         <div class="countdown-eyebrow">GreenCode International</div>
         <div class="countdown-headline">${T('До начала GCC 2026', 'Until GCC 2026 begins')}</div>
         <div class="countdown-timer">

@@ -832,6 +832,15 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   background: linear-gradient(160deg, #050408 0%, #0D0818 55%, #1A0D35 100%);
   border-bottom: 1px solid var(--border);
 }
+.countdown-logo {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 210px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  opacity: 0.92;
+}
 .countdown-eyebrow {
   font-size: 11px;
   text-transform: uppercase;
