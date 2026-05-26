@@ -207,6 +207,23 @@ const App = (() => {
       </div>
     `;
 
+    const ex = EXCURSION;
+    const todayId = day.id;
+    const nowHourMin = new Date().getHours() * 60 + new Date().getMinutes();
+    const excursionCutoff = 14 * 60 + 30;
+    const showExcursionBanner = ex.formUrl &&
+      (todayId === 1 || (todayId === 2 && nowHourMin < excursionCutoff));
+    if (showExcursionBanner) {
+      html += `
+        <div class="excursion-banner" onclick="App.openLink('${ex.formUrl}');haptic('medium')">
+          <div class="excursion-banner-left">
+            <div class="excursion-banner-title">🏛 Экскурсия · 3 июня</div>
+            <div class="excursion-banner-sub">Кирения · сбор в лобби в 14:30</div>
+          </div>
+          <div class="excursion-banner-btn">Записаться →</div>
+        </div>`;
+    }
+
     html += `<div class="section-title" style="margin-top:24px">Программа дня</div>`;
     html += `<div class="card"><div class="card-body">`;
     day.activities.forEach(a => {
