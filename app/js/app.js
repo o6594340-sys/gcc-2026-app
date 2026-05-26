@@ -75,6 +75,7 @@ const App = (() => {
       ...day,
       theme: tr.theme || day.theme,
       date:  tr.date  || day.date,
+      label: tr.label || day.label,
       weather: day.weather ? { ...day.weather, note: tr.weather_note || day.weather.note } : day.weather,
       activities: day.activities.map((a, i) => {
         const ta = (tr.activities || [])[i] || {};
@@ -351,14 +352,15 @@ const App = (() => {
   /* ─── PROGRAM ─────────────────────────── */
   function renderProgram() {
     const container = document.getElementById('tab-program');
-    const day = getDays()[state.programDay];
+    const day = trDay(state.programDay);
 
     let tabs = '<div class="day-tabs">';
     getDays().forEach((d, i) => {
+      const td  = trDay(i);
       const act = i === state.programDay ? 'active' : '';
       tabs += `<button class="day-tab ${act}"
         style="${act ? `background:${d.color};color:white` : ''}"
-        onclick="App.selectProgramDay(${i})">${d.label}</button>`;
+        onclick="App.selectProgramDay(${i})">${td.label}</button>`;
     });
     tabs += '</div>';
 
@@ -382,7 +384,7 @@ const App = (() => {
             ${a.location ? `<div class="program-loc">📍 ${a.location}</div>` : ''}
             ${a.note     ? `<div class="program-note">${a.note}</div>` : ''}
           </div>
-          ${active ? `<span class="now-badge" style="background:${day.color}22;color:${day.color}">Сейчас</span>` : ''}
+          ${active ? `<span class="now-badge" style="background:${day.color}22;color:${day.color}">${T('Сейчас', 'Now')}</span>` : ''}
         </div>`;
     });
     items += `</div></div>`;

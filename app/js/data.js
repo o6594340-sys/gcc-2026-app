@@ -384,6 +384,7 @@ const TRANSLATIONS = {
   en: {
     days: [
       {
+        label: 'Jun 2',
         date: 'June 2, Tuesday',
         theme: 'Check-in Day',
         weather_note: 'clear',
@@ -396,6 +397,7 @@ const TRANSLATIONS = {
         ],
       },
       {
+        label: 'Jun 3',
         date: 'June 3, Wednesday',
         theme: 'Workshop & Excursion',
         weather_note: 'clear',
@@ -410,6 +412,7 @@ const TRANSLATIONS = {
         ],
       },
       {
+        label: 'Jun 4',
         date: 'June 4, Thursday',
         theme: 'Workshop & Gala Dinner',
         weather_note: 'partly cloudy',
@@ -424,6 +427,7 @@ const TRANSLATIONS = {
         ],
       },
       {
+        label: 'Jun 5',
         date: 'June 5, Friday',
         theme: 'Departure Day',
         weather_note: 'clear',
