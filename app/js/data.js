@@ -242,13 +242,13 @@ const PRACTICAL = [
   { icon: '📶', title: 'Wi-Fi в отеле',         text: 'Сеть: Global Corporate Club · Пароль: welcome2gcc.',                                       time: 'any',       until: null,    days: [1] },
 
   // День 2 — воркшоп + экскурсия
-  { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                        time: 'morning',   until: '14:30', days: [2] },
-  { icon: '🧴', title: 'Крем и головной убор',  text: '+30°C. SPF 30+.',                                                                          time: 'morning',   until: '14:30', days: [2] },
-  { icon: '🎉', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                               time: 'afternoon', until: '19:30', days: [2] },
-  { icon: '👔', title: 'Dress code',             text: 'Cocktail · удобная обувь. Начало в 19:30.',                                               time: 'afternoon', until: '19:30', days: [2] },
+  { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                        time: 'any',       until: '14:30', days: [2] },
+  { icon: '🧴', title: 'Крем и головной убор',  text: '+30°C. SPF 30+.',                                                                          time: 'any',       until: '14:30', days: [2] },
+  { icon: '🎉', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                               time: 'any',       until: '19:30', days: [2] },
+  { icon: '👔', title: 'Dress code',             text: 'Cocktail · удобная обувь. Начало в 19:30.',                                               time: 'any',       until: '19:30', days: [2] },
 
   // День 3 — воркшоп + гала-ужин
-  { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                          time: 'morning',   until: '20:00', days: [3] },
+  { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                          time: 'any',       until: '20:00', days: [3] },
   { icon: '🧖', title: 'Свободное время',        text: 'С 16:00 — спа/пляж/бассейн. Запись в Zoya Spa через ресепшн.',                           time: 'afternoon', until: '16:00', days: [3] },
   { icon: '🤝', title: 'Workshop',               text: 'Во вкладке «Экспоненты».',                                                                time: 'any',       until: null,    days: [3] },
 
