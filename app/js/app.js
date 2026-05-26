@@ -1240,7 +1240,7 @@ const App = (() => {
   function renderFAQ(items) {
     const list = document.getElementById('faq-list');
     if (!items.length) {
-      list.innerHTML = `<div style="text-align:center;padding:32px;color:var(--text-hint)">Ничего не найдено</div>`;
+      list.innerHTML = `<div style="text-align:center;padding:32px;color:var(--text-hint)">${T('Ничего не найдено', 'Nothing found')}</div>`;
       return;
     }
     list.innerHTML = items.map((f, i) => `
