@@ -203,6 +203,16 @@ const App = (() => {
     updateLangUI();
     renderAnnouncement();
     renderToday();
+
+    // Reconnect Supabase Realtime when app returns to foreground (hotel Wi-Fi drops)
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState !== 'visible') return;
+      if (state.tab === 'chat' && document.getElementById('chat-messages')) {
+        subscribeToChatMessages();
+        subscribeToPollUpdates();
+        loadChatMessages();
+      }
+    });
   }
 
   /* ─── ANNOUNCEMENT ─────────────────────── */
@@ -241,11 +251,44 @@ const App = (() => {
     if (renderers[tab]) renderers[tab]();
   }
 
+  /* ─── CURRENT ACTIVITY DETECTION ────── */
+  function markCurrentActivities(activities) {
+    const now = new Date();
+    const fmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Nicosia', hour: 'numeric', minute: 'numeric', hour12: false,
+    });
+    const p = {};
+    fmt.formatToParts(now).forEach(({ type, value }) => { p[type] = parseInt(value, 10); });
+    const nowMin = (p.hour % 24) * 60 + (p.minute || 0);
+
+    function toMin(hhmm) {
+      const [h, m] = hhmm.split(':').map(Number);
+      return h * 60 + m;
+    }
+    function parseRange(timeStr) {
+      if (!timeStr || timeStr === '—' || timeStr.startsWith('[')) return null;
+      const sep = timeStr.indexOf('–');
+      if (sep !== -1) return { start: toMin(timeStr.slice(0, sep)), end: toMin(timeStr.slice(sep + 1)) };
+      return { start: toMin(timeStr), end: toMin(timeStr) + 30 };
+    }
+    function isActive({ start, end }) {
+      if (end < start) return nowMin >= start || nowMin < end; // spans midnight
+      return nowMin >= start && nowMin < end;
+    }
+
+    const ranges  = activities.map(a => parseRange(a.time));
+    const nowIdx  = ranges.findIndex(r => r && isActive(r));
+    const nextIdx = ranges.findIndex((r, i) => i !== nowIdx && r && r.start > nowMin);
+
+    return activities.map((a, i) => ({ ...a, isNow: i === nowIdx, isNext: i === nextIdx }));
+  }
+
   /* ─── TODAY ───────────────────────────── */
   function renderToday() {
-    const day  = trDay(TODAY_INDEX);
-    const now  = day.activities.find(a => a.isNow);
-    const next = day.activities.find(a => a.isNext);
+    const rawDay = trDay(TODAY_INDEX);
+    const day    = { ...rawDay, activities: markCurrentActivities(rawDay.activities) };
+    const now    = day.activities.find(a => a.isNow);
+    const next   = day.activities.find(a => a.isNext);
     const short = day.date.replace(/,.*$/, '');
 
     const greeting = tgUser?.first_name
