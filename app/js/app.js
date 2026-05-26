@@ -302,7 +302,7 @@ const App = (() => {
   }
 
   function renderCountdown() {
-    const TARGET = new Date('2026-06-01T21:00:00Z'); // June 2 00:00 Cyprus (UTC+3)
+    const TARGET = new Date('2026-06-02T12:00:00Z'); // June 2 15:00 Cyprus (UTC+3)
 
     function getTimeLeft() {
       const diff = Math.max(0, TARGET - new Date());
