@@ -1122,19 +1122,23 @@ const App = (() => {
 
   /* ─── EXHIBITORS ─────────────────────── */
   function renderExhibitors() {
-    const list = getExhibitors();
+    const exTr = getLang() === 'en' ? (TRANSLATIONS.en.exhibitors || []) : [];
+    const list = getExhibitors().map((e, i) => ({
+      ...e,
+      desc: (exTr[i] && exTr[i].desc) ? exTr[i].desc : e.desc,
+    }));
 
     let html = `<div class="section-pad">`;
-    html += `<div class="section-title" style="margin-bottom:12px">Экспоненты GCC 2026</div>`;
+    html += `<div class="section-title" style="margin-bottom:12px">${T('Экспоненты GCC 2026', 'GCC 2026 Exhibitors')}</div>`;
 
     if (!list.length) {
-      html += `<div class="empty-state">Список экспонентов появится здесь</div>`;
+      html += `<div class="empty-state">${T('Список экспонентов появится здесь', 'Exhibitor list coming soon')}</div>`;
     } else {
       list.forEach(e => {
         const btns = [];
         if (e.telegram) btns.push(`<a href="${e.telegram}" class="contact-btn tg-btn" target="_blank">✈️ Telegram</a>`);
         if (e.whatsapp) btns.push(`<a href="https://wa.me/${e.whatsapp.replace(/\D/g,'')}" class="contact-btn wa-btn" target="_blank">💬 WhatsApp</a>`);
-        if (e.phone)    btns.push(`<a href="tel:${e.phone}" class="contact-btn ph-btn">📞 Звонок</a>`);
+        if (e.phone)    btns.push(`<a href="tel:${e.phone}" class="contact-btn ph-btn">📞 ${T('Звонок', 'Call')}</a>`);
 
         html += `
           <div class="card" style="margin-bottom:12px">
