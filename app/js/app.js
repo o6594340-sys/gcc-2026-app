@@ -67,7 +67,7 @@ const App = (() => {
     default:   '#9CA3AF',
   };
 
-  let state = { tab: 'today', programDay: TODAY_INDEX };
+  let state = { tab: 'today', programDay: TODAY_INDEX, countdownInterval: null };
 
   /* ─── LANGUAGE ──────────────────────────── */
   function getLang() { return ls.get('gcc_lang') || 'ru'; }
@@ -233,6 +233,7 @@ const App = (() => {
 
   /* ─── TAB SWITCHER ────────────────────── */
   function switchTab(tab, btn) {
+    if (state.countdownInterval) { clearInterval(state.countdownInterval); state.countdownInterval = null; }
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
     document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + tab).classList.remove('hidden');
@@ -283,8 +284,106 @@ const App = (() => {
     return activities.map((a, i) => ({ ...a, isNow: i === nowIdx, isNext: i === nextIdx }));
   }
 
+  /* ─── PRE-EVENT COUNTDOWN ───────────────── */
+  function isPreEvent() {
+    const now = new Date();
+    const fmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Nicosia',
+      year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hour12: false,
+    });
+    const p = {};
+    fmt.formatToParts(now).forEach(({ type, value }) => { p[type] = parseInt(value, 10); });
+    const h = p.hour % 24;
+    if (p.year < 2026) return true;
+    if (p.month < 6) return true;
+    if (p.month === 6 && p.day < 2) return true;
+    if (p.month === 6 && p.day === 2 && h < 2) return true;
+    return false;
+  }
+
+  function renderCountdown() {
+    const TARGET = new Date('2026-06-01T21:00:00Z'); // June 2 00:00 Cyprus (UTC+3)
+
+    function getTimeLeft() {
+      const diff = Math.max(0, TARGET - new Date());
+      return {
+        days:    Math.floor(diff / 86400000),
+        hours:   Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      };
+    }
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    const t  = getTimeLeft();
+    const ev = getEvent();
+
+    const html = `
+      <div class="countdown-hero">
+        <div class="countdown-eyebrow">GreenCode International</div>
+        <div class="countdown-headline">${T('До начала GCC 2026', 'Until GCC 2026 begins')}</div>
+        <div class="countdown-timer">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-days">${pad(t.days)}</span>
+            <span class="countdown-sub">${T('дней', 'days')}</span>
+          </div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-hours">${pad(t.hours)}</span>
+            <span class="countdown-sub">${T('часов', 'hours')}</span>
+          </div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-minutes">${pad(t.minutes)}</span>
+            <span class="countdown-sub">${T('минут', 'min')}</span>
+          </div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-seconds">${pad(t.seconds)}</span>
+            <span class="countdown-sub">${T('секунд', 'sec')}</span>
+          </div>
+        </div>
+        <div class="countdown-info">
+          <span>📅 2–5 ${T('июня', 'June')} 2026</span>
+          <span>🏨 Elexus Hotel</span>
+          <span>🌍 ${T('Северный Кипр', 'North Cyprus')}</span>
+        </div>
+      </div>
+      <div class="section-pad">
+        <div class="wifi-row" onclick="App.copyWifi()">
+          <span class="wifi-label">Wi-Fi:</span>
+          <span class="wifi-net">${ev.wifi.network}</span>
+          <span class="wifi-sep">·</span>
+          <span class="wifi-label">${T('Пароль:', 'Password:')}</span>
+          <span class="wifi-pass">${ev.wifi.password}</span>
+          <span class="wifi-copy" id="wifi-copied">${T('Скопировано ✓', 'Copied ✓')}</span>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('tab-today').innerHTML = html;
+
+    if (state.countdownInterval) clearInterval(state.countdownInterval);
+    state.countdownInterval = setInterval(() => {
+      const t2 = getTimeLeft();
+      const dEl = document.getElementById('cd-days');
+      if (!dEl) { clearInterval(state.countdownInterval); state.countdownInterval = null; return; }
+      dEl.textContent = pad(t2.days);
+      document.getElementById('cd-hours').textContent   = pad(t2.hours);
+      document.getElementById('cd-minutes').textContent = pad(t2.minutes);
+      document.getElementById('cd-seconds').textContent = pad(t2.seconds);
+      if (t2.days === 0 && t2.hours === 0 && t2.minutes === 0 && t2.seconds === 0) {
+        clearInterval(state.countdownInterval);
+        state.countdownInterval = null;
+        renderToday();
+      }
+    }, 1000);
+  }
+
   /* ─── TODAY ───────────────────────────── */
   function renderToday() {
+    if (state.countdownInterval) { clearInterval(state.countdownInterval); state.countdownInterval = null; }
+    if (isPreEvent()) { renderCountdown(); return; }
     const rawDay = trDay(TODAY_INDEX);
     const day    = { ...rawDay, activities: markCurrentActivities(rawDay.activities) };
     const now    = day.activities.find(a => a.isNow);

@@ -770,6 +770,73 @@ body:has(#tab-chat:not(.hidden)) .fab-help { display: none !important; }
 .tab-bar .tab:nth-child(n+6) ~ .tab .tab-label,
 .tab-bar:has(.tab:nth-child(6)) .tab-label { font-size: 9px; }
 
+/* ─── COUNTDOWN (pre-event) ─────────────── */
+.countdown-hero {
+  padding: 44px 24px 32px;
+  text-align: center;
+  background: linear-gradient(160deg, #050408 0%, #0D0818 55%, #1A0D35 100%);
+  border-bottom: 1px solid var(--border);
+}
+.countdown-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-text);
+  opacity: 0.65;
+  margin-bottom: 6px;
+}
+.countdown-headline {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+.countdown-timer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 58px;
+}
+.countdown-num {
+  font-family: var(--font-disp);
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent-text);
+  letter-spacing: -0.02em;
+}
+.countdown-sub {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-hint);
+}
+.countdown-colon {
+  font-family: var(--font-disp);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.35;
+  margin-top: 2px;
+  line-height: 1;
+  align-self: flex-start;
+}
+.countdown-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
 /* ─── HEADER DIAGONAL HATCH ──────────────── */
 .app-header::before {
   content: '';
