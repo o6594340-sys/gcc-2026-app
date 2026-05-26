@@ -1211,8 +1211,16 @@ const App = (() => {
   }
 
   /* ─── FAQ ─────────────────────────────── */
+  function getFAQ() {
+    return getLang() === 'en' ? (TRANSLATIONS.en.faq || FAQ) : FAQ;
+  }
+
   function openFAQ() {
-    renderFAQ(FAQ);
+    const titleEl = document.querySelector('#modal-faq h2');
+    if (titleEl) titleEl.textContent = T('Вопросы и ответы', 'FAQ');
+    const searchEl = document.getElementById('faq-search');
+    if (searchEl) searchEl.placeholder = T('🔍  Найти ответ...', '🔍  Search...');
+    renderFAQ(getFAQ());
     document.getElementById('modal-faq').classList.add('open');
     setTimeout(() => document.getElementById('faq-search').focus(), 300);
     haptic('light');
@@ -1224,8 +1232,9 @@ const App = (() => {
   }
 
   function searchFAQ(query) {
+    const faqData = getFAQ();
     const q = query.toLowerCase().trim();
-    renderFAQ(q ? FAQ.filter(f => f.q.toLowerCase().includes(q) || f.a.toLowerCase().includes(q)) : FAQ);
+    renderFAQ(q ? faqData.filter(f => f.q.toLowerCase().includes(q) || f.a.toLowerCase().includes(q)) : faqData);
   }
 
   function renderFAQ(items) {

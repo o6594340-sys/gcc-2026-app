@@ -556,6 +556,18 @@ const TRANSLATIONS = {
       { title: 'Taxi',                text: 'Via reception or Uber/Bolt.' },
       { title: 'Weather',             text: '+28–32°C, sunny. SPF 30+.' },
     ],
+    faq: [
+      { q: 'What time is breakfast?',                    a: 'Breakfast at Reflection Restaurant — 07:00–10:00, buffet, included in the program. Mention GCC 2026 group at the entrance.' },
+      { q: 'How do I arrange a transfer?',               a: 'Transfer schedule is in the Location tab. For individual questions, contact the coordinator or reception.' },
+      { q: 'Where do I collect my badge?',               a: 'Badge and Welcome kit are handed out at check-in. For any questions — the GreenCode coordinator.' },
+      { q: 'Is there Wi-Fi in the conference hall?',     a: 'Yes. Network: Global Corporate Club · Password: welcome2gcc' },
+      { q: 'What is included in the program?',           a: 'Accommodation, breakfasts, business program, coffee breaks, group dinners, and the excursion on June 3.' },
+      { q: 'How do I reach the organizers?',             a: 'The help button at the bottom of the screen connects you directly to the GreenCode International team.' },
+      { q: 'Can I go into town?',                        a: 'Yes, during free time — Kyrenia is right there. Places and distances are listed in the Location tab.' },
+      { q: 'What should I bring on the June 3 excursion?', a: 'Comfortable shoes, sunscreen, and a hat. Water will be provided. Meeting time is in the schedule.' },
+      { q: 'Dress code for the gala dinner?',            a: 'Smart casual. Details will be confirmed the day before.' },
+      { q: 'What power outlets does Cyprus use?',        a: 'Type G — British standard, three rectangular pins. An adapter is available at reception.' },
+    ],
     exhibitors: [
       // Same order as EXHIBITORS array (alphabetical)
       { desc: 'The first internationally certified Green Star hotel in Turkey — 120,000 m² of pine forest meets the Mediterranean in Antalya-Belek. Ultra All Inclusive concept with consistently high service quality awards.' },
