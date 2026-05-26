@@ -244,8 +244,8 @@ const PRACTICAL = [
   // День 2 — воркшоп + экскурсия
   { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                        time: 'morning',   until: '14:30', days: [2] },
   { icon: '🧴', title: 'Крем и головной убор',  text: '+30°C. SPF 30+.',                                                                          time: 'morning',   until: '14:30', days: [2] },
-  { icon: '👙', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                               time: 'afternoon', until: '19:30', days: [2] },
-  { icon: '👔', title: 'Dress code',             text: 'Casual и удобная обувь. Начало в 19:30.',                                                  time: 'afternoon', until: '19:30', days: [2] },
+  { icon: '🎉', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                               time: 'afternoon', until: '19:30', days: [2] },
+  { icon: '👔', title: 'Dress code',             text: 'Cocktail · удобная обувь. Начало в 19:30.',                                               time: 'afternoon', until: '19:30', days: [2] },
 
   // День 3 — воркшоп + гала-ужин
   { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                          time: 'morning',   until: '20:00', days: [3] },
