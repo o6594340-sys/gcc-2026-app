@@ -176,6 +176,9 @@ const App = (() => {
   }
 
   function init() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
     if (tg) {
       tg.ready();
       tg.expand();
@@ -1056,7 +1059,7 @@ const App = (() => {
     if (!polls?.length) { el.innerHTML = ''; return; }
 
     const { data: myVotes } = await sb.from('poll_votes').select('*').eq('user_id', me.id);
-    const { data: allVotes } = await sb.from('poll_votes').select('*');
+    const { data: allVotes } = await sb.from('poll_votes').select('*').limit(5000);
 
     el.innerHTML = polls.map(p => buildPollHTML(p, myVotes, allVotes)).join('');
   }
