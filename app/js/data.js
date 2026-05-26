@@ -115,7 +115,7 @@ const DAYS = [
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
       { time: '12:00',       title: 'Выезд из отеля', location: 'Стойка регистрации', type: 'hotel', note: 'Багаж можно оставить у консьержа до отъезда' },
-      { time: '[XX:XX]',     title: 'Трансферы в аэропорт Эрджан', location: 'Аэропорт Эрджан (ECN)', type: 'transfer', note: 'Расписание по рейсам — уточните у координатора' },
+      { time: '—',           title: 'Трансферы в аэропорт Эрджан', location: 'Аэропорт Эрджан (ECN)', type: 'transfer', note: 'Согласно полётным данным' },
     ],
   },
 ];
