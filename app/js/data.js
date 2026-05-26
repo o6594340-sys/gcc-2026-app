@@ -378,3 +378,74 @@ const EXCURSION = {
     { src: 'Northen Cyprus 2.jpg', caption: 'Северный Кипр' },
   ],
 };
+
+// ─── TRANSLATIONS (English) ────────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    days: [
+      {
+        theme: 'Check-in Day',
+        weather_note: 'clear',
+        activities: [
+          { title: 'Arrival. Meet at Ercan Airport (ECN)', note: 'According to flight schedule · «GCC 2026» sign at customs exit · Coordinator: Malik +90 530 385 01 11' },
+          { title: 'Transfer to Hotel',                    note: 'According to flight schedule · ~45 min from airport' },
+          { title: 'Check-in',                             note: 'Collect your badge and Welcome Kit' },
+          { title: 'Dinner',                               note: 'Included in the program · Dress code: Casual' },
+          { title: 'After-party',                          note: 'Dress code: Cocktail/Casual' },
+        ],
+      },
+      {
+        theme: 'Workshop & Excursion',
+        weather_note: 'clear',
+        activities: [
+          { title: 'Breakfast' },
+          { title: 'Workshop',                                note: 'GCC 2026 Business Program · Dress code: Business casual' },
+          { title: 'Lunch' },
+          { title: 'Lobby meetup · departure for excursion', note: 'Comfortable shoes, sunscreen, hat' },
+          { title: 'Return to Hotel' },
+          { title: 'Beach Party',                            note: 'Dress code: Cocktail · comfortable shoes' },
+          { title: 'After-party',                            note: 'Dress code: Cocktail/Casual' },
+        ],
+      },
+      {
+        theme: 'Workshop & Gala Dinner',
+        weather_note: 'partly cloudy',
+        activities: [
+          { title: 'Breakfast' },
+          { title: 'Workshop',          note: 'GCC 2026 Business Program · Dress code: Business casual' },
+          { title: 'Lunch' },
+          { title: 'Workshop',          note: 'Dress code: Business casual' },
+          { title: 'Free Time',         note: 'Spa, beach, pool — your choice' },
+          { title: 'GCC 2026 Gala Dinner', note: 'Dress code: Smart casual' },
+          { title: 'After-party',       note: 'Dress code: Cocktail/Casual' },
+        ],
+      },
+      {
+        theme: 'Departure Day',
+        weather_note: 'clear',
+        activities: [
+          { title: 'Breakfast' },
+          { title: 'Hotel Check-out',          note: 'Luggage can be stored with the concierge until departure' },
+          { title: 'Transfers to Ercan Airport', note: 'According to flight schedule · Coordinator: Malik +90 530 385 01 11' },
+        ],
+      },
+    ],
+    practical: [
+      { title: 'Power Outlets',       text: 'Type G (British standard).' },
+      { title: 'Badge & Welcome Kit', text: 'Collect at check-in. Badge required at all business events.' },
+      { title: 'Hotel Wi-Fi',         text: 'Network: Global Corporate Club · Password: welcome2gcc.' },
+      { title: 'Excursion today',     text: 'Lobby meetup at 14:30. Comfortable shoes required.' },
+      { title: 'Sunscreen & Hat',     text: '+30°C. SPF 30+.' },
+      { title: 'Beach Party',         text: 'Mia Beach.' },
+      { title: 'Dress code',          text: 'Cocktail · comfortable shoes. Starts at 19:30.' },
+      { title: 'Dress code',          text: 'Smart casual. Gala Dinner at 20:00, Elexus 3 hall.' },
+      { title: 'Free Time',           text: 'From 16:00 — spa / beach / pool. Book Zoya Spa at reception.' },
+      { title: 'Workshop',            text: 'See the Exhibitors tab.' },
+      { title: 'Check-out today',     text: 'Check-out at 12:00. Luggage storage available.' },
+      { title: 'Airport Transfer',    text: 'According to flight schedule. Questions — GreenCode coordinator Malik: +90 530 385 01 11.' },
+      { title: 'Breakfast',           text: 'Restaurant Reflection, buffet from 07:00.' },
+      { title: 'Taxi',                text: 'Via reception or Uber/Bolt.' },
+      { title: 'Weather',             text: '+28–32°C, sunny. SPF 30+.' },
+    ],
+  },
+};

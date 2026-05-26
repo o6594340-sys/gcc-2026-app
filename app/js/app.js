@@ -63,6 +63,50 @@ const App = (() => {
 
   let state = { tab: 'today', programDay: TODAY_INDEX };
 
+  /* ─── LANGUAGE ──────────────────────────── */
+  function getLang() { return localStorage.getItem('gcc_lang') || 'ru'; }
+  function T(ru, en) { return getLang() === 'en' ? en : ru; }
+
+  function trDay(dayIdx) {
+    const day = getDays()[dayIdx];
+    if (getLang() !== 'en') return day;
+    const tr = (TRANSLATIONS.en.days || [])[dayIdx] || {};
+    return {
+      ...day,
+      theme: tr.theme || day.theme,
+      weather: day.weather ? { ...day.weather, note: tr.weather_note || day.weather.note } : day.weather,
+      activities: day.activities.map((a, i) => {
+        const ta = (tr.activities || [])[i] || {};
+        return { ...a, title: ta.title || a.title, note: ta.hasOwnProperty('note') ? ta.note : a.note };
+      }),
+    };
+  }
+
+  function trTip(tip) {
+    if (getLang() !== 'en') return tip;
+    const tr = (TRANSLATIONS.en.practical || [])[tip._idx] || {};
+    return { ...tip, title: tr.title || tip.title, text: tr.text || tip.text };
+  }
+
+  function toggleLang() {
+    localStorage.setItem('gcc_lang', getLang() === 'ru' ? 'en' : 'ru');
+    updateLangUI();
+    const renderers = { today: renderToday, program: renderProgram, location: renderLocation,
+                        excursion: renderExcursion, exhibitors: renderExhibitors };
+    if (renderers[state.tab]) renderers[state.tab]();
+  }
+
+  function updateLangUI() {
+    const isEn = getLang() === 'en';
+    const btn = document.getElementById('lang-btn');
+    if (btn) btn.textContent = isEn ? 'RU' : 'EN';
+    const subEl = document.getElementById('header-sub');
+    if (subEl) subEl.textContent = isEn ? 'June 2–5 · North Cyprus' : '2–5 июня · Северный Кипр';
+    document.querySelectorAll('.tab-label[data-en]').forEach(el => {
+      el.textContent = isEn ? el.dataset.en : el.dataset.ru;
+    });
+  }
+
   /* ─── BRANDING ───────────────────────── */
   function applyBranding() {
     const ev    = getEvent();
@@ -115,6 +159,7 @@ const App = (() => {
     }
     applyBranding();
     applyGradient();
+    updateLangUI();
     renderAnnouncement();
     renderToday();
   }
@@ -157,14 +202,14 @@ const App = (() => {
 
   /* ─── TODAY ───────────────────────────── */
   function renderToday() {
-    const day  = getDays()[TODAY_INDEX];
+    const day  = trDay(TODAY_INDEX);
     const now  = day.activities.find(a => a.isNow);
     const next = day.activities.find(a => a.isNext);
     const short = day.date.replace(/,.*$/, '');
 
     const greeting = tgUser?.first_name
-      ? `Добро пожаловать, ${tgUser.first_name}`
-      : 'Добро пожаловать';
+      ? `${T('Добро пожаловать', 'Welcome')}, ${tgUser.first_name}`
+      : T('Добро пожаловать', 'Welcome');
 
     let html = `
       <div class="today-hero" style="background:linear-gradient(160deg,#050408 0%,#0D0818 55%,${day.color} 100%)">
@@ -174,7 +219,7 @@ const App = (() => {
         ${day.pillar ? `<div class="today-pillar">✦ ${day.pillar}</div>` : ''}
         <div class="today-weather-row">
           ${day.weather ? `<span class="today-weather">${day.weather.icon} ${day.weather.temp} · ${day.weather.note}</span>` : ''}
-          <span class="today-live"><span class="live-dot"></span> Программа актуальна</span>
+          <span class="today-live"><span class="live-dot"></span> ${T('Программа актуальна', 'Schedule is live')}</span>
         </div>
       </div>
       <div class="section-pad">
@@ -182,7 +227,7 @@ const App = (() => {
 
     if (now) html += `
       <div class="now-block">
-        <div class="now-label">● СЕЙЧАС</div>
+        <div class="now-label">● ${T('СЕЙЧАС', 'NOW')}</div>
         <div class="now-title">${now.title}</div>
         <div class="now-meta">${now.location ? `📍 ${now.location} · ` : ''}${now.time}</div>
         ${now.note ? `<div class="now-note">${now.note}</div>` : ''}
@@ -190,7 +235,7 @@ const App = (() => {
 
     if (next) html += `
       <div class="next-block">
-        <div class="next-label">Следующее</div>
+        <div class="next-label">${T('Следующее', 'Up Next')}</div>
         <div class="next-title">${next.title}</div>
         <div class="next-meta">${next.location ? `📍 ${next.location} · ` : ''}${next.time}</div>
       </div>`;
@@ -201,9 +246,9 @@ const App = (() => {
         <span class="wifi-label">Wi-Fi:</span>
         <span class="wifi-net">${ev.wifi.network}</span>
         <span class="wifi-sep">·</span>
-        <span class="wifi-label">Пароль:</span>
+        <span class="wifi-label">${T('Пароль:', 'Password:')}</span>
         <span class="wifi-pass">${ev.wifi.password}</span>
-        <span class="wifi-copy" id="wifi-copied">Скопировано ✓</span>
+        <span class="wifi-copy" id="wifi-copied">${T('Скопировано ✓', 'Copied ✓')}</span>
       </div>
     `;
 
@@ -217,14 +262,14 @@ const App = (() => {
       html += `
         <div class="excursion-banner" onclick="App.openLink('${ex.formUrl}');haptic('medium')">
           <div class="excursion-banner-left">
-            <div class="excursion-banner-title">🏛 Экскурсия · 3 июня</div>
-            <div class="excursion-banner-sub">Кирения · сбор в лобби в 14:30</div>
+            <div class="excursion-banner-title">🏛 ${T('Экскурсия · 3 июня', 'Excursion · June 3')}</div>
+            <div class="excursion-banner-sub">${T('Кирения · сбор в лобби в 14:30', 'Kyrenia · lobby meetup at 14:30')}</div>
           </div>
-          <div class="excursion-banner-btn">Записаться →</div>
+          <div class="excursion-banner-btn">${T('Записаться →', 'Sign up →')}</div>
         </div>`;
     }
 
-    html += `<div class="section-title" style="margin-top:24px">Программа дня</div>`;
+    html += `<div class="section-title" style="margin-top:24px">${T('Программа дня', "Today's Schedule")}</div>`;
     html += `<div class="card"><div class="card-body">`;
     day.activities.forEach(a => {
       const active = a.isNow ? 'active' : '';
@@ -249,18 +294,19 @@ const App = (() => {
     const nowMins = hour * 60 + new Date().getMinutes();
     const parseUntil = u => { if (!u) return Infinity; const [h,m] = u.split(':').map(Number); return h*60+m; };
     const currentDayId = getDays()[TODAY_INDEX].id;
-    const candidates = PRACTICAL.filter(p =>
+    const withIdx = PRACTICAL.map((p, i) => ({ ...p, _idx: i }));
+    const candidates = withIdx.filter(p =>
       (p.days === null || !p.days || p.days.includes(currentDayId)) &&
       (p.time === timeSlot || p.time === 'any') &&
       nowMins < parseUntil(p.until)
     );
-    const pool = candidates.length ? candidates : PRACTICAL.filter(p => (p.days === null || !p.days) && nowMins < parseUntil(p.until));
-    const tip = pool[Math.floor(Math.random() * pool.length)];
+    const pool = candidates.length ? candidates : withIdx.filter(p => (p.days === null || !p.days) && nowMins < parseUntil(p.until));
+    const tip = trTip(pool[Math.floor(Math.random() * pool.length)]);
     html += `
       <div class="tip-card">
         <div class="tip-icon">${tip.icon}</div>
         <div>
-          <div class="tip-title">Совет: ${tip.title}</div>
+          <div class="tip-title">${T('Совет:', 'Tip:')} ${tip.title}</div>
           <div class="tip-text">${tip.text}</div>
         </div>
       </div>
@@ -1165,6 +1211,7 @@ const App = (() => {
     renderExcursion,
     callHelp,
     openLink,
+    toggleLang,
     sendChatMessage, resizeChatInput, saveChatName,
     deleteMessage, setReplyToBtn, cancelReply,
     openPollCreator, closePollCreator, submitPoll, votePoll, closePoll,

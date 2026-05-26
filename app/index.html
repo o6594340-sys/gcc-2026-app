@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/main.css?v=20260526y">
+  <link rel="stylesheet" href="css/main.css?v=20260527a">
   <style>
     :root {
       --accent: #8A4FFF; --accent-light: rgba(138,79,255,0.12);
@@ -39,6 +39,7 @@
       <div class="header-sub"   id="header-sub">2–5 июня · Северный Кипр</div>
     </div>
   </div>
+  <button class="lang-toggle" id="lang-btn" onclick="App.toggleLang()" aria-label="Switch language">EN</button>
   <button class="faq-trigger" onclick="App.openFAQ()" aria-label="Вопросы и ответы">?</button>
 </header>
 
@@ -55,22 +56,22 @@
 <!-- ═══ TAB BAR (bottom) ════════════════ -->
 <nav class="tab-bar" id="tab-bar">
   <button class="tab active" data-tab="today"      onclick="App.switchTab('today', this)">
-    <span class="tab-icon">☀️</span><span class="tab-label">Сегодня</span>
+    <span class="tab-icon">☀️</span><span class="tab-label" data-ru="Сегодня"    data-en="Today">Сегодня</span>
   </button>
   <button class="tab"        data-tab="program"    onclick="App.switchTab('program', this)">
-    <span class="tab-icon">📅</span><span class="tab-label">Программа</span>
+    <span class="tab-icon">📅</span><span class="tab-label" data-ru="Программа"  data-en="Schedule">Программа</span>
   </button>
   <button class="tab"        data-tab="location"   onclick="App.switchTab('location', this)">
-    <span class="tab-icon">🏨</span><span class="tab-label">Локация</span>
+    <span class="tab-icon">🏨</span><span class="tab-label" data-ru="Локация"    data-en="Location">Локация</span>
   </button>
   <button class="tab"        data-tab="excursion"  onclick="App.switchTab('excursion', this)">
-    <span class="tab-icon">🏛</span><span class="tab-label">Экскурсия</span>
+    <span class="tab-icon">🏛</span><span class="tab-label" data-ru="Экскурсия"  data-en="Excursion">Экскурсия</span>
   </button>
   <button class="tab"        data-tab="exhibitors" onclick="App.switchTab('exhibitors', this)">
-    <span class="tab-icon">🤝</span><span class="tab-label">Экспоненты</span>
+    <span class="tab-icon">🤝</span><span class="tab-label" data-ru="Экспоненты" data-en="Exhibitors">Экспоненты</span>
   </button>
   <button class="tab"        data-tab="chat"       onclick="App.switchTab('chat', this)">
-    <span class="tab-icon">💬</span><span class="tab-label">Чат</span>
+    <span class="tab-icon">💬</span><span class="tab-label" data-ru="Чат"        data-en="Chat">Чат</span>
   </button>
 </nav>
 
@@ -90,7 +91,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="js/data.js?v=20260526y"></script>
-<script src="js/app.js?v=20260526y"></script>
+<script src="js/data.js?v=20260527a"></script>
+<script src="js/app.js?v=20260527a"></script>
 </body>
 </html>

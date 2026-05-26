@@ -82,6 +82,16 @@ body {
   transition: background 0.15s;
 }
 .faq-trigger:hover { background: rgba(255,255,255,0.28); }
+.lang-toggle {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.15);
+  color: white; font-size: 12px; font-weight: 700; cursor: pointer;
+  font-family: var(--font);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s; margin-right: 6px;
+}
+.lang-toggle:hover { background: rgba(255,255,255,0.28); }
 .hidden { display: none !important; }
 
 /* ===== TAB BAR (bottom navigation) ===== */
