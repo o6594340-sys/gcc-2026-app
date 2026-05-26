@@ -402,8 +402,27 @@ const App = (() => {
     const h  = getHotel();
     const ev = getEvent();
     const stars = '★'.repeat(h.stars || 5);
+    const loc = getLang() === 'en' ? (TRANSLATIONS.en.location || {}) : {};
 
-    const amenityCards = (h.amenities || []).map(a => `
+    const hDesc      = loc.hotel?.desc || h.desc;
+    const hAmenities = h.amenities.map((a, i) => ({ ...a, ...((loc.hotel?.amenities || [])[i] || {}) }));
+    const hTips      = loc.hotel?.tips || h.tips;
+    const trInfo     = loc.transfers?.info || TRANSFERS.info;
+    const trArrival  = TRANSFERS.arrival.map((g, i) => {
+      const tg = (loc.transfers?.arrival || [])[i] || {};
+      return { ...g, label: tg.label || g.label, items: g.items.map((it, j) => ({ ...it, ...((tg.items||[])[j]||{}) })) };
+    });
+    const trDep = TRANSFERS.departure.map((g, i) => {
+      const tg = (loc.transfers?.departure || [])[i] || {};
+      return { ...g, label: tg.label || g.label, items: g.items.map((it, j) => ({ ...it, ...((tg.items||[])[j]||{}) })) };
+    });
+    const trNearby  = NEARBY.map((p, i) => ({ ...p, ...((loc.nearby || [])[i] || {}) }));
+    const trCuisine = {
+      intro:  loc.cuisine?.intro || CUISINE.intro,
+      dishes: CUISINE.dishes.map((d, i) => ({ ...d, ...((loc.cuisine?.dishes || [])[i] || {}) })),
+    };
+
+    const amenityCards = hAmenities.map(a => `
       <div class="hotel-amenity">
         <div class="hotel-amenity-icon">${a.icon}</div>
         <div class="hotel-amenity-title">${a.title}</div>
@@ -412,10 +431,8 @@ const App = (() => {
 
     let html = '';
     if (h.image) html += `<img class="hotel-photo" src="${h.image}" alt="${h.name}" loading="lazy">`;
-
     html += `<div class="section-pad">`;
 
-    // — Отель
     html += `
       <div class="hotel-name-block">
         <div class="hotel-stars">${stars}</div>
@@ -423,11 +440,11 @@ const App = (() => {
       </div>
       <div class="hotel-quickgrid">
         <div class="hotel-quickitem">
-          <div class="hotel-quick-label">Заезд</div>
+          <div class="hotel-quick-label">${T('Заезд', 'Check-in')}</div>
           <div class="hotel-quick-val">${h.checkin}</div>
         </div>
         <div class="hotel-quickitem">
-          <div class="hotel-quick-label">Выезд</div>
+          <div class="hotel-quick-label">${T('Выезд', 'Check-out')}</div>
           <div class="hotel-quick-val">${h.checkout}</div>
         </div>
         <div class="hotel-quickitem">
@@ -435,32 +452,31 @@ const App = (() => {
           <div class="hotel-quick-val" style="font-size:12px">${ev.wifi.network}<br><span style="font-size:11px;opacity:0.65">${ev.wifi.password}</span></div>
         </div>
         <div class="hotel-quickitem" onclick="window.location='tel:${h.phone}'" style="cursor:pointer">
-          <div class="hotel-quick-label">Телефон</div>
+          <div class="hotel-quick-label">${T('Телефон', 'Phone')}</div>
           <div class="hotel-quick-val" style="font-size:12px;color:var(--accent)">${h.phone}</div>
         </div>
       </div>
-      ${h.desc ? `<p class="hotel-desc">${h.desc}</p>` : ''}
-      ${h.breakfast ? `<div class="hotel-breakfast">☕ <strong>Завтрак:</strong> ${h.breakfast}</div>` : ''}
+      ${hDesc ? `<p class="hotel-desc">${hDesc}</p>` : ''}
+      ${h.breakfast ? `<div class="hotel-breakfast">☕ <strong>${T('Завтрак:', 'Breakfast:')}</strong> ${h.breakfast}</div>` : ''}
     `;
 
-    if (h.amenities?.length) {
-      html += `<div class="section-title" style="margin-bottom:12px">Удобства</div>
+    if (hAmenities.length) {
+      html += `<div class="section-title" style="margin-bottom:12px">${T('Удобства', 'Facilities')}</div>
                <div class="hotel-amenities-grid">${amenityCards}</div>`;
     }
 
-    if (h.tips?.length) {
-      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Советы об отеле</div>
-               <div class="hotel-tips">${h.tips.map(t => `<div class="hotel-tip-row">💡 ${t}</div>`).join('')}</div>`;
+    if (hTips?.length) {
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Советы об отеле', 'Hotel Tips')}</div>
+               <div class="hotel-tips">${hTips.map(t => `<div class="hotel-tip-row">💡 ${t}</div>`).join('')}</div>`;
     }
 
     if (h.address) {
       html += `<div class="hotel-tips" style="margin-top:8px"><div class="hotel-tip-row">📍 ${h.address}</div></div>`;
     }
 
-    // — Трансфер
-    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">Трансферы</div>`;
-    if (TRANSFERS.info) {
-      html += `<div class="announcement-bar ann-info" style="margin-bottom:12px;display:block">ℹ️ ${TRANSFERS.info}</div>`;
+    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">${T('Трансферы', 'Transfers')}</div>`;
+    if (trInfo) {
+      html += `<div class="announcement-bar ann-info" style="margin-bottom:12px;display:block">ℹ️ ${trInfo}</div>`;
     }
 
     const renderGroup = (groups) => groups.map(g => `
@@ -479,16 +495,16 @@ const App = (() => {
         </div>
       </div>`).join('');
 
-    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Заезд</div>`;
-    html += renderGroup(TRANSFERS.arrival);
-    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-top:16px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Отъезд</div>`;
-    html += renderGroup(TRANSFERS.departure);
+    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">${T('Заезд', 'Arrival')}</div>`;
+    html += renderGroup(trArrival);
+    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-top:16px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">${T('Отъезд', 'Departure')}</div>`;
+    html += renderGroup(trDep);
 
     if (TRANSFERS.contacts?.length) {
-      html += `<div class="section-title" style="margin-top:20px;margin-bottom:12px">Контакт по трансферу</div>`;
+      html += `<div class="section-title" style="margin-top:20px;margin-bottom:12px">${T('Контакт по трансферу', 'Transfer Coordinator')}</div>`;
       TRANSFERS.contacts.forEach(c => {
         const tgLink = c.telegram ? `<a href="${c.telegram}" class="contact-btn tg-btn" target="_blank">✈️ Telegram</a>` : '';
-        const phLink = c.phone    ? `<a href="tel:${c.phone}" class="contact-btn ph-btn">📞 Звонок</a>` : '';
+        const phLink = c.phone    ? `<a href="tel:${c.phone}" class="contact-btn ph-btn">📞 ${T('Звонок', 'Call')}</a>` : '';
         html += `
           <div class="card"><div class="card-body">
             <div style="font-weight:600;margin-bottom:2px">${c.name}</div>
@@ -498,9 +514,8 @@ const App = (() => {
       });
     }
 
-    // — Рядом с отелем
-    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">Рядом с отелем</div>`;
-    NEARBY.forEach(p => {
+    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">${T('Рядом с отелем', 'Near the Hotel')}</div>`;
+    trNearby.forEach(p => {
       html += `
         <div class="card" style="margin-bottom:12px">
           <div class="card-body">
@@ -517,10 +532,9 @@ const App = (() => {
         </div>`;
     });
 
-    // — Кипрская кухня
-    html += `<div class="section-title" style="margin-top:28px;margin-bottom:8px">Кипрская кухня</div>`;
-    html += `<p class="hotel-desc" style="margin-top:0;margin-bottom:12px">${CUISINE.intro}</p>`;
-    CUISINE.dishes.forEach(d => {
+    html += `<div class="section-title" style="margin-top:28px;margin-bottom:8px">${T('Кипрская кухня', 'Cypriot Cuisine')}</div>`;
+    html += `<p class="hotel-desc" style="margin-top:0;margin-bottom:12px">${trCuisine.intro}</p>`;
+    trCuisine.dishes.forEach(d => {
       html += `
         <div class="card" style="margin-bottom:10px">
           <div class="card-body">

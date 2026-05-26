@@ -438,6 +438,71 @@ const TRANSLATIONS = {
         ],
       },
     ],
+    location: {
+      hotel: {
+        desc: 'A resort complex in the Çatalköy area, 10 km from Kyrenia city centre. On site: private sandy beach with a pier, outdoor and indoor pools, waterpark, Zoya Spa & Wellness, gym, casino and several restaurants.',
+        amenities: [
+          { title: 'Breakfast',  note: 'Reflection Restaurant · buffet' },
+          { title: 'Lunch',      note: 'Reflection Restaurant' },
+          { title: 'Dinner',     note: 'Reflection Restaurant' },
+          { title: 'Pools',      note: 'Multiple outdoor + heated indoor pool' },
+          { title: 'Waterpark',  note: 'Seasonal hours' },
+          { title: 'Beach',      note: 'Private sandy beach · sun loungers and towels included' },
+          { title: 'Zoya Spa',   note: 'Hammam, saunas, treatments — by appointment, extra charge' },
+          { title: 'Gym',        note: 'Complimentary for hotel guests' },
+          { title: 'Casino',     note: 'On hotel premises' },
+          { title: 'Wi-Fi',      note: 'Complimentary throughout the hotel' },
+        ],
+        tips: [
+          'Breakfast at Reflection Restaurant — buffet, included in the program. Mention GCC 2026 at the entrance.',
+          'Sun loungers, umbrellas and towels at the beach are complimentary for hotel guests.',
+          'Poolside, beach and lobby bars open during the day; some items are charged separately.',
+          'We recommend booking Zoya Spa treatments in advance — via reception or the spa desk.',
+          'Kyrenia city centre is about 10–15 min by taxi. Best arranged through reception.',
+          'In-room safe available — recommended for documents and valuables.',
+        ],
+      },
+      transfers: {
+        info: 'Airport–hotel–airport transfers organised by GreenCode International. Coordinator: Malik +90 530 385 01 11',
+        arrival: [
+          {
+            label: 'Arrival · June 2',
+            items: [
+              { title: 'Meet at Ercan Airport (ECN)',  note: '«GCC 2026» sign at customs exit' },
+              { title: 'Departure from airport',        note: '~45 min to the hotel' },
+              { title: 'Arrival at hotel',              note: 'Transfer arranged for all group flights' },
+            ],
+          },
+        ],
+        departure: [
+          {
+            label: 'Departure · June 5',
+            items: [
+              { title: 'Transfers arranged according to flight schedules', note: 'Departure from main hotel entrance' },
+            ],
+          },
+        ],
+      },
+      nearby: [
+        { title: 'Hotel Beach',         desc: 'Private sandy beach with pier. Sun loungers, umbrellas and towels complimentary for guests. Swim from shore or the pier.',                                                               distance: 'On-site',                    hours: 'All day',                                tip: 'Don\'t forget SPF and a hat — the beach is open and the sun is strong.' },
+        { title: 'Kyrenia City Centre', desc: 'The old harbour, waterfront restaurants, narrow streets of the historic centre. The seafront promenade is especially lively in the evenings.',                                          distance: '~10 km · 10–15 min by taxi', hours: 'Restaurants from 12:00, bars until late', tip: 'Arrange taxis through reception. Uber and Bolt also available.' },
+        { title: 'Kyrenia Castle',      desc: 'A 12th–15th century castle on the Kyrenia waterfront. Inside — a museum housing a 300 BC merchant vessel, the oldest surviving wooden ship in the world.',                             distance: '~10 km · 15 min by taxi',    hours: '09:00–19:00',                            tip: 'Entry ~€5. Panoramic harbour views from the upper gallery.' },
+        { title: 'Nearby Restaurants',  desc: 'Several local restaurants in the Çatalköy resort area, 5–10 minutes from the hotel.',                                                                                                   distance: '5–10 min by taxi',           hours: 'Check locally',                          tip: 'Ask the concierge for a specific recommendation.' },
+        { title: 'Pharmacy / Shops',    desc: 'Nearest pharmacy and shops a few minutes away by car. Larger pharmacy and shops in Kyrenia city centre.',                                                                               distance: '5–15 min by taxi',           hours: '09:00–20:00',                            tip: 'If you need a pharmacy urgently, reception can direct you to the nearest duty pharmacy.' },
+      ],
+      cuisine: {
+        intro: 'Cypriot cuisine is built on a few principles: local produce, open fire and nothing superfluous. Olive oil, seafood, cheese and charcoal-grilled meat — this is what you\'ll encounter at the table in Elexus.',
+        dishes: [
+          { name: 'Halloumi',      desc: 'The hallmark of Cypriot cuisine — a goat and sheep\'s milk cheese griddled until golden. Thin and crispy outside, tender and squeaky within. Served hot, traditionally with watermelon slices or fresh mint.' },
+          { name: 'Meze',         desc: 'Not one dish but an entire philosophy of the table: 15–20 small servings — hummus, tahini, olives, dolma, cheese, fish, greens. Meze is an unhurried feast where each small plate opens a new flavour.' },
+          { name: 'Kleftiko',     desc: 'Lamb marinated with lemon and spices, slow-roasted for several hours. By the time it arrives at the table, the meat falls effortlessly off the bone. Made in Cyprus the same way for centuries.' },
+          { name: 'Sheftalia',    desc: 'Cypriot sausages of minced lamb and pork with onion and parsley, cooked over charcoal. Served with halloumi, pitta and vegetables — part of a shared table rather than a standalone dish.' },
+          { name: 'Fish & Seafood', desc: 'Sea bream, sea bass, octopus, squid from the Mediterranean. Grilled with lemon and olive oil — no sauces to mask the flavour. Quality of the ingredient is all that matters.' },
+          { name: 'Loukoumades', desc: 'Yeast-dough balls deep-fried and drizzled with honey and cinnamon. Served hot — eat immediately. First mentioned in ancient Greek texts.' },
+          { name: 'Zivania',      desc: 'Cypriot grape-pomace distillate — clear, unaged, around 40–45% ABV. Produced on the island since the 15th century. Served chilled in small glasses at the start or end of dinner.' },
+        ],
+      },
+    },
     practical: [
       { title: 'Power Outlets',       text: 'Type G (British standard).' },
       { title: 'Badge & Welcome Kit', text: 'Collect at check-in. Badge required at all business events.' },
