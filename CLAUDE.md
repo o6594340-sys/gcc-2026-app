@@ -28,19 +28,21 @@ app/
 ## Стек
 - Чистый HTML/CSS/JS, без фреймворков и сборщиков
 - Telegram Web App SDK (`window.Telegram.WebApp`)
-- localStorage с префиксом `gcc_` для override данных
-- Supabase (Realtime Database) — чат участников
-- PWA (manifest + service worker планируется)
+- localStorage с префиксом `gcc_` для override данных (safe wrapper `ls` для iOS Private Browsing)
+- Supabase (Realtime Database) — чат участников, план Pro (500 соединений)
+- PWA: manifest + Service Worker (`app/sw.js`, cache-first, версия `gcc2026-v{version}`)
 
 ## 6 вкладок (финальные, не менять без причины)
+Порядок в nav-баре: Chat → Today → Program → Location → Excursion → Exhibitors
+
 | tab id | label | что внутри |
 |--------|-------|-----------|
-| `today` | ☀️ Сегодня | герой-блок, сейчас/следующее, wifi, программа дня, совет |
+| `chat` | 💬 Чат | групповой чат (первый в баре) |
+| `today` | ☀️ Сегодня | до 2 июня — обратный отсчёт; с 2 июня — герой-блок, сейчас/следующее, wifi, программа дня, совет |
 | `program` | 📅 Программа | полная программа по дням |
 | `location` | 🏨 Локация | отель + кухня + трансферы + рядом с отелем (всё в одном) |
 | `excursion` | 🏛 Экскурсия | программа, история Кирении, советы, фототочки, галерея |
 | `exhibitors` | 🤝 Экспоненты | карточки 28 участников с контактами (без фильтров) |
-| `chat` | 💬 Чат | групповой чат участников в реальном времени (Supabase Realtime) |
 
 ## Ключевые соглашения
 
@@ -78,6 +80,15 @@ hotel=голубой, key=красный, arrival=голубой
 - Переключение в **02:00** (не в 00:00) — до 02:00 приложение считает текущим предыдущий день
 - До мероприятия → день 1 (2 июня); после → день 4 (5 июня)
 - Вручную менять `TODAY_INDEX` не нужно
+- Всё через `Intl.DateTimeFormat` с `timeZone: 'Asia/Nicosia'` (UTC+3)
+
+### Обратный отсчёт (до 2 июня)
+- `isPreEvent()` в app.js — возвращает true до 2 июня 02:00 по Кипру
+- `renderCountdown()` — экран с таймером дней/часов/минут/секунд
+- Целевое время: **2 июня 15:00 по Кипру** (основной прилёт групп) = `2026-06-02T12:00:00Z`
+- Обновляется через `setInterval` каждую секунду, хранится в `state.countdownInterval`
+- При переходе на другую вкладку интервал очищается
+- Поддерживает RU/EN язык
 
 ### Программа мероприятия — dress codes
 - 2 июня: ужин — Casual, after-party — Casual
@@ -87,9 +98,10 @@ hotel=голубой, key=красный, arrival=голубой
 
 ### Данные-заглушки (ещё не заполнены)
 - `[XX:XX]` — время части событий в программе (ждём от организатора)
-- WiFi реальный пароль (заглушка `welcome2gcc`)
+- WiFi пароль `welcome2gcc` — подтверждён организатором как реальный
 - Имя/телефон координатора трансфера
-- Телефоны/Telegram экспонентов (поля `phone`, `telegram`, `whatsapp` пустые — заполнить когда дадут)
+- Телефоны/Telegram экспонентов (поля `phone`, `telegram`, `whatsapp` пустые — контактов более не будет)
+- Emergency: Малик `+905303850111`; кнопка 📞 вызывает `EVENT.organizer.telegram` (когда организатор даст WhatsApp — заменить на `https://wa.me/НОМЕР`)
 
 ### Северный Кипр — важно
 Никаких ссылок на греческую часть, Южный Кипр, Лимасол, Командарию.
@@ -108,15 +120,19 @@ hotel=голубой, key=красный, arrival=голубой
 
 ## Чат (Supabase)
 - Конфиг: `SUPABASE_URL` и `SUPABASE_KEY` в начале `app/js/app.js`
-- Проект: `jhtdcddqjuaqdksdrdhy.supabase.co` (Frankfurt)
-- Таблица `messages`: id, user_id, user_name, text, created_at, reply_to_id, reply_to_text, reply_to_name
-- RLS включён: политики `read_all` (SELECT), `insert_all` (INSERT), `delete_all` (DELETE)
-- Realtime включён через Publications → supabase_realtime (события INSERT + DELETE)
+- Проект: `jhtdcddqjuaqdksdrdhy.supabase.co` (Frankfurt), план Pro (500 соединений)
+- Таблица `messages`: id (bigint), user_id, user_name, text, created_at, reply_to_id, reply_to_text, reply_to_name
+- Таблица `reactions`: id (bigint), message_id (bigint), user_id (text), emoji (text), created_at; UNIQUE(message_id, user_id, emoji)
+- RLS включён на обеих таблицах: политики `read_all` (SELECT), `insert_all` (INSERT), `delete_all` (DELETE)
+- Realtime включён через Publications → supabase_realtime (INSERT + DELETE на `messages` и `reactions`)
 - Имя пользователя: берётся из `tgUser.first_name` или из localStorage (`gcc_chat_name`)
-- При первом входе без Telegram-данных показывается экран ввода имени
+- При первом входе без Telegram-данных показывается экран ввода имени (переведён на EN)
 - FAB-кнопка помощи: 📞 (вызов организатора/экстренный)
 - Ответ на сообщение (reply): кнопка ↩ у каждого сообщения, цитата отображается внутри пузырька
 - Удаление сообщений: кнопка ✕ (красная) — только для админа, синхронизируется у всех через DELETE event
+- Реакции: 👍 ❤️ 😂 🔥 👏 😮 — кнопка ＋ под каждым сообщением, пиклер поверх экрана, realtime-синхронизация
+- Лимит загрузки: последние 200 сообщений; лимит реакций: 10000 на загрузку
+- Восстановление соединения: `visibilitychange` — переподписка на все каналы при возврате в foreground
 
 ## Админ-доступ
 - `ADMIN_IDS = ['1220760254']` в app.js (Telegram ID Ольги) — поддерживает несколько ID
@@ -142,13 +158,21 @@ hotel=голубой, key=красный, arrival=голубой
 
 ## Планы (ещё не сделано)
 - [ ] Заполнить `[XX:XX]` времена в программе (ждём от организатора)
-- [ ] WiFi реальный пароль (сейчас заглушка `welcome2gcc`)
 - [ ] Имя/телефон координатора трансфера
-- [ ] Телефоны/Telegram/WhatsApp экспонентов
 - [ ] Перенести Google Form экскурсии на аккаунт организатора (обновить `EXCURSION.formUrl`)
+- [ ] Заменить кнопку помощи на WhatsApp организатора (когда решат чей номер)
 - [ ] Telegram-бот (Python): /start → открывает Mini App
-- [ ] Service Worker для офлайн-режима
-- [ ] Английская версия (перевод после финала русской)
+
+## Сделано (для истории)
+- [x] Service Worker для офлайн-режима (`app/sw.js`)
+- [x] Обратный отсчёт до 2 июня 15:00 на вкладке «Сегодня»
+- [x] Реакции в чате (👍❤️😂🔥👏😮) с realtime-синхронизацией
+- [x] Перевод на английский: FAQ, экспоненты, экскурсия, экран имени в чате
+- [x] Timezone Cyprus (Asia/Nicosia) везде через Intl.DateTimeFormat
+- [x] Safe localStorage (iOS Private Browsing)
+- [x] isAdmin() с кешем, URL param strips after activation
+- [x] WiFi пароль `welcome2gcc` подтверждён
+- [x] Emergency: Малик +905303850111
 
 ## Стиль кода
 - Функции рендеринга: `render{TabName}()` возвращают HTML строку в `document.getElementById('tab-{name}')`
