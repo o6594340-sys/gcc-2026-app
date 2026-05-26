@@ -74,10 +74,16 @@ const App = (() => {
     return {
       ...day,
       theme: tr.theme || day.theme,
+      date:  tr.date  || day.date,
       weather: day.weather ? { ...day.weather, note: tr.weather_note || day.weather.note } : day.weather,
       activities: day.activities.map((a, i) => {
         const ta = (tr.activities || [])[i] || {};
-        return { ...a, title: ta.title || a.title, note: ta.hasOwnProperty('note') ? ta.note : a.note };
+        return {
+          ...a,
+          title:    ta.title    || a.title,
+          location: ta.location || a.location,
+          note: ta.hasOwnProperty('note') ? ta.note : a.note,
+        };
       }),
     };
   }
@@ -284,7 +290,7 @@ const App = (() => {
             <div class="excursion-banner-title">🏛 ${T('Экскурсия · 3 июня', 'Excursion · June 3')}</div>
             <div class="excursion-banner-sub">${T('Кирения · сбор в лобби в 14:30', 'Kyrenia · lobby meetup at 14:30')}</div>
           </div>
-          <div class="excursion-banner-btn">${T('Записаться →', 'Sign up →')}</div>
+          <div class="excursion-banner-btn">${T('Записаться →', 'Book →')}</div>
         </div>`;
     }
 
