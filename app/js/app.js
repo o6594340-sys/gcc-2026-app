@@ -209,6 +209,7 @@ const App = (() => {
       if (document.visibilityState !== 'visible') return;
       if (state.tab === 'chat' && document.getElementById('chat-messages')) {
         subscribeToChatMessages();
+        subscribeToReactions();
         subscribeToPollUpdates();
         loadChatMessages();
       }
@@ -904,10 +905,14 @@ const App = (() => {
     return _adminCache;
   }
 
-  let _sb       = null;
-  let _chatSub  = null;
-  let _pollSub  = null;
-  let _replyTo  = null;
+  const REACTION_EMOJIS = ['👍', '❤️', '😂', '🔥', '👏', '😮'];
+
+  let _sb          = null;
+  let _chatSub     = null;
+  let _pollSub     = null;
+  let _reactionSub = null;
+  let _replyTo     = null;
+  let _reactions   = {}; // { messageId: { emoji: count, _mine: Set } }
 
   function escapeHtml(str) {
     return String(str)
@@ -939,6 +944,24 @@ const App = (() => {
     return !!(tgUser?.first_name || ls.get('gcc_chat_name'));
   }
 
+  function renderReactionBar(messageId) {
+    if (!messageId) return '';
+    const r    = _reactions[messageId] || {};
+    const mine = r._mine || new Set();
+    const pills = REACTION_EMOJIS
+      .filter(e => r[e] > 0)
+      .map(e => `<button class="reaction-pill${mine.has(e) ? ' mine' : ''}" onclick="App.toggleReaction('${messageId}','${e}')">${e} <span>${r[e]}</span></button>`)
+      .join('');
+    return `<div class="reaction-bar">${pills}<button class="reaction-add" onclick="App.openReactionPicker('${messageId}')">＋</button></div>`;
+  }
+
+  function updateReactionDOM(messageId) {
+    const msgEl = document.querySelector(`[data-msg-id="${messageId}"]`);
+    if (!msgEl) return;
+    const barEl = msgEl.querySelector('.reaction-bar');
+    if (barEl) barEl.outerHTML = renderReactionBar(messageId);
+  }
+
   function buildMsgHTML(msg, isOwn) {
     const time = new Date(msg.created_at).toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
     const quoteBlock = msg.reply_to_text
@@ -964,6 +987,7 @@ const App = (() => {
           onclick="App.setReplyToBtn(this)">↩</button>
         <span class="chat-msg-time">${time}</span>
       </div>
+      ${renderReactionBar(msg.id)}
     </div>`;
   }
 
@@ -1027,6 +1051,7 @@ const App = (() => {
       </div>`;
     loadChatMessages();
     subscribeToChatMessages();
+    subscribeToReactions();
     loadPolls();
     subscribeToPollUpdates();
   }
@@ -1059,7 +1084,10 @@ const App = (() => {
     if (!listEl) return;
     if (error) { listEl.innerHTML = '<div class="chat-empty">Ошибка загрузки сообщений</div>'; return; }
 
-    const me = getChatUser();
+    const me     = getChatUser();
+    const msgIds = (data || []).map(m => m.id).filter(Boolean);
+    await loadReactions(msgIds);
+
     listEl.innerHTML = data.length
       ? data.map(m => buildMsgHTML(m, m.user_id === me.id)).join('')
       : '<div class="chat-empty">Пока нет сообщений.<br>Начните общение первыми!</div>';
@@ -1146,6 +1174,80 @@ const App = (() => {
     if (el) el.remove();
     const sb = getSupabase();
     if (sb) await sb.from('messages').delete().eq('id', id);
+  }
+
+  /* ─── REACTIONS ─────────────────────── */
+  async function loadReactions(messageIds) {
+    const sb = getSupabase();
+    if (!sb || !messageIds.length) return;
+    const userId = getChatUser().id;
+    const { data } = await sb.from('reactions')
+      .select('message_id,emoji,user_id')
+      .in('message_id', messageIds)
+      .limit(10000);
+    if (!data) return;
+    _reactions = {};
+    data.forEach(r => {
+      if (!_reactions[r.message_id]) _reactions[r.message_id] = { _mine: new Set() };
+      _reactions[r.message_id][r.emoji] = (_reactions[r.message_id][r.emoji] || 0) + 1;
+      if (r.user_id === userId) _reactions[r.message_id]._mine.add(r.emoji);
+    });
+  }
+
+  function subscribeToReactions() {
+    const sb = getSupabase();
+    if (!sb) return;
+    if (_reactionSub) { sb.removeChannel(_reactionSub); _reactionSub = null; }
+    _reactionSub = sb.channel('gcc_reactions')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'reactions' }, payload => {
+        const r = payload.new;
+        const userId = getChatUser().id;
+        if (!_reactions[r.message_id]) _reactions[r.message_id] = { _mine: new Set() };
+        _reactions[r.message_id][r.emoji] = (_reactions[r.message_id][r.emoji] || 0) + 1;
+        if (r.user_id === userId) _reactions[r.message_id]._mine.add(r.emoji);
+        updateReactionDOM(r.message_id);
+      })
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'reactions' }, payload => {
+        const r = payload.old;
+        const userId = getChatUser().id;
+        if (!_reactions[r.message_id]) return;
+        _reactions[r.message_id][r.emoji] = Math.max(0, (_reactions[r.message_id][r.emoji] || 1) - 1);
+        if (_reactions[r.message_id][r.emoji] === 0) delete _reactions[r.message_id][r.emoji];
+        if (r.user_id === userId) _reactions[r.message_id]._mine.delete(r.emoji);
+        updateReactionDOM(r.message_id);
+      })
+      .subscribe();
+  }
+
+  async function toggleReaction(messageId, emoji) {
+    haptic('light');
+    const sb = getSupabase();
+    if (!sb) return;
+    const userId = getChatUser().id;
+    const mine   = _reactions[messageId]?._mine || new Set();
+    if (mine.has(emoji)) {
+      await sb.from('reactions').delete()
+        .eq('message_id', messageId).eq('user_id', userId).eq('emoji', emoji);
+    } else {
+      await sb.from('reactions').insert({ message_id: messageId, user_id: userId, emoji });
+    }
+  }
+
+  function openReactionPicker(messageId) {
+    haptic('light');
+    document.querySelectorAll('.reaction-picker-overlay').forEach(el => el.remove());
+    const overlay = document.createElement('div');
+    overlay.className = 'reaction-picker-overlay';
+    overlay.onclick = () => overlay.remove();
+    const picker = document.createElement('div');
+    picker.className = 'reaction-picker';
+    picker.onclick = e => e.stopPropagation();
+    picker.innerHTML = REACTION_EMOJIS.map(e =>
+      `<button class="reaction-picker-btn${_reactions[messageId]?._mine?.has(e) ? ' mine' : ''}"
+       onclick="App.toggleReaction('${messageId}','${e}');document.querySelector('.reaction-picker-overlay')?.remove()">${e}</button>`
+    ).join('');
+    overlay.appendChild(picker);
+    document.body.appendChild(overlay);
   }
 
   /* ─── REPLY ──────────────────────────── */
@@ -1428,6 +1530,7 @@ const App = (() => {
     toggleLang,
     sendChatMessage, resizeChatInput, saveChatName,
     deleteMessage, setReplyToBtn, cancelReply,
+    toggleReaction, openReactionPicker,
     openPollCreator, closePollCreator, submitPoll, votePoll, closePoll,
   };
 
