@@ -77,7 +77,7 @@ const DAYS = [
       { time: '—',           title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: 'Согласно полётным данным · ~45 мин от аэропорта' },
       { time: '14:00',       title: 'Заселение', location: 'Стойка регистрации', type: 'hotel', note: 'Получить бейдж и Welcome-kit' },
       { time: '18:00–21:30', title: 'Ужин', location: 'Ресторан Reflection', type: 'dinner', note: 'Включён в программу · Dress code: Casual' },
-      { time: '22:00–02:00', title: 'After-party', location: 'The Gazino', type: 'gala', note: 'Dress code: Casual' },
+      { time: '22:00–02:00', title: 'After-party', location: 'The Gazino', type: 'gala', note: 'Dress code: Cocktail/Casual' },
     ],
   },
   {
@@ -91,7 +91,7 @@ const DAYS = [
       { time: '14:30',       title: 'Сбор в лобби · отправление на экскурсию', location: 'Лобби отеля', type: 'transfer', note: 'Удобная обувь, солнцезащитный крем, головной убор' },
       { time: '14:30–19:00', title: 'Экскурсионная программа', location: 'Кирения', type: 'excursion' },
       { time: '19:30–00:00', title: 'Пляжная вечеринка', location: 'Mia Beach', type: 'gala', note: 'Dress code: Cocktail · удобная обувь' },
-      { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Casual' },
+      { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Cocktail/Casual' },
     ],
   },
   {
@@ -105,7 +105,7 @@ const DAYS = [
       { time: '14:00–16:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Dress code: Business casual' },
       { time: '16:00–20:00', title: 'Свободное время', type: 'free', note: 'СПА, пляж, бассейн — на ваш выбор' },
       { time: '20:00–00:00', title: 'Гала-ужин GCC 2026', location: 'Elexus 3', type: 'gala', note: 'Dress code: Smart casual' },
-      { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Casual' },
+      { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Cocktail/Casual' },
     ],
   },
   {
