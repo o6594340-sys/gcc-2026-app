@@ -315,8 +315,7 @@ const App = (() => {
     }
     function pad(n) { return String(n).padStart(2, '0'); }
 
-    const t  = getTimeLeft();
-    const ev = getEvent();
+    const t = getTimeLeft();
 
     const html = `
       <div class="countdown-hero">
@@ -347,16 +346,6 @@ const App = (() => {
           <span>📅 2–5 ${T('июня', 'June')} 2026</span>
           <span>🏨 Elexus Hotel</span>
           <span>🌍 ${T('Северный Кипр', 'North Cyprus')}</span>
-        </div>
-      </div>
-      <div class="section-pad">
-        <div class="wifi-row" onclick="App.copyWifi()">
-          <span class="wifi-label">Wi-Fi:</span>
-          <span class="wifi-net">${ev.wifi.network}</span>
-          <span class="wifi-sep">·</span>
-          <span class="wifi-label">${T('Пароль:', 'Password:')}</span>
-          <span class="wifi-pass">${ev.wifi.password}</span>
-          <span class="wifi-copy" id="wifi-copied">${T('Скопировано ✓', 'Copied ✓')}</span>
         </div>
       </div>
     `;
