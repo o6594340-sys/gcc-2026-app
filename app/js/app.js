@@ -105,7 +105,7 @@ const App = (() => {
     ls.set('gcc_lang', getLang() === 'ru' ? 'en' : 'ru');
     updateLangUI();
     const renderers = { today: renderToday, program: renderProgram, location: renderLocation,
-                        excursion: renderExcursion, exhibitors: renderExhibitors };
+                        excursion: renderExcursion, exhibitors: renderExhibitors, chat: renderChat };
     if (renderers[state.tab]) renderers[state.tab]();
   }
 
