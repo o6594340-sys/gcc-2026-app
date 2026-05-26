@@ -90,7 +90,7 @@ const DAYS = [
       { time: '13:00–14:30', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
       { time: '14:30',       title: 'Сбор в лобби · отправление на экскурсию', location: 'Лобби отеля', type: 'transfer', note: 'Удобная обувь, солнцезащитный крем, головной убор' },
       { time: '14:30–19:00', title: 'Экскурсионная программа', location: 'Кирения', type: 'excursion' },
-      { time: '19:30–00:00', title: 'Пляжная вечеринка', location: 'Mia Beach', type: 'gala', note: 'Купальник, лёгкая одежда' },
+      { time: '19:30–00:00', title: 'Пляжная вечеринка', location: 'Mia Beach', type: 'gala', note: 'Dress code: Cocktail · удобная обувь' },
       { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Casual' },
     ],
   },
