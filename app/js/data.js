@@ -57,7 +57,15 @@ const HOTEL = {
   ],
 };
 
-const TODAY_INDEX = 0;
+function getTodayIndex() {
+  const now = new Date();
+  if (now.getHours() < 2) now.setDate(now.getDate() - 1); // до 02:00 — всё ещё предыдущий день
+  const m = now.getMonth(), d = now.getDate(); // June = month 5
+  if (m === 5 && d >= 2 && d <= 5) return d - 2; // 2→0, 3→1, 4→2, 5→3
+  if (m < 5 || (m === 5 && d < 2)) return 0;     // до мероприятия — день 1
+  return 3;                                        // после — день 5
+}
+const TODAY_INDEX = getTodayIndex();
 
 const DAYS = [
   {
