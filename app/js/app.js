@@ -1319,7 +1319,7 @@ const App = (() => {
   function callHelp() {
     haptic('heavy');
     const ev = getEvent();
-    if (ev.organizer?.telegram) window.open(ev.organizer.telegram, '_blank');
+    if (ev.organizer?.telegram) openLink(ev.organizer.telegram);
     else if (ev.emergency)      window.location.href = 'tel:' + ev.emergency;
   }
 

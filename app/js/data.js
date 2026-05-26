@@ -24,7 +24,7 @@ const EVENT = {
   },
   wifi:      { network: 'Global Corporate Club', password: 'welcome2gcc' },
   organizer: { name: 'GreenCode International', telegram: 'https://t.me/greencode_intl' },
-  emergency: '[Экстренный номер]',
+  emergency: '+905303850111',
 };
 
 const HOTEL = {
