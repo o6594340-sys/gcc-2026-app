@@ -219,7 +219,7 @@ const TRANSFERS = {
     },
   ],
   contacts: [
-    { role: 'Трансферный координатор', name: '[Имя]', phone: '[Телефон]', telegram: '' },
+    { role: 'Трансферный координатор', name: 'Малик', phone: '[Телефон]', telegram: '' },
   ],
 };
 
