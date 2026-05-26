@@ -836,13 +836,13 @@ const App = (() => {
     if (!hasChatName()) {
       el.innerHTML = `
         <div class="chat-name-screen">
-          <div class="chat-name-title">Как вас представить?</div>
-          <div class="chat-name-sub">Имя будет видно другим участникам</div>
+          <div class="chat-name-title">${T('Как вас представить?', 'What\'s your name?')}</div>
+          <div class="chat-name-sub">${T('Имя будет видно другим участникам', 'Your name will be visible to other participants')}</div>
           <input class="chat-name-input" id="chat-name-input" type="text"
-            placeholder="Имя и фамилия"
+            placeholder="${T('Имя и фамилия', 'First and last name')}"
             maxlength="40"
             onkeydown="if(event.key==='Enter')App.saveChatName()">
-          <button class="chat-name-btn" onclick="App.saveChatName()">Войти в чат</button>
+          <button class="chat-name-btn" onclick="App.saveChatName()">${T('Войти в чат', 'Join chat')}</button>
         </div>`;
       setTimeout(() => document.getElementById('chat-name-input')?.focus(), 100);
       return;
