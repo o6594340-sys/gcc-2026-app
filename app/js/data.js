@@ -61,11 +61,23 @@ const HOTEL = {
 
 function getTodayIndex() {
   const now = new Date();
-  if (now.getHours() < 2) now.setDate(now.getDate() - 1); // до 02:00 — всё ещё предыдущий день
-  const m = now.getMonth(), d = now.getDate(); // June = month 5
+  // Use Cyprus timezone (UTC+3 in summer) — device locale does not matter
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Nicosia',
+    year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hour12: false,
+  });
+  const p = {};
+  fmt.formatToParts(now).forEach(({ type, value }) => { p[type] = parseInt(value, 10); });
+  let m = p.month - 1, d = p.day, h = p.hour % 24;
+  if (h < 2) { // до 02:00 по Кипру — всё ещё предыдущий день
+    const prev = new Date(now.getTime() - 86400000);
+    const p2 = {};
+    fmt.formatToParts(prev).forEach(({ type, value }) => { p2[type] = parseInt(value, 10); });
+    m = p2.month - 1; d = p2.day;
+  }
   if (m === 5 && d >= 2 && d <= 5) return d - 2; // 2→0, 3→1, 4→2, 5→3
   if (m < 5 || (m === 5 && d < 2)) return 0;     // до мероприятия — день 1
-  return 3;                                        // после — день 5
+  return 3;                                        // после — день 4
 }
 const TODAY_INDEX = getTodayIndex();
 

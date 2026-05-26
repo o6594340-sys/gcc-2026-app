@@ -27,6 +27,12 @@ const App = (() => {
     } catch { return fallback; }
   }
 
+  // Safe localStorage wrapper — handles iOS Private Browsing QuotaExceededError
+  const ls = {
+    get(k)    { try { return localStorage.getItem(k); }    catch(e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); }        catch(e) {} },
+  };
+
   function getEvent()      { return adminData('event', EVENT); }
   function getDays()       { return adminData('days', DAYS); }
   function getHotel()      { return adminData('hotel', HOTEL); }
@@ -64,7 +70,7 @@ const App = (() => {
   let state = { tab: 'today', programDay: TODAY_INDEX };
 
   /* ─── LANGUAGE ──────────────────────────── */
-  function getLang() { return localStorage.getItem('gcc_lang') || 'ru'; }
+  function getLang() { return ls.get('gcc_lang') || 'ru'; }
   function T(ru, en) { return getLang() === 'en' ? en : ru; }
 
   function trDay(dayIdx) {
@@ -96,7 +102,7 @@ const App = (() => {
   }
 
   function toggleLang() {
-    localStorage.setItem('gcc_lang', getLang() === 'ru' ? 'en' : 'ru');
+    ls.set('gcc_lang', getLang() === 'ru' ? 'en' : 'ru');
     updateLangUI();
     const renderers = { today: renderToday, program: renderProgram, location: renderLocation,
                         excursion: renderExcursion, exhibitors: renderExhibitors };
@@ -178,6 +184,12 @@ const App = (() => {
   function init() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+    // Admin activation via URL param — process once, then strip from URL so it can't be shared
+    if (new URLSearchParams(location.search).get('admin') === 'gcc2026') {
+      ls.set('gcc_is_admin', '1');
+      _adminCache = true;
+      try { history.replaceState(null, '', location.pathname + location.hash); } catch(e) {}
     }
     if (tg) {
       tg.ready();
@@ -753,17 +765,12 @@ const App = (() => {
 
   /* ─── CHAT ───────────────────────────── */
   const ADMIN_IDS = ['1220760254'];
+  let _adminCache = null;
 
   function isAdmin() {
-    if (new URLSearchParams(location.search).get('admin') === 'gcc2026') {
-      localStorage.setItem('gcc_is_admin', '1');
-    }
-    const me = getChatUser();
-    if (ADMIN_IDS.includes(me.id)) {
-      localStorage.setItem('gcc_is_admin', '1');
-      return true;
-    }
-    return localStorage.getItem('gcc_is_admin') === '1';
+    if (_adminCache !== null) return _adminCache;
+    _adminCache = ls.get('gcc_is_admin') === '1' || ADMIN_IDS.includes(getChatUser().id);
+    return _adminCache;
   }
 
   let _sb       = null;
@@ -785,20 +792,20 @@ const App = (() => {
   }
 
   function getChatUser() {
-    let uid  = localStorage.getItem('gcc_chat_uid');
-    let name = localStorage.getItem('gcc_chat_name');
-    if (!uid) { uid = Math.random().toString(36).slice(2); localStorage.setItem('gcc_chat_uid', uid); }
+    let uid  = ls.get('gcc_chat_uid');
+    let name = ls.get('gcc_chat_name');
+    if (!uid) { uid = Math.random().toString(36).slice(2); ls.set('gcc_chat_uid', uid); }
 
     if (tgUser?.first_name) {
       const tgName = tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '');
-      if (!name) { localStorage.setItem('gcc_chat_name', tgName); name = tgName; }
+      if (!name) { ls.set('gcc_chat_name', tgName); name = tgName; }
       return { id: String(tgUser.id), name };
     }
     return { id: 'anon_' + uid, name: name || '' };
   }
 
   function hasChatName() {
-    return !!(tgUser?.first_name || localStorage.getItem('gcc_chat_name'));
+    return !!(tgUser?.first_name || ls.get('gcc_chat_name'));
   }
 
   function buildMsgHTML(msg, isOwn) {
@@ -897,7 +904,7 @@ const App = (() => {
     const input = document.getElementById('chat-name-input');
     const name  = input?.value.trim();
     if (!name) { input?.classList.add('shake'); setTimeout(() => input?.classList.remove('shake'), 400); return; }
-    localStorage.setItem('gcc_chat_name', name);
+    ls.set('gcc_chat_name', name);
     haptic('light');
     renderChat();
   }
@@ -982,10 +989,18 @@ const App = (() => {
       scrollChatToBottom();
     }
 
-    await sb.from('messages').insert({
+    const { error: sendErr } = await sb.from('messages').insert({
       user_id: me.id, user_name: me.name, text,
       ...(reply ? { reply_to_id: reply.id || null, reply_to_name: reply.name, reply_to_text: reply.text } : {}),
     });
+    if (sendErr) {
+      document.getElementById('chat-messages')?.lastElementChild?.remove();
+      const errEl = document.createElement('div');
+      errEl.style.cssText = 'text-align:center;padding:6px 12px;font-size:12px;color:#ef4444;';
+      errEl.textContent = T('Не отправлено — проверьте соединение', 'Not sent — check your connection');
+      document.querySelector('.chat-input-wrap')?.insertAdjacentElement('beforebegin', errEl);
+      setTimeout(() => errEl.remove(), 4000);
+    }
   }
 
   function resizeChatInput(el) {
