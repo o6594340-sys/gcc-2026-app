@@ -351,22 +351,6 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
    GCC 2026 — Новые компоненты
 ═══════════════════════════════════════════ */
 
-/* ─── FAB: Помощь ─────────────────────── */
-.fab-help {
-  position: fixed;
-  bottom: calc(72px + env(safe-area-inset-bottom));
-  right: 16px;
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: white; font-size: 22px;
-  border: none; cursor: pointer;
-  box-shadow: 0 4px 20px rgba(201,168,76,0.35);
-  z-index: 100;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.15s;
-}
-.fab-help:active { transform: scale(0.90); }
 
 /* ─── NEARBY ──────────────────────────── */
 .nearby-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 6px; }
@@ -763,8 +747,6 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   75%      { transform: translateX(8px); }
 }
 
-/* Скрываем FAB в чате чтобы не перекрывал кнопку отправки */
-body:has(#tab-chat:not(.hidden)) .fab-help { display: none !important; }
 
 /* 6-tab bar: уменьшаем label чуть */
 .tab-bar .tab:nth-child(n+6) ~ .tab .tab-label,

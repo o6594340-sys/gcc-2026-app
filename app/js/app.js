@@ -1505,14 +1505,6 @@ const App = (() => {
     document.getElementById('faq-' + i)?.classList.toggle('open');
   }
 
-  /* ─── HELP FAB ────────────────────────── */
-  function callHelp() {
-    haptic('heavy');
-    const ev = getEvent();
-    if (ev.organizer?.telegram) openLink(ev.organizer.telegram);
-    else if (ev.emergency)      window.location.href = 'tel:' + ev.emergency;
-  }
-
   function openLink(url) {
     haptic('light');
     if (window.Telegram?.WebApp?.openLink) window.Telegram.WebApp.openLink(url);
@@ -1525,7 +1517,6 @@ const App = (() => {
     openFAQ, closeFAQ, searchFAQ, toggleFAQ,
     filterExhibitors, renderExhibitors,
     renderExcursion,
-    callHelp,
     openLink,
     toggleLang,
     sendChatMessage, resizeChatInput, saveChatName,

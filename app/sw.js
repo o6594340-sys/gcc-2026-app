@@ -1,11 +1,11 @@
-const CACHE = 'gcc2026-v20260527v';
+const CACHE = 'gcc2026-v20260527w';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './css/main.css?v=20260527v',
-  './js/data.js?v=20260527v',
-  './js/app.js?v=20260527v',
+  './css/main.css?v=20260527w',
+  './js/data.js?v=20260527w',
+  './js/app.js?v=20260527w',
   './Elexus hotel.jpeg',
   './castle.jpg',
   './Kirenia_old port.jpg',
