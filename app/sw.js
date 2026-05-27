@@ -1,4 +1,4 @@
-const CACHE = 'gcc2026-v20260528j';
+const CACHE = 'gcc2026-v20260528k';
 const ASSETS = [
   './',
   './index.html',
