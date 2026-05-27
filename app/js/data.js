@@ -87,7 +87,7 @@ const DAYS = [
     theme: 'Заезд', color: '#6E00FF', pillar: 'Power of Community',
     weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
-      { time: '—',           title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Согласно полётным данным · Табличка «GCC 2026» у выхода из таможни · Координатор: Малик +90 530 385 01 11' },
+      { time: '—',           title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Согласно полётным данным · Встреча в зоне прилёта · Табличка «GCC 2026» · Координатор: Малик +90 530 385 01 11' },
       { time: '—',           title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: 'Согласно полётным данным · ~45 мин от аэропорта' },
       { time: '14:00',       title: 'Заселение', location: 'Стойка регистрации', type: 'hotel', note: 'Получить бейдж и Welcome-kit' },
       { time: '18:00–21:30', title: 'Ужин', location: 'Ресторан Reflection', type: 'dinner', note: 'Включён в программу · Dress code: Casual' },
@@ -215,7 +215,7 @@ const TRANSFERS = {
       label: 'Заезд · 2 июня',
       color: '#D4A838',
       items: [
-        { time: '—', title: 'Встреча в аэропорту Эрджан (ECN)', note: 'Табличка «GCC 2026» у выхода из таможни' },
+        { time: '—', title: 'Встреча в аэропорту Эрджан (ECN)', note: 'Встреча в зоне прилёта · Табличка «GCC 2026»' },
         { time: '—', title: 'Выезд из аэропорта', note: '~45 мин до отеля' },
         { time: '—', title: 'Прибытие в отель', note: 'Трансфер организован для всех рейсов группы' },
       ],
