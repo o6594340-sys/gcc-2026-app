@@ -22,7 +22,7 @@ const EVENT = {
     checkin:  '14:00',
     checkout: '12:00',
   },
-  wifi:      { network: 'Global Corporate Club', password: 'Greennet' },
+  wifi:      { network: 'Global Corporate Club', password: 'welcome2gcc' },
   organizer: { name: 'GreenCode International', telegram: 'https://t.me/greencode_intl' },
   emergency: '+905303850111',
 };
@@ -237,7 +237,7 @@ const FAQ = [
   { q: 'Во сколько завтрак?',              a: 'Завтрак в ресторане Reflection — 07:00–10:00, шведский стол, включён в программу. При входе укажите, что вы в составе группы GCC 2026.' },
   { q: 'Как вызвать трансфер?',            a: 'Расписание трансферов — во вкладке «Локация». По индивидуальным вопросам обращайтесь к координатору или на ресепшн.' },
   { q: 'Где получить бейдж?',              a: 'Бейдж и Welcome-kit выдаются при заселении на стойке регистрации. По любым вопросам — координатор GreenCode.' },
-  { q: 'Есть ли Wi-Fi в конференц-зале?',  a: 'Да. Сеть: Global Corporate Club · Пароль: Greennet' },
+  { q: 'Есть ли Wi-Fi в конференц-зале?',  a: 'Да. Сеть: Global Corporate Club · Пароль: welcome2gcc' },
   { q: 'Что входит в программу?',          a: 'Проживание, завтраки, деловая программа, кофе-брейки, групповые ужины и экскурсия 3 июня.' },
 { q: 'Будет ли возможность выйти в город?',          a: 'Да, в свободное время — Кирения к вашим услугам. Подборка мест и расстояния — во вкладке «Локация».' },
   { q: 'Что взять на экскурсию 3 июня?',   a: 'Рекомендуем удобную обувь, солнцезащитный крем и головной убор. Вода будет обеспечена. Время сбора — в программе.' },
@@ -250,7 +250,7 @@ const PRACTICAL = [
   // День 1 — заезд
   { icon: '🔌', title: 'Розетки',              text: 'Тип G (британский стандарт).',                                                             time: 'any',       until: null,    days: [1] },
   { icon: '🏷️', title: 'Бейдж и Welcome-kit',  text: 'Получите при заселении. Бейдж нужен на всех деловых мероприятиях.',                        time: 'afternoon', until: null,    days: [1] },
-  { icon: '📶', title: 'Wi-Fi в отеле',         text: 'Сеть: Global Corporate Club · Пароль: Greennet.',                                       time: 'any',       until: null,    days: [1] },
+  { icon: '📶', title: 'Wi-Fi в отеле',         text: 'Сеть: Global Corporate Club · Пароль: welcome2gcc.',                                       time: 'any',       until: null,    days: [1] },
 
   // День 2 — воркшоп + экскурсия
   { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                        time: 'any',       until: '14:30', days: [2] },
@@ -545,7 +545,7 @@ const TRANSLATIONS = {
     practical: [
       { title: 'Power Outlets',       text: 'Type G (British standard).' },
       { title: 'Badge & Welcome Kit', text: 'Collect at check-in. Badge required at all business events.' },
-      { title: 'Hotel Wi-Fi',         text: 'Network: Global Corporate Club · Password: Greennet.' },
+      { title: 'Hotel Wi-Fi',         text: 'Network: Global Corporate Club · Password: welcome2gcc.' },
       { title: 'Excursion today',     text: 'Lobby meetup at 14:30. Comfortable shoes required.' },
       { title: 'Sunscreen & Hat',     text: '+30°C. SPF 30+.' },
       { title: 'Beach Party',         text: 'Mia Beach.' },
@@ -563,7 +563,7 @@ const TRANSLATIONS = {
       { q: 'What time is breakfast?',                    a: 'Breakfast at Reflection Restaurant — 07:00–10:00, buffet, included in the program. Mention GCC 2026 group at the entrance.' },
       { q: 'How do I arrange a transfer?',               a: 'Transfer schedule is in the Location tab. For individual questions, contact the coordinator or reception.' },
       { q: 'Where do I collect my badge?',               a: 'Badge and Welcome kit are handed out at check-in. For any questions — the GreenCode coordinator.' },
-      { q: 'Is there Wi-Fi in the conference hall?',     a: 'Yes. Network: Global Corporate Club · Password: Greennet' },
+      { q: 'Is there Wi-Fi in the conference hall?',     a: 'Yes. Network: Global Corporate Club · Password: welcome2gcc' },
       { q: 'What is included in the program?',           a: 'Accommodation, breakfasts, business program, coffee breaks, group dinners, and the excursion on June 3.' },
 { q: 'Can I go into town?',                        a: 'Yes, during free time — Kyrenia is right there. Places and distances are listed in the Location tab.' },
       { q: 'What should I bring on the June 3 excursion?', a: 'Comfortable shoes, sunscreen, and a hat. Water will be provided. Meeting time is in the schedule.' },
