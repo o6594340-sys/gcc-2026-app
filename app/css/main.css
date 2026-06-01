@@ -892,6 +892,29 @@ p  { font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
   color: var(--text-secondary);
 }
 
+.countdown-passport {
+  margin: 16px 16px 0;
+  padding: 16px 18px;
+  background: rgba(138,79,255,0.08);
+  border: 1px solid rgba(138,79,255,0.2);
+  border-radius: var(--radius);
+  text-align: left;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.countdown-passport-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-text);
+  margin-bottom: 10px;
+}
+.countdown-passport p { margin-bottom: 6px; }
+.countdown-passport ul { padding-left: 18px; margin-bottom: 6px; }
+.countdown-passport li { margin-bottom: 3px; }
+.countdown-passport strong { color: var(--text); }
+.countdown-passport em { color: var(--accent-text); font-style: normal; }
+
 /* ─── HEADER DIAGONAL HATCH ──────────────── */
 .app-header::before {
   content: '';

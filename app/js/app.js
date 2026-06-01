@@ -349,6 +349,20 @@ const App = (() => {
           <span>🌍 ${T('Северный Кипр', 'North Cyprus')}</span>
         </div>
       </div>
+      ${T(`<div class="countdown-passport">
+        <div class="countdown-passport-title">Рекомендация по прохождению паспортного контроля</div>
+        <p>В аэропорту Северного Кипра <strong>НЕ давайте сразу паспорт на штамп.</strong></p>
+        <p>Когда подойдёте к паспортному контролю в Эрджане:</p>
+        <ul>
+          <li>сначала попросите миграционный бланк/вкладыш;</li>
+          <li>только потом передавайте паспорт.</li>
+        </ul>
+        <p>Фраза:</p>
+        <ul>
+          <li><em>"Could you please stamp the paper instead of the passport?"</em></li>
+        </ul>
+        <p>На Северном Кипре это обычная практика.</p>
+      </div>`, '')}
     `;
 
     document.getElementById('tab-today').innerHTML = html;
