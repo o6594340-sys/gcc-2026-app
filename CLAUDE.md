@@ -94,12 +94,12 @@ hotel=голубой, key=красный, arrival=голубой
 ### Программа мероприятия — dress codes
 - 2 июня: ужин — Casual, after-party — Casual
 - 3 июня: воркшоп — Business casual, after-party — Casual
-- 4 июня: воркшоп — Business casual, гала-ужин — Smart casual, after-party — Casual
+- 4 июня: воркшоп — Business casual, гала-ужин `20:00–02:00` — Smart casual, after-party — Casual
 - Прилёт и трансферы 2 июня: время `—`, note «Согласно полётным данным · Встреча в зоне прилёта»
 
 ### Данные-заглушки (ещё не заполнены)
 - `[XX:XX]` — время части событий в программе (ждём от организатора)
-- WiFi пароль `Greennet` — подтверждён организатором
+- WiFi пароль `welcome2gcc` — подтверждён организатором
 - Имя/телефон координатора трансфера
 - Телефоны/Telegram экспонентов (поля `phone`, `telegram`, `whatsapp` пустые — контактов более не будет)
 - Emergency: Малик `+905303850111`; кнопка 📞 вызывает `EVENT.organizer.telegram` (когда организатор даст WhatsApp — заменить на `https://wa.me/НОМЕР`)
@@ -170,9 +170,11 @@ hotel=голубой, key=красный, arrival=голубой
 - [x] Timezone Cyprus (Asia/Nicosia) везде через Intl.DateTimeFormat
 - [x] Safe localStorage (iOS Private Browsing)
 - [x] isAdmin() с кешем, URL param strips after activation
-- [x] WiFi пароль `Greennet` подтверждён
+- [x] WiFi пароль `welcome2gcc` подтверждён
 - [x] Флаги стран убраны у всех экспонентов
 - [x] Экспоненты: переименованы NG Phaselis Bay, Ethno Belek, Limak Cyprus Deluxe Hotel, Concorde Luxury Resort & Beach Club & Casino; обновлены ссылки и описания
+- [x] Блок рекомендации по паспортному контролю на экране обратного отсчёта (только RU)
+- [x] Гала-ужин 4 июня: время обновлено на 20:00–02:00
 - [x] Emergency: Малик +905303850111
 - [x] Telegram-бот: @GCCapp_bot — /start открывает Mini App
 
