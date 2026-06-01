@@ -85,7 +85,7 @@ const DAYS = [
   {
     id: 1, label: '2 июня', date: '2 июня, вторник',
     theme: 'Заезд', color: '#6E00FF', pillar: 'Power of Community',
-    weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
+    weather: { icon: '☀️', temp: '+28°C', note: 'ясно' },
     activities: [
       { time: '—',           title: 'Прилёт. Встреча в аэропорту Эрджан (ECN)', location: 'Аэропорт Эрджан', type: 'transfer', note: 'Согласно полётным данным · Встреча в зоне прилёта · Табличка «GCC 2026» · Координатор: Малик +90 530 385 01 11' },
       { time: '—',           title: 'Трансфер в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer', note: 'Согласно полётным данным · ~45 мин от аэропорта' },
@@ -97,7 +97,7 @@ const DAYS = [
   {
     id: 2, label: '3 июня', date: '3 июня, среда',
     theme: 'Workshop & Экскурсия', color: '#C200D4', pillar: 'Power of Experience',
-    weather: { icon: '☀️', temp: '+30°C', note: 'ясно' },
+    weather: { icon: '⛅', temp: '+28°C', note: 'переменная облачность' },
     activities: [
       { time: '07:00',       title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
       { time: '10:00–13:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026 · Dress code: Business casual' },
@@ -111,7 +111,7 @@ const DAYS = [
   {
     id: 3, label: '4 июня', date: '4 июня, четверг',
     theme: 'Workshop & Гала-ужин', color: '#0077FF', pillar: 'Power of Ideas',
-    weather: { icon: '⛅', temp: '+28°C', note: 'переменная облачность' },
+    weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
       { time: '10:00–13:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026 · Dress code: Business casual' },
@@ -270,7 +270,7 @@ const PRACTICAL = [
   // Каждый день
   { icon: '☀️', title: 'Завтрак',               text: 'Ресторан Reflection, шведский стол с 07:00.',                                              time: 'morning',   until: '10:00', days: null },
   { icon: '🚕', title: 'Такси',                  text: 'Через ресепшн или Uber/Bolt.',                                                            time: 'any',       until: null,    days: null },
-  { icon: '🌡️', title: 'Погода',                text: '+28–32°C, солнечно. SPF 30+.',                                                             time: 'any',       until: null,    days: null },
+  { icon: '🌡️', title: 'Погода',                text: '+28–29°C, преимущественно солнечно. SPF 30+.',                                                             time: 'any',       until: null,    days: null },
 ];
 
 const CUISINE = {
