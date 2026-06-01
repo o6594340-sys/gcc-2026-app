@@ -118,7 +118,7 @@ const DAYS = [
       { time: '13:00–14:00', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
       { time: '14:00–16:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Dress code: Business casual' },
       { time: '16:00–20:00', title: 'Свободное время', type: 'free', note: 'СПА, пляж, бассейн — на ваш выбор' },
-      { time: '20:00–00:00', title: 'Гала-ужин GCC 2026', location: 'Elexus 3', type: 'gala', note: 'Dress code: Smart casual' },
+      { time: '20:00–02:00', title: 'Гала-ужин GCC 2026', location: 'Elexus 3', type: 'gala', note: 'Dress code: Smart casual' },
       { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Cocktail/Casual' },
     ],
   },
