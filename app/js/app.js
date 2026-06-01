@@ -387,7 +387,6 @@ const App = (() => {
   /* ─── TODAY ───────────────────────────── */
   function renderToday() {
     if (state.countdownInterval) { clearInterval(state.countdownInterval); state.countdownInterval = null; }
-    if (isPreEvent()) { renderCountdown(); return; }
     const rawDay = trDay(TODAY_INDEX);
     const day    = { ...rawDay, activities: markCurrentActivities(rawDay.activities) };
     const now    = day.activities.find(a => a.isNow);
@@ -426,6 +425,24 @@ const App = (() => {
         <div class="next-title">${next.title}</div>
         <div class="next-meta">${next.location ? `📍 ${next.location} · ` : ''}${next.time}</div>
       </div>`;
+
+    if (TODAY_INDEX === 0 && getLang() === 'ru') {
+      html += `
+      <div class="countdown-passport" style="margin:0 0 16px">
+        <div class="countdown-passport-title">Рекомендация по прохождению паспортного контроля</div>
+        <p>В аэропорту Северного Кипра <strong>НЕ давайте сразу паспорт на штамп.</strong></p>
+        <p>Когда подойдёте к паспортному контролю в Эрджане:</p>
+        <ul>
+          <li>сначала попросите миграционный бланк/вкладыш;</li>
+          <li>только потом передавайте паспорт.</li>
+        </ul>
+        <p>Фраза:</p>
+        <ul>
+          <li><em>"Could you please stamp the paper instead of the passport?"</em></li>
+        </ul>
+        <p>На Северном Кипре это обычная практика.</p>
+      </div>`;
+    }
 
     const ev = getEvent();
     html += `
