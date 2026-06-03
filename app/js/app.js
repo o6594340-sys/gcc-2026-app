@@ -490,6 +490,15 @@ const App = (() => {
     });
     html += `</div></div>`;
 
+    if (TODAY_INDEX === 1 || TODAY_INDEX === 2) {
+      html += `<div class="section-title" style="margin-top:24px">${T('Номера столов · Воркшоп', 'Workshop Table Numbers')}</div>`;
+      html += `<div class="card"><div class="card-body workshop-tables-body">`;
+      getWorkshopTables().forEach(row => {
+        html += `<div class="workshop-table-row"><span class="workshop-table-num">${row.table}</span><span class="workshop-table-company">${row.company}</span></div>`;
+      });
+      html += `</div></div>`;
+    }
+
     const hour = new Date().getHours();
     const timeSlot = hour >= 6 && hour < 12 ? 'morning'
                    : hour >= 12 && hour < 18 ? 'afternoon'
@@ -1428,7 +1437,10 @@ const App = (() => {
               <div class="exhibitor-header">
                 <div class="exhibitor-logo">${e.logoEmoji || '🏢'}</div>
                 <div class="exhibitor-main">
-                  <div class="exhibitor-name${e.website ? ' exhibitor-name-link' : ''}"${e.website ? ` onclick="App.openLink('${e.website}')"` : ''}>${e.company}${e.flag ? ' ' + e.flag : ''}${e.website ? ' <span class="exhibitor-link-icon">↗</span>' : ''}</div>
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                    <div class="exhibitor-name${e.website ? ' exhibitor-name-link' : ''}"${e.website ? ` onclick="App.openLink('${e.website}')"` : ''}>${e.company}${e.flag ? ' ' + e.flag : ''}${e.website ? ' <span class="exhibitor-link-icon">↗</span>' : ''}</div>
+                    ${e.table ? `<span class="exhibitor-table-badge">${T('Стол', 'Table')} ${e.table}</span>` : ''}
+                  </div>
                   ${e.contact ? `<div class="exhibitor-contact" style="margin-top:2px">👤 ${e.contact}${e.position ? ` · ${e.position}` : ''}</div>` : ''}
                 </div>
               </div>
