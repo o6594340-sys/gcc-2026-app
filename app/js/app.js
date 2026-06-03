@@ -183,7 +183,7 @@ const App = (() => {
 
   function init() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(() => {});
+      navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => {});
     }
     // Admin activation via URL param — process once, then strip from URL so it can't be shared
     if (new URLSearchParams(location.search).get('admin') === 'gcc2026') {
