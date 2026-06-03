@@ -503,18 +503,15 @@ const App = (() => {
       ];
       html += `<div class="section-title" style="margin-top:24px">${T('Схема зала · Воркшоп', 'Workshop Floor Plan')}</div>`;
       html += `<div class="workshop-map">`;
+      // 5-column grid: col1 | col2 | corridor | col3 | col4
       MAP.forEach(row => {
-        html += `<div class="wm-row">`;
-        row.forEach(cell => {
-          if (cell) {
-            html += `<div class="wm-cell"><span class="wm-num">${cell.n}</span><span class="wm-name">${cell.s}</span></div>`;
-          } else {
-            html += `<div class="wm-cell wm-empty"></div>`;
-          }
-        });
-        html += `</div>`;
+        const [c1, c2, c3, c4] = row;
+        const cell = c => c
+          ? `<div class="wm-cell"><span class="wm-num">${c.n}</span><span class="wm-name">${c.s}</span></div>`
+          : `<div class="wm-cell wm-empty"></div>`;
+        html += `<div class="wm-row">${cell(c1)}${cell(c2)}<div class="wm-aisle"></div>${cell(c3)}${cell(c4)}</div>`;
       });
-      html += `<div class="wm-door">${T('🚪 ВХОД', '🚪 ENTRANCE')}</div>`;
+      html += `<div class="wm-door-row"><div class="wm-door-spacer"></div><div class="wm-door-spacer"></div><div class="wm-door-label">${T('🚪 ВХОД', '🚪 ENTRANCE')}</div><div class="wm-door-spacer"></div><div class="wm-door-spacer"></div></div>`;
       html += `</div>`;
     }
 
