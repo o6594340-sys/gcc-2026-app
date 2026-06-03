@@ -1,7 +1,5 @@
-const CACHE = 'gcc2026-v20260603b';
+const CACHE = 'gcc2026-v20260603c';
 const ASSETS = [
-  './',
-  './index.html',
   './manifest.json',
   './css/main.css?v=20260603b',
   './js/data.js?v=20260603b',
@@ -31,13 +29,21 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Only cache same-origin and GitHub Pages requests; pass through Supabase/CDN
   const url = new URL(e.request.url);
   const isAppResource = url.origin === location.origin ||
     url.hostname === 'o6594340-sys.github.io';
 
   if (!isAppResource) return;
 
+  // HTML: network-first (always get latest index.html)
+  if (e.request.destination === 'document' || url.pathname.endsWith('.html') || url.pathname.endsWith('/')) {
+    e.respondWith(
+      fetch(e.request).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // JS/CSS/images: cache-first
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
