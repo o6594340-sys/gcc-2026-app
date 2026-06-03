@@ -104,8 +104,8 @@ const DAYS = [
       { time: '13:00–14:30', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
       { time: '14:30',       title: 'Сбор в лобби · отправление на экскурсию', location: 'Лобби отеля', type: 'transfer', note: 'Удобная обувь, солнцезащитный крем, головной убор' },
       { time: '18:00',       title: 'Возвращение в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer' },
-      { time: '19:00',       title: 'Шаттл до площадки Mia Beach', location: 'Лобби отеля', type: 'transfer' },
-      { time: '19:30–00:00', title: 'Пляжная вечеринка', location: 'Mia Beach', type: 'gala', note: 'Dress code: Cocktail · удобная обувь' },
+      { time: '19:30',       title: 'Шаттл до площадки Mia Beach', location: 'Лобби отеля', type: 'transfer' },
+      { time: '20:00–00:00', title: 'Пляжная вечеринка', location: 'Mia Beach', type: 'gala', note: 'Dress code: Cocktail · удобная обувь' },
       { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Cocktail/Casual' },
     ],
   },
@@ -289,8 +289,8 @@ const PRACTICAL = [
   // День 2 — воркшоп + экскурсия
   { icon: '👟', title: 'Экскурсия сегодня',     text: 'Сбор в лобби в 14:30. Удобная обувь обязательна.',                                        time: 'any',       until: '14:30', days: [2] },
   { icon: '🧴', title: 'Крем и головной убор',  text: '+30°C. SPF 30+.',                                                                          time: 'any',       until: '14:30', days: [2] },
-  { icon: '🎉', title: 'Пляжная вечеринка',     text: 'Mia Beach.',                                                                               time: 'any',       until: '19:30', days: [2] },
-  { icon: '👔', title: 'Dress code',             text: 'Cocktail · удобная обувь. Начало в 19:30.',                                               time: 'any',       until: '19:30', days: [2] },
+  { icon: '🎉', title: 'Пляжная вечеринка',     text: 'Mia Beach. Шаттл от лобби в 19:30.',                                                       time: 'any',       until: '20:00', days: [2] },
+  { icon: '👔', title: 'Dress code',             text: 'Cocktail · удобная обувь. Начало в 20:00.',                                               time: 'any',       until: '20:00', days: [2] },
 
   // День 3 — воркшоп + гала-ужин
   { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                          time: 'any',       until: '20:00', days: [3] },
@@ -449,7 +449,7 @@ const TRANSLATIONS = {
           { title: 'Lobby meetup · departure for excursion',  location: 'Hotel Lobby',     note: 'Comfortable shoes, sunscreen, hat' },
           { title: 'Return to Hotel',                         location: 'Elexus Hotel & Resort & SPA' },
           { title: 'Shuttle to Mia Beach',                   location: 'Hotel Lobby' },
-          { title: 'Beach Party',                             location: 'Mia Beach',        note: 'Dress code: Cocktail · comfortable shoes' },
+          { title: 'Beach Party',                            location: 'Mia Beach',        note: 'Dress code: Cocktail · comfortable shoes' },
           { title: 'After-party',                             location: 'The Gazino',       note: 'Dress code: Cocktail/Casual' },
         ],
       },
