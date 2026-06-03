@@ -103,7 +103,7 @@ const DAYS = [
       { time: '10:00–13:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Деловая программа GCC 2026 · Dress code: Business casual' },
       { time: '13:00–14:30', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
       { time: '14:30',       title: 'Сбор в лобби · отправление на экскурсию', location: 'Лобби отеля', type: 'transfer', note: 'Удобная обувь, солнцезащитный крем, головной убор' },
-      { time: '17:30',       title: 'Возвращение в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer' },
+      { time: '18:00',       title: 'Возвращение в отель', location: 'Elexus Hotel & Resort & SPA', type: 'transfer' },
       { time: '19:00',       title: 'Шаттл до площадки Mia Beach', location: 'Лобби отеля', type: 'transfer' },
       { time: '19:30–00:00', title: 'Пляжная вечеринка', location: 'Mia Beach', type: 'gala', note: 'Dress code: Cocktail · удобная обувь' },
       { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Cocktail/Casual' },
@@ -359,7 +359,7 @@ const EXCURSION = {
 
   program: [
     { time: '14:30', title: 'Сбор у главного входа отеля', note: 'Отправление строго по расписанию' },
-    { time: '17:30', title: 'Возвращение в отель',          note: '' },
+    { time: '18:00', title: 'Возвращение в отель',          note: '' },
   ],
 
   funFacts: [
