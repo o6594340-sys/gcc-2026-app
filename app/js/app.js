@@ -927,7 +927,7 @@ const App = (() => {
   }
 
   /* ─── CHAT ───────────────────────────── */
-  const ADMIN_IDS = ['1220760254'];
+  const ADMIN_IDS = ['1220760254', '997091930'];
   let _adminCache = null;
 
   function isAdmin() {
