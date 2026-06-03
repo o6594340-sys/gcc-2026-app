@@ -1,9 +1,9 @@
-const CACHE = 'gcc2026-v20260603i';
+const CACHE = 'gcc2026-v20260603j';
 const ASSETS = [
   './manifest.json',
-  './css/main.css?v=20260603i',
-  './js/data.js?v=20260603i',
-  './js/app.js?v=20260603i',
+  './css/main.css?v=20260603j',
+  './js/data.js?v=20260603j',
+  './js/app.js?v=20260603j',
   './photo icon.jpg',
   './Elexus hotel.jpeg',
   './castle.jpg',
