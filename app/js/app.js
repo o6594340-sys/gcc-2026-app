@@ -491,12 +491,31 @@ const App = (() => {
     html += `</div></div>`;
 
     if (TODAY_INDEX === 1 || TODAY_INDEX === 2) {
-      html += `<div class="section-title" style="margin-top:24px">${T('Номера столов · Воркшоп', 'Workshop Table Numbers')}</div>`;
-      html += `<div class="card"><div class="card-body workshop-tables-body">`;
-      getWorkshopTables().forEach(row => {
-        html += `<div class="workshop-table-row"><span class="workshop-table-num">${row.table}</span><span class="workshop-table-company">${row.company}</span></div>`;
+      const MAP = [
+        [{n:28,s:'Sheraton'}, {n:20,s:'Rixos Egypt'}, {n:14,s:'Wyndham Grand'}, {n:8,s:'Limak Cyprus'}],
+        [{n:27,s:'Le Méridien'}, {n:19,s:'Ducale Lara'}, {n:13,s:'Ethno Belek'}, {n:7,s:'Match Point'}],
+        [{n:26,s:'Doria Bodrum'}, {n:18,s:'CVK Park'}, {n:12,s:'Susesi'}, {n:6,s:"Lord's Palace"}],
+        [{n:25,s:'Nirvana (KHG)'}, {n:17,s:'Gloria Hotels'}, {n:11,s:'Regnum Hotels'}, {n:5,s:'Merit Park'}],
+        [{n:24,s:'NG Phaselis'}, {n:16,s:'Conrad'}, {n:10,s:'Sueno Hotels'}, {n:4,s:'Ela Excellence'}],
+        [{n:23,s:'Crowne Plaza'}, {n:15,s:'MSC · PAC'}, {n:9,s:'Silk Hospitality'}, {n:3,s:'Calista'}],
+        [{n:22,s:'Sacred Mansion'}, null, null, {n:2,s:'Princess Palace'}],
+        [{n:21,s:'Sinnada'}, null, null, {n:1,s:'Concorde'}],
+      ];
+      html += `<div class="section-title" style="margin-top:24px">${T('Схема зала · Воркшоп', 'Workshop Floor Plan')}</div>`;
+      html += `<div class="workshop-map">`;
+      MAP.forEach(row => {
+        html += `<div class="wm-row">`;
+        row.forEach(cell => {
+          if (cell) {
+            html += `<div class="wm-cell"><span class="wm-num">${cell.n}</span><span class="wm-name">${cell.s}</span></div>`;
+          } else {
+            html += `<div class="wm-cell wm-empty"></div>`;
+          }
+        });
+        html += `</div>`;
       });
-      html += `</div></div>`;
+      html += `<div class="wm-door">${T('🚪 ВХОД', '🚪 ENTRANCE')}</div>`;
+      html += `</div>`;
     }
 
     const hour = new Date().getHours();
