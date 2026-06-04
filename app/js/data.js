@@ -119,7 +119,8 @@ const DAYS = [
       { time: '13:00–14:00', title: 'Обед', location: 'Ресторан Reflection', type: 'meal' },
       { time: '14:00–16:00', title: 'Workshop', location: 'Elexus 1', type: 'business', note: 'Dress code: Business casual' },
       { time: '16:00–20:00', title: 'Свободное время', type: 'free', note: 'СПА, пляж, бассейн — на ваш выбор' },
-      { time: '20:00–02:00', title: 'Гала-ужин GCC 2026', location: 'Elexus 3', type: 'gala', note: 'Dress code: Smart casual' },
+      { time: '20:00–20:30', title: 'Welcome cocktail', location: 'Elexus 3', type: 'gala', note: 'Dress code: Smart casual' },
+      { time: '20:30–02:00', title: 'Гала-ужин GCC 2026', location: 'Elexus 3', type: 'gala', note: 'Dress code: Smart casual' },
       { time: '00:00–02:00', title: 'After-party', location: 'The Gazino', type: 'dinner', note: 'Dress code: Cocktail/Casual' },
     ],
   },
@@ -305,7 +306,7 @@ const PRACTICAL = [
   { icon: '👔', title: 'Dress code',             text: 'Cocktail · удобная обувь. Начало в 20:00.',                                               time: 'any',       until: '20:00', days: [2] },
 
   // День 3 — воркшоп + гала-ужин
-  { icon: '👔', title: 'Dress code',             text: 'Smart casual. Гала-ужин в 20:00, зал Elexus 3.',                                          time: 'any',       until: '20:00', days: [3] },
+  { icon: '👔', title: 'Dress code',             text: 'Smart casual. Welcome cocktail 20:00, Гала-ужин с 20:30, зал Elexus 3.',               time: 'any',       until: '20:00', days: [3] },
   { icon: '🧖', title: 'Свободное время',        text: 'С 16:00 — спа/пляж/бассейн. Запись в Zoya Spa через ресепшн.',                           time: 'afternoon', until: '16:00', days: [3] },
   { icon: '🤝', title: 'Workshop',               text: 'Во вкладке «Экспоненты».',                                                                time: 'any',       until: null,    days: [3] },
 
@@ -476,6 +477,7 @@ const TRANSLATIONS = {
           { title: 'Lunch',                  location: 'Reflection Restaurant' },
           { title: 'Workshop',               location: 'Elexus 1',   note: 'Dress code: Business casual' },
           { title: 'Free Time',                                        note: 'Spa, beach, pool — your choice' },
+          { title: 'Welcome cocktail',        location: 'Elexus 3',   note: 'Dress code: Smart casual' },
           { title: 'GCC 2026 Gala Dinner',   location: 'Elexus 3',   note: 'Dress code: Smart casual' },
           { title: 'After-party',            location: 'The Gazino', note: 'Dress code: Cocktail/Casual' },
         ],
@@ -597,7 +599,7 @@ const TRANSLATIONS = {
       { title: 'Sunscreen & Hat',     text: '+30°C. SPF 30+.' },
       { title: 'Beach Party',         text: 'Mia Beach. Shuttle from lobby at 19:30.' },
       { title: 'Dress code',          text: 'Cocktail · comfortable shoes. Starts at 20:00.' },
-      { title: 'Dress code',          text: 'Smart casual. Gala Dinner at 20:00, Elexus 3 hall.' },
+      { title: 'Dress code',          text: 'Smart casual. Welcome cocktail 20:00, Gala Dinner from 20:30, Elexus 3 hall.' },
       { title: 'Free Time',           text: 'From 16:00 — spa / beach / pool. Book Zoya Spa at reception.' },
       { title: 'Workshop',            text: 'See the Exhibitors tab.' },
       { title: 'Check-out today',     text: 'Check-out at 14:00. Luggage storage available.' },
