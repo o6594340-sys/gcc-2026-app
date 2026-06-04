@@ -20,7 +20,7 @@ const EVENT = {
     phone:    '+90 392 444 0 650',
     maps:     '',
     checkin:  '14:00',
-    checkout: '12:00',
+    checkout: '14:00',
   },
   wifi:      { network: 'Global Corporate Club', password: 'welcome2gcc' },
   organizer: { name: 'GreenCode International', telegram: 'https://t.me/greencode_intl' },
@@ -129,7 +129,7 @@ const DAYS = [
     weather: { icon: '☀️', temp: '+29°C', note: 'ясно' },
     activities: [
       { time: '07:00–10:00', title: 'Завтрак', location: 'Ресторан Reflection', type: 'meal' },
-      { time: '12:00',       title: 'Расчётный час', location: 'Стойка регистрации', type: 'hotel', note: 'Багаж можно оставить у консьержа до отъезда' },
+      { time: '14:00',       title: 'Расчётный час', location: 'Стойка регистрации', type: 'hotel', note: 'Багаж можно оставить у консьержа до отъезда' },
       { time: '05:25',       title: 'Трансфер · PC 1911', location: 'Главный вход отеля', type: 'transfer', note: 'Вылет 08:25 · 1 Vito' },
       { time: '06:45',       title: 'Трансфер · PC 1871, VF 154, PC 1911', location: 'Главный вход отеля', type: 'transfer', note: 'Вылеты 09:45–09:50 · 1 Midibus + 1 Sprinter' },
       { time: '07:40',       title: 'Трансфер · XQ 301', location: 'Главный вход отеля', type: 'transfer', note: 'Вылет 10:40 · 1 Vito' },
@@ -310,7 +310,7 @@ const PRACTICAL = [
   { icon: '🤝', title: 'Workshop',               text: 'Во вкладке «Экспоненты».',                                                                time: 'any',       until: null,    days: [3] },
 
   // День 4 — отъезд
-  { icon: '🧳', title: 'Выезд сегодня',          text: 'Расчётный час 12:00. Багаж можно оставить в багажной комнате.',                           time: 'morning',   until: '12:00', days: [4] },
+  { icon: '🧳', title: 'Выезд сегодня',          text: 'Расчётный час 14:00. Багаж можно оставить в багажной комнате.',                           time: 'morning',   until: '14:00', days: [4] },
   { icon: '✈️', title: 'Трансфер в аэропорт',   text: 'Согласно рейсам. По вопросам — представитель GreenCode Малик: +90 530 385 01 11.',         time: 'morning',   until: null,    days: [4] },
 
   // Каждый день
@@ -600,7 +600,7 @@ const TRANSLATIONS = {
       { title: 'Dress code',          text: 'Smart casual. Gala Dinner at 20:00, Elexus 3 hall.' },
       { title: 'Free Time',           text: 'From 16:00 — spa / beach / pool. Book Zoya Spa at reception.' },
       { title: 'Workshop',            text: 'See the Exhibitors tab.' },
-      { title: 'Check-out today',     text: 'Check-out at 12:00. Luggage storage available.' },
+      { title: 'Check-out today',     text: 'Check-out at 14:00. Luggage storage available.' },
       { title: 'Airport Transfer',    text: 'According to flight schedule. Questions — GreenCode coordinator Malik: +90 530 385 01 11.' },
       { title: 'Breakfast',           text: 'Reflection Restaurant, buffet from 07:00.' },
       { title: 'Taxi',                text: 'Via reception or Uber/Bolt.' },
