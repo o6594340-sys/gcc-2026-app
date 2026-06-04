@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/main.css?v=20260604c">
+  <link rel="stylesheet" href="css/main.css?v=20260604d">
   <style>
     :root {
       --accent: #8A4FFF; --accent-light: rgba(138,79,255,0.12);
@@ -31,22 +31,22 @@
 </head>
 <body>
 
-<!-- ═══ HEADER ════════════════════════════ -->
+<!-- в•ђв•ђв•ђ HEADER в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ -->
 <header class="app-header">
   <div class="header-brand">
     <div>
       <div class="header-organizer">GreenCode International</div>
       <div class="header-title" id="header-title">Global Corporate Club 2026</div>
-      <div class="header-sub"   id="header-sub">2–5 июня · Северный Кипр</div>
+      <div class="header-sub"   id="header-sub">2вЂ“5 РёСЋРЅСЏ В· РЎРµРІРµСЂРЅС‹Р№ РљРёРїСЂ</div>
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;position:relative;z-index:10">
     <button class="lang-toggle" id="lang-btn" onclick="App.toggleLang()" aria-label="Switch language">EN</button>
-    <button class="faq-trigger" onclick="App.openFAQ()" aria-label="Вопросы и ответы">?</button>
+    <button class="faq-trigger" onclick="App.openFAQ()" aria-label="Р’РѕРїСЂРѕСЃС‹ Рё РѕС‚РІРµС‚С‹">?</button>
   </div>
 </header>
 
-<!-- ═══ CONTENT ══════════════════════════ -->
+<!-- в•ђв•ђв•ђ CONTENT в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ -->
 <main class="main-content">
   <div id="tab-chat"       class="tab-panel hidden"></div>
   <div id="tab-today"      class="tab-panel"></div>
@@ -56,43 +56,44 @@
   <div id="tab-exhibitors" class="tab-panel hidden"></div>
 </main>
 
-<!-- ═══ TAB BAR (bottom) ════════════════ -->
+<!-- в•ђв•ђв•ђ TAB BAR (bottom) в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ -->
 <nav class="tab-bar" id="tab-bar">
   <button class="tab"        data-tab="chat"       onclick="App.switchTab('chat', this)">
-    <span class="tab-icon">💬</span><span class="tab-label" data-ru="Чат"        data-en="Chat">Чат</span>
+    <span class="tab-icon">рџ’¬</span><span class="tab-label" data-ru="Р§Р°С‚"        data-en="Chat">Р§Р°С‚</span>
   </button>
   <button class="tab active" data-tab="today"      onclick="App.switchTab('today', this)">
-    <span class="tab-icon">☀️</span><span class="tab-label" data-ru="Сегодня"    data-en="Today">Сегодня</span>
+    <span class="tab-icon">вЂпёЏ</span><span class="tab-label" data-ru="РЎРµРіРѕРґРЅСЏ"    data-en="Today">РЎРµРіРѕРґРЅСЏ</span>
   </button>
   <button class="tab"        data-tab="program"    onclick="App.switchTab('program', this)">
-    <span class="tab-icon">📅</span><span class="tab-label" data-ru="Программа"  data-en="Schedule">Программа</span>
+    <span class="tab-icon">рџ“…</span><span class="tab-label" data-ru="РџСЂРѕРіСЂР°РјРјР°"  data-en="Schedule">РџСЂРѕРіСЂР°РјРјР°</span>
   </button>
   <button class="tab"        data-tab="location"   onclick="App.switchTab('location', this)">
-    <span class="tab-icon">🏨</span><span class="tab-label" data-ru="Локация"    data-en="Location">Локация</span>
+    <span class="tab-icon">рџЏЁ</span><span class="tab-label" data-ru="Р›РѕРєР°С†РёСЏ"    data-en="Location">Р›РѕРєР°С†РёСЏ</span>
   </button>
   <button class="tab"        data-tab="excursion"  onclick="App.switchTab('excursion', this)">
-    <span class="tab-icon">🏛</span><span class="tab-label" data-ru="Экскурсия"  data-en="Excursion">Экскурсия</span>
+    <span class="tab-icon">рџЏ›</span><span class="tab-label" data-ru="Р­РєСЃРєСѓСЂСЃРёСЏ"  data-en="Excursion">Р­РєСЃРєСѓСЂСЃРёСЏ</span>
   </button>
   <button class="tab"        data-tab="exhibitors" onclick="App.switchTab('exhibitors', this)">
-    <span class="tab-icon">🤝</span><span class="tab-label" data-ru="Экспоненты" data-en="Exhibitors">Экспоненты</span>
+    <span class="tab-icon">рџ¤ќ</span><span class="tab-label" data-ru="Р­РєСЃРїРѕРЅРµРЅС‚С‹" data-en="Exhibitors">Р­РєСЃРїРѕРЅРµРЅС‚С‹</span>
   </button>
 </nav>
 
 
-<!-- ═══ MODAL: FAQ ═══════════════════════ -->
+<!-- в•ђв•ђв•ђ MODAL: FAQ в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ -->
 <div class="modal-overlay" id="modal-faq" onclick="if(event.target===this)App.closeFAQ()">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <h2>Вопросы и ответы</h2>
+    <h2>Р’РѕРїСЂРѕСЃС‹ Рё РѕС‚РІРµС‚С‹</h2>
     <input class="faq-search" id="faq-search" type="text"
-      placeholder="🔍  Найти ответ..."
+      placeholder="рџ”Ќ  РќР°Р№С‚Рё РѕС‚РІРµС‚..."
       oninput="App.searchFAQ(this.value)">
     <div id="faq-list"></div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="js/data.js?v=20260604c"></script>
-<script src="js/app.js?v=20260604c"></script>
+<script src="js/data.js?v=20260604d"></script>
+<script src="js/app.js?v=20260604d"></script>
 </body>
 </html>
+

@@ -1,17 +1,17 @@
-/* ═══════════════════════════════════════════
+﻿/* в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
    Global Corporate Club 2026
-   GreenCode International · App Logic
-═══════════════════════════════════════════ */
+   GreenCode International В· App Logic
+в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ */
 
-/* ─── SUPABASE CONFIG ─────────────────────
-   Замените на ваши значения из supabase.com → Settings → API
-──────────────────────────────────────────── */
+/* в”Ђв”Ђв”Ђ SUPABASE CONFIG в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
+   Р—Р°РјРµРЅРёС‚Рµ РЅР° РІР°С€Рё Р·РЅР°С‡РµРЅРёСЏ РёР· supabase.com в†’ Settings в†’ API
+в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 const SUPABASE_URL = 'https://jhtdcddqjuaqdksdrdhy.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_9ameNQDhrCsZNwuGpUwkOw_ElbnfwaX';
 
 const App = (() => {
 
-  /* ─── TELEGRAM ───────────────────────── */
+  /* в”Ђв”Ђв”Ђ TELEGRAM в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   const tg     = window.Telegram?.WebApp;
   const tgUser = tg?.initDataUnsafe?.user;
 
@@ -19,7 +19,7 @@ const App = (() => {
     tg?.HapticFeedback?.impactOccurred(style);
   }
 
-  /* ─── DATA ────────────────────────────── */
+  /* в”Ђв”Ђв”Ђ DATA в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function adminData(key, fallback) {
     try {
       const s = localStorage.getItem('gcc_' + key);
@@ -27,7 +27,7 @@ const App = (() => {
     } catch { return fallback; }
   }
 
-  // Safe localStorage wrapper — handles iOS Private Browsing QuotaExceededError
+  // Safe localStorage wrapper вЂ” handles iOS Private Browsing QuotaExceededError
   const ls = {
     get(k)    { try { return localStorage.getItem(k); }    catch(e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); }        catch(e) {} },
@@ -46,12 +46,12 @@ const App = (() => {
   }
 
   const EMOJI = {
-    transfer: '🚌', meal: '🍽', excursion: '🏛', hotel: '🏨',
-    business: '💼', dinner: '🍷', gala: '🥂', free: '🛍',
-    break: '☕', arrival: '📍', key: '🔑', default: '📌',
+    transfer: 'рџљЊ', meal: 'рџЌЅ', excursion: 'рџЏ›', hotel: 'рџЏЁ',
+    business: 'рџ’ј', dinner: 'рџЌ·', gala: 'рџҐ‚', free: 'рџ›Ќ',
+    break: 'в•', arrival: 'рџ“Ќ', key: 'рџ”‘', default: 'рџ“Њ',
   };
 
-  // Цвет точки по типу события
+  // Р¦РІРµС‚ С‚РѕС‡РєРё РїРѕ С‚РёРїСѓ СЃРѕР±С‹С‚РёСЏ
   const TYPE_COLOR = {
     business:  '#2563EB',
     meal:      '#D97706',
@@ -69,7 +69,7 @@ const App = (() => {
 
   let state = { tab: 'today', programDay: TODAY_INDEX, countdownInterval: null };
 
-  /* ─── LANGUAGE ──────────────────────────── */
+  /* в”Ђв”Ђв”Ђ LANGUAGE в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function getLang() { return ls.get('gcc_lang') || 'ru'; }
   function T(ru, en) { return getLang() === 'en' ? en : ru; }
 
@@ -114,13 +114,13 @@ const App = (() => {
     const btn = document.getElementById('lang-btn');
     if (btn) btn.textContent = isEn ? 'RU' : 'EN';
     const subEl = document.getElementById('header-sub');
-    if (subEl) subEl.textContent = isEn ? 'June 2–5 · North Cyprus' : '2–5 июня · Северный Кипр';
+    if (subEl) subEl.textContent = isEn ? 'June 2вЂ“5 В· North Cyprus' : '2вЂ“5 РёСЋРЅСЏ В· РЎРµРІРµСЂРЅС‹Р№ РљРёРїСЂ';
     document.querySelectorAll('.tab-label[data-en]').forEach(el => {
       el.textContent = isEn ? el.dataset.en : el.dataset.ru;
     });
   }
 
-  /* ─── BRANDING ───────────────────────── */
+  /* в”Ђв”Ђв”Ђ BRANDING в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function applyBranding() {
     const ev    = getEvent();
     const brand = ev.brand || {};
@@ -133,7 +133,7 @@ const App = (() => {
     const titleEl = document.getElementById('header-title');
     const subEl   = document.getElementById('header-sub');
     if (titleEl) titleEl.textContent = ev.title || titleEl.textContent;
-    if (subEl)   subEl.textContent   = ev.dates ? ev.dates + (ev.location ? ' · ' + ev.location : '') : subEl.textContent;
+    if (subEl)   subEl.textContent   = ev.dates ? ev.dates + (ev.location ? ' В· ' + ev.location : '') : subEl.textContent;
 
     const logoEl = document.getElementById('header-logo');
     if (logoEl) {
@@ -162,7 +162,7 @@ const App = (() => {
     root.style.setProperty('--now-shadow', '0 4px 20px rgba(138,79,255,0.25)');
   }
 
-  /* ─── INIT ────────────────────────────── */
+  /* в”Ђв”Ђв”Ђ INIT в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function ensureLangBtn() {
     if (document.getElementById('lang-btn')) return;
     const faq = document.querySelector('.faq-trigger');
@@ -185,7 +185,7 @@ const App = (() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => {});
     }
-    // Admin activation via URL param — process once, then strip from URL so it can't be shared
+    // Admin activation via URL param вЂ” process once, then strip from URL so it can't be shared
     if (new URLSearchParams(location.search).get('admin') === 'gcc2026') {
       ls.set('gcc_is_admin', '1');
       _adminCache = true;
@@ -216,7 +216,7 @@ const App = (() => {
     });
   }
 
-  /* ─── ANNOUNCEMENT ─────────────────────── */
+  /* в”Ђв”Ђв”Ђ ANNOUNCEMENT в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderAnnouncement() {
     const ann = getAnnouncement();
     let el = document.getElementById('announcement-bar');
@@ -226,13 +226,13 @@ const App = (() => {
       document.querySelector('.main-content').prepend(el);
     }
     if (!ann || !ann.text) { el.style.display = 'none'; return; }
-    const icons = { info: 'ℹ️', warning: '⚠️', success: '✅' };
+    const icons = { info: 'в„№пёЏ', warning: 'вљ пёЏ', success: 'вњ…' };
     el.className = `announcement-bar ann-${ann.type}`;
-    el.innerHTML = `${icons[ann.type] || 'ℹ️'} ${ann.text}`;
+    el.innerHTML = `${icons[ann.type] || 'в„№пёЏ'} ${ann.text}`;
     el.style.display = 'block';
   }
 
-  /* ─── TAB SWITCHER ────────────────────── */
+  /* в”Ђв”Ђв”Ђ TAB SWITCHER в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function switchTab(tab, btn) {
     if (state.countdownInterval) { clearInterval(state.countdownInterval); state.countdownInterval = null; }
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
@@ -253,7 +253,7 @@ const App = (() => {
     if (renderers[tab]) renderers[tab]();
   }
 
-  /* ─── CURRENT ACTIVITY DETECTION ────── */
+  /* в”Ђв”Ђв”Ђ CURRENT ACTIVITY DETECTION в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function markCurrentActivities(activities) {
     const now = new Date();
     const fmt = new Intl.DateTimeFormat('en-US', {
@@ -268,8 +268,8 @@ const App = (() => {
       return h * 60 + m;
     }
     function parseRange(timeStr) {
-      if (!timeStr || timeStr === '—' || timeStr.startsWith('[')) return null;
-      const sep = timeStr.indexOf('–');
+      if (!timeStr || timeStr === 'вЂ”' || timeStr.startsWith('[')) return null;
+      const sep = timeStr.indexOf('вЂ“');
       if (sep !== -1) return { start: toMin(timeStr.slice(0, sep)), end: toMin(timeStr.slice(sep + 1)) };
       return { start: toMin(timeStr), end: toMin(timeStr) + 30 };
     }
@@ -285,7 +285,7 @@ const App = (() => {
     return activities.map((a, i) => ({ ...a, isNow: i === nowIdx, isNext: i === nextIdx }));
   }
 
-  /* ─── PRE-EVENT COUNTDOWN ───────────────── */
+  /* в”Ђв”Ђв”Ђ PRE-EVENT COUNTDOWN в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function isPreEvent() {
     const now = new Date();
     const fmt = new Intl.DateTimeFormat('en-US', {
@@ -321,47 +321,47 @@ const App = (() => {
     const html = `
       <div class="countdown-hero">
         <div class="countdown-eyebrow">GreenCode International</div>
-        <div class="countdown-headline">${T('До начала GCC 2026', 'Until GCC 2026 begins')}</div>
+        <div class="countdown-headline">${T('Р”Рѕ РЅР°С‡Р°Р»Р° GCC 2026', 'Until GCC 2026 begins')}</div>
         <div class="countdown-timer">
           <div class="countdown-unit">
             <span class="countdown-num" id="cd-days">${pad(t.days)}</span>
-            <span class="countdown-sub">${T('дней', 'days')}</span>
+            <span class="countdown-sub">${T('РґРЅРµР№', 'days')}</span>
           </div>
           <span class="countdown-colon">:</span>
           <div class="countdown-unit">
             <span class="countdown-num" id="cd-hours">${pad(t.hours)}</span>
-            <span class="countdown-sub">${T('часов', 'hours')}</span>
+            <span class="countdown-sub">${T('С‡Р°СЃРѕРІ', 'hours')}</span>
           </div>
           <span class="countdown-colon">:</span>
           <div class="countdown-unit">
             <span class="countdown-num" id="cd-minutes">${pad(t.minutes)}</span>
-            <span class="countdown-sub">${T('минут', 'min')}</span>
+            <span class="countdown-sub">${T('РјРёРЅСѓС‚', 'min')}</span>
           </div>
           <span class="countdown-colon">:</span>
           <div class="countdown-unit">
             <span class="countdown-num" id="cd-seconds">${pad(t.seconds)}</span>
-            <span class="countdown-sub">${T('секунд', 'sec')}</span>
+            <span class="countdown-sub">${T('СЃРµРєСѓРЅРґ', 'sec')}</span>
           </div>
         </div>
         <div class="countdown-info">
-          <span>📅 2–5 ${T('июня', 'June')} 2026</span>
-          <span>🏨 Elexus Hotel</span>
-          <span>🌍 ${T('Северный Кипр', 'North Cyprus')}</span>
+          <span>рџ“… 2вЂ“5 ${T('РёСЋРЅСЏ', 'June')} 2026</span>
+          <span>рџЏЁ Elexus Hotel</span>
+          <span>рџЊЌ ${T('РЎРµРІРµСЂРЅС‹Р№ РљРёРїСЂ', 'North Cyprus')}</span>
         </div>
       </div>
       ${T(`<div class="countdown-passport">
-        <div class="countdown-passport-title">Рекомендация по прохождению паспортного контроля</div>
-        <p>В аэропорту Северного Кипра <strong>НЕ давайте сразу паспорт на штамп.</strong></p>
-        <p>Когда подойдёте к паспортному контролю в Эрджане:</p>
+        <div class="countdown-passport-title">Р РµРєРѕРјРµРЅРґР°С†РёСЏ РїРѕ РїСЂРѕС…РѕР¶РґРµРЅРёСЋ РїР°СЃРїРѕСЂС‚РЅРѕРіРѕ РєРѕРЅС‚СЂРѕР»СЏ</div>
+        <p>Р’ Р°СЌСЂРѕРїРѕСЂС‚Сѓ РЎРµРІРµСЂРЅРѕРіРѕ РљРёРїСЂР° <strong>РќР• РґР°РІР°Р№С‚Рµ СЃСЂР°Р·Сѓ РїР°СЃРїРѕСЂС‚ РЅР° С€С‚Р°РјРї.</strong></p>
+        <p>РљРѕРіРґР° РїРѕРґРѕР№РґС‘С‚Рµ Рє РїР°СЃРїРѕСЂС‚РЅРѕРјСѓ РєРѕРЅС‚СЂРѕР»СЋ РІ Р­СЂРґР¶Р°РЅРµ:</p>
         <ul>
-          <li>сначала попросите миграционный бланк/вкладыш;</li>
-          <li>только потом передавайте паспорт.</li>
+          <li>СЃРЅР°С‡Р°Р»Р° РїРѕРїСЂРѕСЃРёС‚Рµ РјРёРіСЂР°С†РёРѕРЅРЅС‹Р№ Р±Р»Р°РЅРє/РІРєР»Р°РґС‹С€;</li>
+          <li>С‚РѕР»СЊРєРѕ РїРѕС‚РѕРј РїРµСЂРµРґР°РІР°Р№С‚Рµ РїР°СЃРїРѕСЂС‚.</li>
         </ul>
-        <p>Фраза:</p>
+        <p>Р¤СЂР°Р·Р°:</p>
         <ul>
           <li><em>"Could you please stamp the paper instead of the passport?"</em></li>
         </ul>
-        <p>На Северном Кипре это обычная практика.</p>
+        <p>РќР° РЎРµРІРµСЂРЅРѕРј РљРёРїСЂРµ СЌС‚Рѕ РѕР±С‹С‡РЅР°СЏ РїСЂР°РєС‚РёРєР°.</p>
       </div>`, '')}
     `;
 
@@ -384,7 +384,7 @@ const App = (() => {
     }, 1000);
   }
 
-  /* ─── TODAY ───────────────────────────── */
+  /* в”Ђв”Ђв”Ђ TODAY в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderToday() {
     if (state.countdownInterval) { clearInterval(state.countdownInterval); state.countdownInterval = null; }
     const rawDay = trDay(TODAY_INDEX);
@@ -394,18 +394,18 @@ const App = (() => {
     const short = day.date.replace(/,.*$/, '');
 
     const greeting = tgUser?.first_name
-      ? `${T('Добро пожаловать', 'Welcome')}, ${tgUser.first_name}`
-      : T('Добро пожаловать', 'Welcome');
+      ? `${T('Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ', 'Welcome')}, ${tgUser.first_name}`
+      : T('Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ', 'Welcome');
 
     let html = `
       <div class="today-hero" style="background:linear-gradient(160deg,#050408 0%,#0D0818 55%,${day.color} 100%)">
-        <div class="today-eyebrow">GCC 2026 · ${short}</div>
+        <div class="today-eyebrow">GCC 2026 В· ${short}</div>
         <div class="today-name">${greeting}</div>
         <div class="today-theme">${day.theme}</div>
-        ${day.pillar ? `<div class="today-pillar">✦ ${day.pillar}</div>` : ''}
+        ${day.pillar ? `<div class="today-pillar">вњ¦ ${day.pillar}</div>` : ''}
         <div class="today-weather-row">
-          ${day.weather ? `<span class="today-weather">${day.weather.icon} ${day.weather.temp} · ${day.weather.note}</span>` : ''}
-          <span class="today-live"><span class="live-dot"></span> ${T('Программа актуальна', 'Schedule is live')}</span>
+          ${day.weather ? `<span class="today-weather">${day.weather.icon} ${day.weather.temp} В· ${day.weather.note}</span>` : ''}
+          <span class="today-live"><span class="live-dot"></span> ${T('РџСЂРѕРіСЂР°РјРјР° Р°РєС‚СѓР°Р»СЊРЅР°', 'Schedule is live')}</span>
         </div>
       </div>
       <div class="section-pad">
@@ -413,34 +413,34 @@ const App = (() => {
 
     if (now) html += `
       <div class="now-block">
-        <div class="now-label">● ${T('СЕЙЧАС', 'NOW')}</div>
+        <div class="now-label">в—Џ ${T('РЎР•Р™Р§РђРЎ', 'NOW')}</div>
         <div class="now-title">${now.title}</div>
-        <div class="now-meta">${now.location ? `📍 ${now.location} · ` : ''}${now.time}</div>
+        <div class="now-meta">${now.location ? `рџ“Ќ ${now.location} В· ` : ''}${now.time}</div>
         ${now.note ? `<div class="now-note">${now.note}</div>` : ''}
       </div>`;
 
     if (next) html += `
       <div class="next-block">
-        <div class="next-label">${T('Следующее', 'Up Next')}</div>
+        <div class="next-label">${T('РЎР»РµРґСѓСЋС‰РµРµ', 'Up Next')}</div>
         <div class="next-title">${next.title}</div>
-        <div class="next-meta">${next.location ? `📍 ${next.location} · ` : ''}${next.time}</div>
+        <div class="next-meta">${next.location ? `рџ“Ќ ${next.location} В· ` : ''}${next.time}</div>
       </div>`;
 
     if (TODAY_INDEX === 0 && getLang() === 'ru') {
       html += `
       <div class="countdown-passport" style="margin:0 0 16px">
-        <div class="countdown-passport-title">Рекомендация по прохождению паспортного контроля</div>
-        <p>В аэропорту Северного Кипра <strong>НЕ давайте сразу паспорт на штамп.</strong></p>
-        <p>Когда подойдёте к паспортному контролю в Эрджане:</p>
+        <div class="countdown-passport-title">Р РµРєРѕРјРµРЅРґР°С†РёСЏ РїРѕ РїСЂРѕС…РѕР¶РґРµРЅРёСЋ РїР°СЃРїРѕСЂС‚РЅРѕРіРѕ РєРѕРЅС‚СЂРѕР»СЏ</div>
+        <p>Р’ Р°СЌСЂРѕРїРѕСЂС‚Сѓ РЎРµРІРµСЂРЅРѕРіРѕ РљРёРїСЂР° <strong>РќР• РґР°РІР°Р№С‚Рµ СЃСЂР°Р·Сѓ РїР°СЃРїРѕСЂС‚ РЅР° С€С‚Р°РјРї.</strong></p>
+        <p>РљРѕРіРґР° РїРѕРґРѕР№РґС‘С‚Рµ Рє РїР°СЃРїРѕСЂС‚РЅРѕРјСѓ РєРѕРЅС‚СЂРѕР»СЋ РІ Р­СЂРґР¶Р°РЅРµ:</p>
         <ul>
-          <li>сначала попросите миграционный бланк/вкладыш;</li>
-          <li>только потом передавайте паспорт.</li>
+          <li>СЃРЅР°С‡Р°Р»Р° РїРѕРїСЂРѕСЃРёС‚Рµ РјРёРіСЂР°С†РёРѕРЅРЅС‹Р№ Р±Р»Р°РЅРє/РІРєР»Р°РґС‹С€;</li>
+          <li>С‚РѕР»СЊРєРѕ РїРѕС‚РѕРј РїРµСЂРµРґР°РІР°Р№С‚Рµ РїР°СЃРїРѕСЂС‚.</li>
         </ul>
-        <p>Фраза:</p>
+        <p>Р¤СЂР°Р·Р°:</p>
         <ul>
           <li><em>"Could you please stamp the paper instead of the passport?"</em></li>
         </ul>
-        <p>На Северном Кипре это обычная практика.</p>
+        <p>РќР° РЎРµРІРµСЂРЅРѕРј РљРёРїСЂРµ СЌС‚Рѕ РѕР±С‹С‡РЅР°СЏ РїСЂР°РєС‚РёРєР°.</p>
       </div>`;
     }
 
@@ -449,10 +449,10 @@ const App = (() => {
       <div class="wifi-row" onclick="App.copyWifi()">
         <span class="wifi-label">Wi-Fi:</span>
         <span class="wifi-net">${ev.wifi.network}</span>
-        <span class="wifi-sep">·</span>
-        <span class="wifi-label">${T('Пароль:', 'Password:')}</span>
+        <span class="wifi-sep">В·</span>
+        <span class="wifi-label">${T('РџР°СЂРѕР»СЊ:', 'Password:')}</span>
         <span class="wifi-pass">${ev.wifi.password}</span>
-        <span class="wifi-copy" id="wifi-copied">${T('Скопировано ✓', 'Copied ✓')}</span>
+        <span class="wifi-copy" id="wifi-copied">${T('РЎРєРѕРїРёСЂРѕРІР°РЅРѕ вњ“', 'Copied вњ“')}</span>
       </div>
     `;
 
@@ -466,14 +466,14 @@ const App = (() => {
       html += `
         <div class="excursion-banner" onclick="App.openLink('${ex.formUrl}');haptic('medium')">
           <div class="excursion-banner-left">
-            <div class="excursion-banner-title">🏛 ${T('Экскурсия · 3 июня', 'Excursion · June 3')}</div>
-            <div class="excursion-banner-sub">${T('Кирения · сбор в лобби в 14:30', 'Kyrenia · lobby meetup at 14:30')}</div>
+            <div class="excursion-banner-title">рџЏ› ${T('Р­РєСЃРєСѓСЂСЃРёСЏ В· 3 РёСЋРЅСЏ', 'Excursion В· June 3')}</div>
+            <div class="excursion-banner-sub">${T('РљРёСЂРµРЅРёСЏ В· СЃР±РѕСЂ РІ Р»РѕР±Р±Рё РІ 14:30', 'Kyrenia В· lobby meetup at 14:30')}</div>
           </div>
-          <div class="excursion-banner-btn">${T('Записаться →', 'Book →')}</div>
+          <div class="excursion-banner-btn">${T('Р—Р°РїРёСЃР°С‚СЊСЃСЏ в†’', 'Book в†’')}</div>
         </div>`;
     }
 
-    html += `<div class="section-title" style="margin-top:24px">${T('Программа дня', "Today's Schedule")}</div>`;
+    html += `<div class="section-title" style="margin-top:24px">${T('РџСЂРѕРіСЂР°РјРјР° РґРЅСЏ', "Today's Schedule")}</div>`;
     html += `<div class="card"><div class="card-body">`;
     day.activities.forEach(a => {
       const active = a.isNow ? 'active' : '';
@@ -484,7 +484,7 @@ const App = (() => {
           <span class="mini-dot ${active}" style="${dotColor}"></span>
           <div class="mini-info">
             <div class="mini-title">${a.title}</div>
-            ${a.location ? `<div class="mini-loc">📍 ${a.location}</div>` : ''}
+            ${a.location ? `<div class="mini-loc">рџ“Ќ ${a.location}</div>` : ''}
           </div>
         </div>`;
     });
@@ -493,15 +493,15 @@ const App = (() => {
     if (TODAY_INDEX === 1 || TODAY_INDEX === 2) {
       const MAP = [
         [{n:28,s:'Sheraton'}, {n:20,s:'Rixos Egypt'}, {n:14,s:'Wyndham Grand'}, {n:8,s:'Limak Cyprus'}],
-        [{n:27,s:'Le Méridien'}, {n:19,s:'Ducale Lara'}, {n:13,s:'Ethno Belek'}, {n:7,s:'Match Point'}],
+        [{n:27,s:'Le MГ©ridien'}, {n:19,s:'Ducale Lara'}, {n:13,s:'Ethno Belek'}, {n:7,s:'Match Point'}],
         [{n:26,s:'Doria Bodrum'}, {n:18,s:'CVK Park'}, {n:12,s:'Susesi'}, {n:6,s:"Lord's Palace"}],
         [{n:25,s:'Nirvana (KHG)'}, {n:17,s:'Gloria Hotels'}, {n:11,s:'Regnum Hotels'}, {n:5,s:'Merit Park'}],
         [{n:24,s:'NG Phaselis'}, {n:16,s:'Conrad'}, {n:10,s:'Sueno Hotels'}, {n:4,s:'Ela Excellence'}],
-        [{n:23,s:'Crowne Plaza'}, {n:15,s:'MSC · PAC'}, {n:9,s:'Silk Hospitality'}, {n:3,s:'Calista'}],
+        [{n:23,s:'Crowne Plaza'}, {n:15,s:'MSC В· PAC'}, {n:9,s:'Silk Hospitality'}, {n:3,s:'Calista'}],
         [{n:22,s:'Sacred Mansion'}, null, null, {n:2,s:'Princess Palace'}],
         [{n:21,s:'Sinnada'}, null, null, {n:1,s:'Concorde'}],
       ];
-      html += `<div class="section-title" style="margin-top:24px">${T('Схема зала · Воркшоп', 'Workshop Floor Plan')}</div>`;
+      html += `<div class="section-title" style="margin-top:24px">${T('РЎС…РµРјР° Р·Р°Р»Р° В· Р’РѕСЂРєС€РѕРї', 'Workshop Floor Plan')}</div>`;
       html += `<div class="workshop-map">`;
       // 5-column grid: col1 | col2 | corridor | col3 | col4
       MAP.forEach(row => {
@@ -511,7 +511,7 @@ const App = (() => {
           : `<div class="wm-cell wm-empty"></div>`;
         html += `<div class="wm-row">${cell(c1)}${cell(c2)}<div class="wm-aisle"></div>${cell(c3)}${cell(c4)}</div>`;
       });
-      html += `<div class="wm-door-row"><div class="wm-door-spacer"></div><div class="wm-door-spacer"></div><div class="wm-door-label">${T('🚪 ВХОД', '🚪 ENTRANCE')}</div><div class="wm-door-spacer"></div><div class="wm-door-spacer"></div></div>`;
+      html += `<div class="wm-door-row"><div class="wm-door-spacer"></div><div class="wm-door-spacer"></div><div class="wm-door-label">${T('рџљЄ Р’РҐРћР”', 'рџљЄ ENTRANCE')}</div><div class="wm-door-spacer"></div><div class="wm-door-spacer"></div></div>`;
       html += `</div>`;
     }
 
@@ -535,7 +535,7 @@ const App = (() => {
       <div class="tip-card">
         <div class="tip-icon">${tip.icon}</div>
         <div>
-          <div class="tip-title">${T('Совет:', 'Tip:')} ${tip.title}</div>
+          <div class="tip-title">${T('РЎРѕРІРµС‚:', 'Tip:')} ${tip.title}</div>
           <div class="tip-text">${tip.text}</div>
         </div>
       </div>
@@ -552,7 +552,7 @@ const App = (() => {
     if (el) { el.style.opacity = '1'; setTimeout(() => el.style.opacity = '0', 2000); }
   }
 
-  /* ─── PROGRAM ─────────────────────────── */
+  /* в”Ђв”Ђв”Ђ PROGRAM в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderProgram() {
     const container = document.getElementById('tab-program');
     const day = trDay(state.programDay);
@@ -571,9 +571,9 @@ const App = (() => {
       ? `<span class="program-weather">${day.weather.icon} ${day.weather.temp}</span>`
       : '';
     const pillarBlock = day.pillar
-      ? `<div class="program-pillar">✦ ${day.pillar}</div>`
+      ? `<div class="program-pillar">вњ¦ ${day.pillar}</div>`
       : '';
-    let items = `<div class="program-meta">${day.date} · ${day.theme}${wBlock ? ' ' + wBlock : ''}</div>${pillarBlock}`;
+    let items = `<div class="program-meta">${day.date} В· ${day.theme}${wBlock ? ' ' + wBlock : ''}</div>${pillarBlock}`;
     items += `<div class="card"><div class="card-body">`;
     day.activities.forEach(a => {
       const active = a.isNow ? 'active' : '';
@@ -584,10 +584,10 @@ const App = (() => {
           <span class="program-dot ${active}" style="${dotColor}"></span>
           <div class="program-info">
             <div class="program-title">${a.title}</div>
-            ${a.location ? `<div class="program-loc">📍 ${a.location}</div>` : ''}
+            ${a.location ? `<div class="program-loc">рџ“Ќ ${a.location}</div>` : ''}
             ${a.note     ? `<div class="program-note">${a.note}</div>` : ''}
           </div>
-          ${active ? `<span class="now-badge" style="background:${day.color}22;color:${day.color}">${T('Сейчас', 'Now')}</span>` : ''}
+          ${active ? `<span class="now-badge" style="background:${day.color}22;color:${day.color}">${T('РЎРµР№С‡Р°СЃ', 'Now')}</span>` : ''}
         </div>`;
     });
     items += `</div></div>`;
@@ -600,11 +600,11 @@ const App = (() => {
     renderProgram();
   }
 
-  /* ─── LOCATION (hotel + transfer + nearby) ───── */
+  /* в”Ђв”Ђв”Ђ LOCATION (hotel + transfer + nearby) в”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderLocation() {
     const h  = getHotel();
     const ev = getEvent();
-    const stars = '★'.repeat(h.stars || 5);
+    const stars = 'в…'.repeat(h.stars || 5);
     const loc = getLang() === 'en' ? (TRANSLATIONS.en.location || {}) : {};
 
     const hDesc      = loc.hotel?.desc || h.desc;
@@ -643,11 +643,11 @@ const App = (() => {
       </div>
       <div class="hotel-quickgrid">
         <div class="hotel-quickitem">
-          <div class="hotel-quick-label">${T('Заезд', 'Check-in')}</div>
+          <div class="hotel-quick-label">${T('Р—Р°РµР·Рґ', 'Check-in')}</div>
           <div class="hotel-quick-val">${h.checkin}</div>
         </div>
         <div class="hotel-quickitem">
-          <div class="hotel-quick-label">${T('Выезд', 'Check-out')}</div>
+          <div class="hotel-quick-label">${T('Р’С‹РµР·Рґ', 'Check-out')}</div>
           <div class="hotel-quick-val">${h.checkout}</div>
         </div>
         <div class="hotel-quickitem">
@@ -655,31 +655,31 @@ const App = (() => {
           <div class="hotel-quick-val" style="font-size:12px">${ev.wifi.network}<br><span style="font-size:11px;opacity:0.65">${ev.wifi.password}</span></div>
         </div>
         <div class="hotel-quickitem" onclick="window.location='tel:${h.phone}'" style="cursor:pointer">
-          <div class="hotel-quick-label">${T('Телефон', 'Phone')}</div>
+          <div class="hotel-quick-label">${T('РўРµР»РµС„РѕРЅ', 'Phone')}</div>
           <div class="hotel-quick-val" style="font-size:12px;color:var(--accent)">${h.phone}</div>
         </div>
       </div>
       ${hDesc ? `<p class="hotel-desc">${hDesc}</p>` : ''}
-      ${h.breakfast ? `<div class="hotel-breakfast">☕ <strong>${T('Завтрак:', 'Breakfast:')}</strong> ${h.breakfast}</div>` : ''}
+      ${h.breakfast ? `<div class="hotel-breakfast">в• <strong>${T('Р—Р°РІС‚СЂР°Рє:', 'Breakfast:')}</strong> ${h.breakfast}</div>` : ''}
     `;
 
     if (hAmenities.length) {
-      html += `<div class="section-title" style="margin-bottom:12px">${T('Удобства', 'Facilities')}</div>
+      html += `<div class="section-title" style="margin-bottom:12px">${T('РЈРґРѕР±СЃС‚РІР°', 'Facilities')}</div>
                <div class="hotel-amenities-grid">${amenityCards}</div>`;
     }
 
     if (hTips?.length) {
-      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Советы об отеле', 'Hotel Tips')}</div>
-               <div class="hotel-tips">${hTips.map(t => `<div class="hotel-tip-row">💡 ${t}</div>`).join('')}</div>`;
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('РЎРѕРІРµС‚С‹ РѕР± РѕС‚РµР»Рµ', 'Hotel Tips')}</div>
+               <div class="hotel-tips">${hTips.map(t => `<div class="hotel-tip-row">рџ’Ў ${t}</div>`).join('')}</div>`;
     }
 
     if (h.address) {
-      html += `<div class="hotel-tips" style="margin-top:8px"><div class="hotel-tip-row">📍 ${h.address}</div></div>`;
+      html += `<div class="hotel-tips" style="margin-top:8px"><div class="hotel-tip-row">рџ“Ќ ${h.address}</div></div>`;
     }
 
-    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">${T('Трансферы', 'Transfers')}</div>`;
+    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">${T('РўСЂР°РЅСЃС„РµСЂС‹', 'Transfers')}</div>`;
     if (trInfo) {
-      html += `<div class="announcement-bar ann-info" style="margin-bottom:12px;display:block">ℹ️ ${trInfo}</div>`;
+      html += `<div class="announcement-bar ann-info" style="margin-bottom:12px;display:block">в„№пёЏ ${trInfo}</div>`;
     }
 
     const renderGroup = (groups) => groups.map(g => `
@@ -698,16 +698,16 @@ const App = (() => {
         </div>
       </div>`).join('');
 
-    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">${T('Заезд', 'Arrival')}</div>`;
+    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">${T('Р—Р°РµР·Рґ', 'Arrival')}</div>`;
     html += renderGroup(trArrival);
-    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-top:16px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">${T('Отъезд', 'Departure')}</div>`;
+    html += `<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-top:16px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">${T('РћС‚СЉРµР·Рґ', 'Departure')}</div>`;
     html += renderGroup(trDep);
 
     if (TRANSFERS.contacts?.length) {
-      html += `<div class="section-title" style="margin-top:20px;margin-bottom:12px">${T('Контакт по трансферу', 'Transfer Coordinator')}</div>`;
+      html += `<div class="section-title" style="margin-top:20px;margin-bottom:12px">${T('РљРѕРЅС‚Р°РєС‚ РїРѕ С‚СЂР°РЅСЃС„РµСЂСѓ', 'Transfer Coordinator')}</div>`;
       TRANSFERS.contacts.forEach(c => {
-        const tgLink = c.telegram ? `<a href="${c.telegram}" class="contact-btn tg-btn" target="_blank">✈️ Telegram</a>` : '';
-        const phLink = c.phone    ? `<a href="tel:${c.phone}" class="contact-btn ph-btn">📞 ${T('Звонок', 'Call')}</a>` : '';
+        const tgLink = c.telegram ? `<a href="${c.telegram}" class="contact-btn tg-btn" target="_blank">вњ€пёЏ Telegram</a>` : '';
+        const phLink = c.phone    ? `<a href="tel:${c.phone}" class="contact-btn ph-btn">рџ“ћ ${T('Р—РІРѕРЅРѕРє', 'Call')}</a>` : '';
         html += `
           <div class="card"><div class="card-body">
             <div style="font-weight:600;margin-bottom:2px">${c.name}</div>
@@ -717,7 +717,7 @@ const App = (() => {
       });
     }
 
-    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">${T('Рядом с отелем', 'Near the Hotel')}</div>`;
+    html += `<div class="section-title" style="margin-top:28px;margin-bottom:12px">${T('Р СЏРґРѕРј СЃ РѕС‚РµР»РµРј', 'Near the Hotel')}</div>`;
     trNearby.forEach(p => {
       html += `
         <div class="card" style="margin-bottom:12px">
@@ -726,16 +726,16 @@ const App = (() => {
               <span class="nearby-icon">${p.icon}</span>
               <div class="nearby-info">
                 <div class="nearby-title">${p.title}</div>
-                <div class="nearby-meta">${p.distance ? `📍 ${p.distance}` : ''}${p.hours ? ` · 🕐 ${p.hours}` : ''}</div>
+                <div class="nearby-meta">${p.distance ? `рџ“Ќ ${p.distance}` : ''}${p.hours ? ` В· рџ•ђ ${p.hours}` : ''}</div>
               </div>
             </div>
             ${p.desc ? `<p class="nearby-desc">${p.desc}</p>` : ''}
-            ${p.tip  ? `<div class="hotel-tip-row">💡 ${p.tip}</div>` : ''}
+            ${p.tip  ? `<div class="hotel-tip-row">рџ’Ў ${p.tip}</div>` : ''}
           </div>
         </div>`;
     });
 
-    html += `<div class="section-title" style="margin-top:28px;margin-bottom:8px">${T('Кипрская кухня', 'Cypriot Cuisine')}</div>`;
+    html += `<div class="section-title" style="margin-top:28px;margin-bottom:8px">${T('РљРёРїСЂСЃРєР°СЏ РєСѓС…РЅСЏ', 'Cypriot Cuisine')}</div>`;
     html += `<p class="hotel-desc" style="margin-top:0;margin-bottom:12px">${trCuisine.intro}</p>`;
     trCuisine.dishes.forEach(d => {
       html += `
@@ -756,11 +756,11 @@ const App = (() => {
     document.getElementById('tab-location').innerHTML = html;
   }
 
-  /* ─── HOTEL (legacy, kept for reference) ──── */
+  /* в”Ђв”Ђв”Ђ HOTEL (legacy, kept for reference) в”Ђв”Ђв”Ђв”Ђ */
   function renderHotel() {
     const h  = getHotel();
     const ev = getEvent();
-    const stars = '★'.repeat(h.stars || 5);
+    const stars = 'в…'.repeat(h.stars || 5);
 
     const amenityCards = (h.amenities || []).map(a => `
       <div class="hotel-amenity">
@@ -770,7 +770,7 @@ const App = (() => {
       </div>`).join('');
 
     const tipRows = (h.tips || []).map(t =>
-      `<div class="hotel-tip-row">💡 ${t}</div>`).join('');
+      `<div class="hotel-tip-row">рџ’Ў ${t}</div>`).join('');
 
     document.getElementById('tab-hotel').innerHTML = `
       <img class="hotel-photo" src="${h.image}" alt="${h.name}" loading="lazy">
@@ -781,11 +781,11 @@ const App = (() => {
         </div>
         <div class="hotel-quickgrid">
           <div class="hotel-quickitem">
-            <div class="hotel-quick-label">Заезд</div>
+            <div class="hotel-quick-label">Р—Р°РµР·Рґ</div>
             <div class="hotel-quick-val">${h.checkin}</div>
           </div>
           <div class="hotel-quickitem">
-            <div class="hotel-quick-label">Выезд</div>
+            <div class="hotel-quick-label">Р’С‹РµР·Рґ</div>
             <div class="hotel-quick-val">${h.checkout}</div>
           </div>
           <div class="hotel-quickitem">
@@ -793,22 +793,22 @@ const App = (() => {
             <div class="hotel-quick-val" style="font-size:12px">${ev.wifi.network}</div>
           </div>
           <div class="hotel-quickitem" onclick="window.location='tel:${h.phone}'" style="cursor:pointer">
-            <div class="hotel-quick-label">Телефон</div>
+            <div class="hotel-quick-label">РўРµР»РµС„РѕРЅ</div>
             <div class="hotel-quick-val" style="font-size:12px;color:var(--accent)">${h.phone}</div>
           </div>
         </div>
         <p class="hotel-desc">${h.desc}</p>
-        ${h.breakfast ? `<div class="hotel-breakfast">☕ <strong>Завтрак:</strong> ${h.breakfast}</div>` : ''}
-        <div class="section-title" style="margin-bottom:12px">Удобства</div>
+        ${h.breakfast ? `<div class="hotel-breakfast">в• <strong>Р—Р°РІС‚СЂР°Рє:</strong> ${h.breakfast}</div>` : ''}
+        <div class="section-title" style="margin-bottom:12px">РЈРґРѕР±СЃС‚РІР°</div>
         <div class="hotel-amenities-grid">${amenityCards}</div>
-        ${tipRows ? `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Советы</div><div class="hotel-tips">${tipRows}</div>` : ''}
-        ${h.address ? `<div class="section-title" style="margin-top:24px;margin-bottom:12px">Адрес</div><div class="hotel-tips"><div class="hotel-tip-row">📍 ${h.address}</div></div>` : ''}
+        ${tipRows ? `<div class="section-title" style="margin-top:24px;margin-bottom:12px">РЎРѕРІРµС‚С‹</div><div class="hotel-tips">${tipRows}</div>` : ''}
+        ${h.address ? `<div class="section-title" style="margin-top:24px;margin-bottom:12px">РђРґСЂРµСЃ</div><div class="hotel-tips"><div class="hotel-tip-row">рџ“Ќ ${h.address}</div></div>` : ''}
       </div>`;
   }
 
-  /* ─── NEARBY ─────────────────────────── */
+  /* в”Ђв”Ђв”Ђ NEARBY в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderNearby() {
-    let html = `<div class="section-pad"><div class="section-title">Рядом с отелем</div>`;
+    let html = `<div class="section-pad"><div class="section-title">Р СЏРґРѕРј СЃ РѕС‚РµР»РµРј</div>`;
     NEARBY.forEach(p => {
       html += `
         <div class="card" style="margin-bottom:12px">
@@ -817,11 +817,11 @@ const App = (() => {
               <span class="nearby-icon">${p.icon}</span>
               <div class="nearby-info">
                 <div class="nearby-title">${p.title}</div>
-                <div class="nearby-meta">${p.distance ? `📍 ${p.distance}` : ''}${p.hours ? ` · 🕐 ${p.hours}` : ''}</div>
+                <div class="nearby-meta">${p.distance ? `рџ“Ќ ${p.distance}` : ''}${p.hours ? ` В· рџ•ђ ${p.hours}` : ''}</div>
               </div>
             </div>
             ${p.desc ? `<p class="nearby-desc">${p.desc}</p>` : ''}
-            ${p.tip  ? `<div class="hotel-tip-row">💡 ${p.tip}</div>` : ''}
+            ${p.tip  ? `<div class="hotel-tip-row">рџ’Ў ${p.tip}</div>` : ''}
           </div>
         </div>`;
     });
@@ -829,7 +829,7 @@ const App = (() => {
     document.getElementById('tab-nearby').innerHTML = html;
   }
 
-  /* ─── EXCURSION ──────────────────────── */
+  /* в”Ђв”Ђв”Ђ EXCURSION в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderExcursion() {
     const raw  = EXCURSION;
     const exTr = getLang() === 'en' ? (TRANSLATIONS.en.excursion || {}) : {};
@@ -851,9 +851,9 @@ const App = (() => {
 
     let html = `
       <div class="today-hero" style="background:linear-gradient(160deg,#050408 0%,#0D0818 55%,#6E00FF 100%)">
-        <div class="today-eyebrow">GCC 2026 · ${ex.date}</div>
+        <div class="today-eyebrow">GCC 2026 В· ${ex.date}</div>
         <div class="today-name">${ex.title}</div>
-        <div class="today-theme">${ex.duration} · ${T('Сбор в', 'Meet at')} ${raw.meetingTime}</div>
+        <div class="today-theme">${ex.duration} В· ${T('РЎР±РѕСЂ РІ', 'Meet at')} ${raw.meetingTime}</div>
       </div>
       <div class="section-pad">
     `;
@@ -863,11 +863,11 @@ const App = (() => {
     if (ex.formUrl) {
       html += `
         <button class="excursion-signup-btn" onclick="App.openLink('${ex.formUrl}');haptic('medium')">
-          ${T('Записаться на экскурсию →', 'Book the excursion →')}
+          ${T('Р—Р°РїРёСЃР°С‚СЊСЃСЏ РЅР° СЌРєСЃРєСѓСЂСЃРёСЋ в†’', 'Book the excursion в†’')}
         </button>`;
     }
 
-    html += `<div class="section-title" style="margin-bottom:12px">${T('Программа', 'Itinerary')}</div>`;
+    html += `<div class="section-title" style="margin-bottom:12px">${T('РџСЂРѕРіСЂР°РјРјР°', 'Itinerary')}</div>`;
     html += `<div class="card"><div class="card-body">`;
     ex.program.forEach(p => {
       html += `
@@ -883,7 +883,7 @@ const App = (() => {
     html += `</div></div>`;
 
     if (ex.funFacts?.length) {
-      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Это интересно', 'Did You Know')}</div>`;
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Р­С‚Рѕ РёРЅС‚РµСЂРµСЃРЅРѕ', 'Did You Know')}</div>`;
       ex.funFacts.forEach(f => {
         html += `
           <div class="card" style="margin-bottom:10px">
@@ -900,7 +900,7 @@ const App = (() => {
       });
     }
 
-    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Где фотографировать', 'Photo Spots')}</div>`;
+    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Р“РґРµ С„РѕС‚РѕРіСЂР°С„РёСЂРѕРІР°С‚СЊ', 'Photo Spots')}</div>`;
     ex.photoSpots.forEach(s => {
       html += `
         <div class="card" style="margin-bottom:10px">
@@ -917,7 +917,7 @@ const App = (() => {
     });
 
     if (ex.images?.length) {
-      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Фото', 'Gallery')}</div>`;
+      html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Р¤РѕС‚Рѕ', 'Gallery')}</div>`;
       html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">`;
       ex.images.forEach(img => {
         const src     = typeof img === 'string' ? img : img.src;
@@ -931,7 +931,7 @@ const App = (() => {
       html += `</div>`;
     }
 
-    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('Немного истории', 'History')}</div>`;
+    html += `<div class="section-title" style="margin-top:24px;margin-bottom:12px">${T('РќРµРјРЅРѕРіРѕ РёСЃС‚РѕСЂРёРё', 'History')}</div>`;
     ex.history.forEach(h => {
       html += `
         <div class="card" style="margin-bottom:12px">
@@ -951,7 +951,7 @@ const App = (() => {
     document.getElementById('tab-excursion').innerHTML = html;
   }
 
-  /* ─── CHAT ───────────────────────────── */
+  /* в”Ђв”Ђв”Ђ CHAT в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   const ADMIN_IDS = ['1220760254', '997091930'];
   let _adminCache = null;
 
@@ -961,7 +961,7 @@ const App = (() => {
     return _adminCache;
   }
 
-  const REACTION_EMOJIS = ['👍', '❤️', '😂', '🔥', '👏', '😮'];
+  const REACTION_EMOJIS = ['рџ‘Ќ', 'вќ¤пёЏ', 'рџ‚', 'рџ”Ґ', 'рџ‘Џ', 'рџ®'];
 
   let _sb          = null;
   let _chatSub     = null;
@@ -1008,7 +1008,7 @@ const App = (() => {
       .filter(e => r[e] > 0)
       .map(e => `<button class="reaction-pill${mine.has(e) ? ' mine' : ''}" onclick="App.toggleReaction('${messageId}','${e}')">${e} <span>${r[e]}</span></button>`)
       .join('');
-    return `<div class="reaction-bar">${pills}<button class="reaction-add" onclick="App.openReactionPicker('${messageId}')">＋</button></div>`;
+    return `<div class="reaction-bar">${pills}<button class="reaction-add" onclick="App.openReactionPicker('${messageId}')">пј‹</button></div>`;
   }
 
   function updateReactionDOM(messageId) {
@@ -1029,7 +1029,7 @@ const App = (() => {
     const safeText = escapeHtml((msg.text || '').slice(0, 60).replace(/\n/g, ' '));
     const safeName = escapeHtml(msg.user_name);
     const deleteBtn = (isAdmin() && msg.id)
-      ? `<button class="chat-msg-delete-btn" onclick="App.deleteMessage(${msg.id})" aria-label="Удалить">✕</button>`
+      ? `<button class="chat-msg-delete-btn" onclick="App.deleteMessage(${msg.id})" aria-label="РЈРґР°Р»РёС‚СЊ">вњ•</button>`
       : '';
     return `<div class="chat-msg ${isOwn ? 'own' : 'other'}" data-msg-id="${msg.id || ''}">
       ${deleteBtn}
@@ -1040,7 +1040,7 @@ const App = (() => {
           data-reply-id="${msg.id || ''}"
           data-reply-name="${safeName}"
           data-reply-text="${safeText}"
-          onclick="App.setReplyToBtn(this)">↩</button>
+          onclick="App.setReplyToBtn(this)">в†©</button>
         <span class="chat-msg-time">${time}</span>
       </div>
       ${renderReactionBar(msg.id)}
@@ -1057,13 +1057,13 @@ const App = (() => {
     if (!hasChatName()) {
       el.innerHTML = `
         <div class="chat-name-screen">
-          <div class="chat-name-title">${T('Как вас представить?', 'What\'s your name?')}</div>
-          <div class="chat-name-sub">${T('Имя будет видно другим участникам', 'Your name will be visible to other participants')}</div>
+          <div class="chat-name-title">${T('РљР°Рє РІР°СЃ РїСЂРµРґСЃС‚Р°РІРёС‚СЊ?', 'What\'s your name?')}</div>
+          <div class="chat-name-sub">${T('РРјСЏ Р±СѓРґРµС‚ РІРёРґРЅРѕ РґСЂСѓРіРёРј СѓС‡Р°СЃС‚РЅРёРєР°Рј', 'Your name will be visible to other participants')}</div>
           <input class="chat-name-input" id="chat-name-input" type="text"
-            placeholder="${T('Имя и фамилия', 'First and last name')}"
+            placeholder="${T('РРјСЏ Рё С„Р°РјРёР»РёСЏ', 'First and last name')}"
             maxlength="40"
             onkeydown="if(event.key==='Enter')App.saveChatName()">
-          <button class="chat-name-btn" onclick="App.saveChatName()">${T('Войти в чат', 'Join chat')}</button>
+          <button class="chat-name-btn" onclick="App.saveChatName()">${T('Р’РѕР№С‚Рё РІ С‡Р°С‚', 'Join chat')}</button>
         </div>`;
       setTimeout(() => document.getElementById('chat-name-input')?.focus(), 100);
       return;
@@ -1071,37 +1071,37 @@ const App = (() => {
     el.innerHTML = `
       <div id="chat-polls"></div>
       <div class="chat-messages" id="chat-messages">
-        <div class="chat-loading">Загрузка сообщений...</div>
+        <div class="chat-loading">Р—Р°РіСЂСѓР·РєР° СЃРѕРѕР±С‰РµРЅРёР№...</div>
       </div>
       <div class="chat-reply-bar hidden" id="chat-reply-bar">
         <div class="chat-reply-content">
-          <span style="color:var(--accent);font-size:15px;flex-shrink:0">↩</span>
+          <span style="color:var(--accent);font-size:15px;flex-shrink:0">в†©</span>
           <div style="flex:1;min-width:0">
             <div class="chat-reply-bar-name" id="chat-reply-bar-name"></div>
             <div class="chat-reply-bar-text" id="chat-reply-bar-text"></div>
           </div>
-          <button class="chat-reply-cancel" onclick="App.cancelReply()">✕</button>
+          <button class="chat-reply-cancel" onclick="App.cancelReply()">вњ•</button>
         </div>
       </div>
       <div class="chat-input-bar">
         <textarea class="chat-input" id="chat-input" rows="1"
-          placeholder="Написать сообщение..."
+          placeholder="РќР°РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ..."
           onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();App.sendChatMessage()}"
           oninput="App.resizeChatInput(this)"></textarea>
-        ${isAdmin() ? `<button class="chat-poll-btn" onclick="App.openPollCreator()" title="Создать опрос">🗳</button>` : ''}
-        <button class="chat-send-btn" onclick="App.sendChatMessage()" aria-label="Отправить">➤</button>
+        ${isAdmin() ? `<button class="chat-poll-btn" onclick="App.openPollCreator()" title="РЎРѕР·РґР°С‚СЊ РѕРїСЂРѕСЃ">рџ—і</button>` : ''}
+        <button class="chat-send-btn" onclick="App.sendChatMessage()" aria-label="РћС‚РїСЂР°РІРёС‚СЊ">вћ¤</button>
       </div>
       <div class="poll-modal-overlay hidden" id="poll-modal">
         <div class="poll-modal-sheet">
-          <div class="poll-modal-title">Создать опрос</div>
-          <input class="poll-modal-input" id="poll-question" placeholder="Вопрос..." maxlength="140">
-          <input class="poll-modal-input" id="poll-opt-0" placeholder="Вариант 1" maxlength="80">
-          <input class="poll-modal-input" id="poll-opt-1" placeholder="Вариант 2" maxlength="80">
-          <input class="poll-modal-input" id="poll-opt-2" placeholder="Вариант 3 (необязательно)" maxlength="80">
-          <input class="poll-modal-input" id="poll-opt-3" placeholder="Вариант 4 (необязательно)" maxlength="80">
+          <div class="poll-modal-title">РЎРѕР·РґР°С‚СЊ РѕРїСЂРѕСЃ</div>
+          <input class="poll-modal-input" id="poll-question" placeholder="Р’РѕРїСЂРѕСЃ..." maxlength="140">
+          <input class="poll-modal-input" id="poll-opt-0" placeholder="Р’Р°СЂРёР°РЅС‚ 1" maxlength="80">
+          <input class="poll-modal-input" id="poll-opt-1" placeholder="Р’Р°СЂРёР°РЅС‚ 2" maxlength="80">
+          <input class="poll-modal-input" id="poll-opt-2" placeholder="Р’Р°СЂРёР°РЅС‚ 3 (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)" maxlength="80">
+          <input class="poll-modal-input" id="poll-opt-3" placeholder="Р’Р°СЂРёР°РЅС‚ 4 (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)" maxlength="80">
           <div class="poll-modal-actions">
-            <button class="poll-modal-cancel" onclick="App.closePollCreator()">Отмена</button>
-            <button class="poll-modal-submit" onclick="App.submitPoll()">Опубликовать</button>
+            <button class="poll-modal-cancel" onclick="App.closePollCreator()">РћС‚РјРµРЅР°</button>
+            <button class="poll-modal-submit" onclick="App.submitPoll()">РћРїСѓР±Р»РёРєРѕРІР°С‚СЊ</button>
           </div>
         </div>
       </div>`;
@@ -1127,7 +1127,7 @@ const App = (() => {
     if (!listEl) return;
 
     if (!sb) {
-      listEl.innerHTML = '<div class="chat-empty">Чат не настроен.<br>Укажите Supabase URL и ключ в app.js</div>';
+      listEl.innerHTML = '<div class="chat-empty">Р§Р°С‚ РЅРµ РЅР°СЃС‚СЂРѕРµРЅ.<br>РЈРєР°Р¶РёС‚Рµ Supabase URL Рё РєР»СЋС‡ РІ app.js</div>';
       return;
     }
 
@@ -1138,7 +1138,7 @@ const App = (() => {
       .limit(200);
 
     if (!listEl) return;
-    if (error) { listEl.innerHTML = '<div class="chat-empty">Ошибка загрузки сообщений</div>'; return; }
+    if (error) { listEl.innerHTML = '<div class="chat-empty">РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё СЃРѕРѕР±С‰РµРЅРёР№</div>'; return; }
 
     const me     = getChatUser();
     const msgIds = (data || []).map(m => m.id).filter(Boolean);
@@ -1146,7 +1146,7 @@ const App = (() => {
 
     listEl.innerHTML = data.length
       ? data.map(m => buildMsgHTML(m, m.user_id === me.id)).join('')
-      : '<div class="chat-empty">Пока нет сообщений.<br>Начните общение первыми!</div>';
+      : '<div class="chat-empty">РџРѕРєР° РЅРµС‚ СЃРѕРѕР±С‰РµРЅРёР№.<br>РќР°С‡РЅРёС‚Рµ РѕР±С‰РµРЅРёРµ РїРµСЂРІС‹РјРё!</div>';
 
     scrollChatToBottom();
   }
@@ -1212,7 +1212,7 @@ const App = (() => {
       document.getElementById('chat-messages')?.lastElementChild?.remove();
       const errEl = document.createElement('div');
       errEl.style.cssText = 'text-align:center;padding:6px 12px;font-size:12px;color:#ef4444;';
-      errEl.textContent = T('Не отправлено — проверьте соединение', 'Not sent — check your connection');
+      errEl.textContent = T('РќРµ РѕС‚РїСЂР°РІР»РµРЅРѕ вЂ” РїСЂРѕРІРµСЂСЊС‚Рµ СЃРѕРµРґРёРЅРµРЅРёРµ', 'Not sent вЂ” check your connection');
       document.querySelector('.chat-input-wrap')?.insertAdjacentElement('beforebegin', errEl);
       setTimeout(() => errEl.remove(), 4000);
     }
@@ -1223,7 +1223,7 @@ const App = (() => {
     el.style.height = Math.min(el.scrollHeight, 120) + 'px';
   }
 
-  /* ─── DELETE MESSAGE ─────────────────── */
+  /* в”Ђв”Ђв”Ђ DELETE MESSAGE в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   async function deleteMessage(id) {
     haptic('medium');
     const el = document.querySelector(`[data-msg-id="${id}"]`);
@@ -1232,7 +1232,7 @@ const App = (() => {
     if (sb) await sb.from('messages').delete().eq('id', id);
   }
 
-  /* ─── REACTIONS ─────────────────────── */
+  /* в”Ђв”Ђв”Ђ REACTIONS в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   async function loadReactions(messageIds) {
     const sb = getSupabase();
     if (!sb || !messageIds.length) return;
@@ -1306,7 +1306,7 @@ const App = (() => {
     document.body.appendChild(overlay);
   }
 
-  /* ─── REPLY ──────────────────────────── */
+  /* в”Ђв”Ђв”Ђ REPLY в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function setReplyToBtn(btn) {
     haptic('light');
     _replyTo = { id: btn.dataset.replyId, name: btn.dataset.replyName, text: btn.dataset.replyText };
@@ -1324,7 +1324,7 @@ const App = (() => {
     document.getElementById('chat-reply-bar')?.classList.add('hidden');
   }
 
-  /* ─── POLLS ──────────────────────────── */
+  /* в”Ђв”Ђв”Ђ POLLS в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function openPollCreator() {
     haptic('light');
     document.getElementById('poll-modal')?.classList.remove('hidden');
@@ -1388,16 +1388,16 @@ const App = (() => {
     }).join('');
 
     const adminClose = isAdmin()
-      ? `<button class="poll-close-btn" onclick="App.closePoll('${poll.id}')">✕ Закрыть</button>`
+      ? `<button class="poll-close-btn" onclick="App.closePoll('${poll.id}')">вњ• Р—Р°РєСЂС‹С‚СЊ</button>`
       : '';
 
     return `<div class="poll-card">
       <div class="poll-card-header">
-        <span class="poll-badge">🗳 Голосование</span>${adminClose}
+        <span class="poll-badge">рџ—і Р“РѕР»РѕСЃРѕРІР°РЅРёРµ</span>${adminClose}
       </div>
       <div class="poll-question">${escapeHtml(poll.question)}</div>
       <div class="poll-options">${optionsHTML}</div>
-      ${voted ? `<div class="poll-meta">${total} ${total===1?'голос':total<5?'голоса':'голосов'}</div>` : ''}
+      ${voted ? `<div class="poll-meta">${total} ${total===1?'РіРѕР»РѕСЃ':total<5?'РіРѕР»РѕСЃР°':'РіРѕР»РѕСЃРѕРІ'}</div>` : ''}
     </div>`;
   }
 
@@ -1427,7 +1427,7 @@ const App = (() => {
       .subscribe();
   }
 
-  /* ─── EXHIBITORS ─────────────────────── */
+  /* в”Ђв”Ђв”Ђ EXHIBITORS в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderExhibitors() {
     const exTr = getLang() === 'en' ? (TRANSLATIONS.en.exhibitors || []) : [];
     const list = getExhibitors().map((e, i) => ({
@@ -1436,28 +1436,28 @@ const App = (() => {
     }));
 
     let html = `<div class="section-pad">`;
-    html += `<div class="section-title" style="margin-bottom:12px">${T('Экспоненты GCC 2026', 'GCC 2026 Exhibitors')}</div>`;
+    html += `<div class="section-title" style="margin-bottom:12px">${T('Р­РєСЃРїРѕРЅРµРЅС‚С‹ GCC 2026', 'GCC 2026 Exhibitors')}</div>`;
 
     if (!list.length) {
-      html += `<div class="empty-state">${T('Список экспонентов появится здесь', 'Exhibitor list coming soon')}</div>`;
+      html += `<div class="empty-state">${T('РЎРїРёСЃРѕРє СЌРєСЃРїРѕРЅРµРЅС‚РѕРІ РїРѕСЏРІРёС‚СЃСЏ Р·РґРµСЃСЊ', 'Exhibitor list coming soon')}</div>`;
     } else {
       list.forEach(e => {
         const btns = [];
-        if (e.telegram) btns.push(`<a href="${e.telegram}" class="contact-btn tg-btn" target="_blank">✈️ Telegram</a>`);
-        if (e.whatsapp) btns.push(`<a href="https://wa.me/${e.whatsapp.replace(/\D/g,'')}" class="contact-btn wa-btn" target="_blank">💬 WhatsApp</a>`);
-        if (e.phone)    btns.push(`<a href="tel:${e.phone}" class="contact-btn ph-btn">📞 ${T('Звонок', 'Call')}</a>`);
+        if (e.telegram) btns.push(`<a href="${e.telegram}" class="contact-btn tg-btn" target="_blank">вњ€пёЏ Telegram</a>`);
+        if (e.whatsapp) btns.push(`<a href="https://wa.me/${e.whatsapp.replace(/\D/g,'')}" class="contact-btn wa-btn" target="_blank">рџ’¬ WhatsApp</a>`);
+        if (e.phone)    btns.push(`<a href="tel:${e.phone}" class="contact-btn ph-btn">рџ“ћ ${T('Р—РІРѕРЅРѕРє', 'Call')}</a>`);
 
         html += `
           <div class="card" style="margin-bottom:12px">
             <div class="card-body">
               <div class="exhibitor-header">
-                <div class="exhibitor-logo">${e.logoEmoji || '🏢'}</div>
+                <div class="exhibitor-logo">${e.logoEmoji || 'рџЏў'}</div>
                 <div class="exhibitor-main">
                   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                    <div class="exhibitor-name${e.website ? ' exhibitor-name-link' : ''}"${e.website ? ` onclick="App.openLink('${e.website}')"` : ''}>${e.company}${e.flag ? ' ' + e.flag : ''}${e.website ? ' <span class="exhibitor-link-icon">↗</span>' : ''}</div>
-                    ${e.table ? `<span class="exhibitor-table-badge">${T('Стол', 'Table')} ${e.table}</span>` : ''}
+                    <div class="exhibitor-name${e.website ? ' exhibitor-name-link' : ''}"${e.website ? ` onclick="App.openLink('${e.website}')"` : ''}>${e.company}${e.flag ? ' ' + e.flag : ''}${e.website ? ' <span class="exhibitor-link-icon">в†—</span>' : ''}</div>
+                    ${e.table ? `<span class="exhibitor-table-badge">${T('РЎС‚РѕР»', 'Table')} ${e.table}</span>` : ''}
                   </div>
-                  ${e.contact ? `<div class="exhibitor-contact" style="margin-top:2px">👤 ${e.contact}${e.position ? ` · ${e.position}` : ''}</div>` : ''}
+                  ${e.contact ? `<div class="exhibitor-contact" style="margin-top:2px">рџ‘¤ ${e.contact}${e.position ? ` В· ${e.position}` : ''}</div>` : ''}
                 </div>
               </div>
               ${e.desc ? `<p class="exhibitor-desc">${e.desc}</p>` : ''}
@@ -1475,12 +1475,12 @@ const App = (() => {
     renderExhibitors();
   }
 
-  /* ─── TRANSFER ───────────────────────── */
+  /* в”Ђв”Ђв”Ђ TRANSFER в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function renderTransfer() {
     let html = `<div class="section-pad">`;
 
     if (TRANSFERS.info) {
-      html += `<div class="announcement-bar ann-info" style="margin-bottom:16px;display:block">ℹ️ ${TRANSFERS.info}</div>`;
+      html += `<div class="announcement-bar ann-info" style="margin-bottom:16px;display:block">в„№пёЏ ${TRANSFERS.info}</div>`;
     }
 
     const renderGroup = (groups) => groups.map(g => `
@@ -1499,14 +1499,14 @@ const App = (() => {
         </div>
       </div>`).join('');
 
-    html += `<div class="section-title">Заезд</div>` + renderGroup(TRANSFERS.arrival);
-    html += `<div class="section-title" style="margin-top:20px">Отъезд</div>` + renderGroup(TRANSFERS.departure);
+    html += `<div class="section-title">Р—Р°РµР·Рґ</div>` + renderGroup(TRANSFERS.arrival);
+    html += `<div class="section-title" style="margin-top:20px">РћС‚СЉРµР·Рґ</div>` + renderGroup(TRANSFERS.departure);
 
     if (TRANSFERS.contacts?.length) {
-      html += `<div class="section-title" style="margin-top:20px;margin-bottom:12px">Контакт по трансферу</div>`;
+      html += `<div class="section-title" style="margin-top:20px;margin-bottom:12px">РљРѕРЅС‚Р°РєС‚ РїРѕ С‚СЂР°РЅСЃС„РµСЂСѓ</div>`;
       TRANSFERS.contacts.forEach(c => {
-        const tgLink = c.telegram ? `<a href="${c.telegram}" class="contact-btn tg-btn" target="_blank">✈️ Telegram</a>` : '';
-        const phLink = c.phone    ? `<a href="tel:${c.phone}" class="contact-btn ph-btn">📞 Звонок</a>` : '';
+        const tgLink = c.telegram ? `<a href="${c.telegram}" class="contact-btn tg-btn" target="_blank">вњ€пёЏ Telegram</a>` : '';
+        const phLink = c.phone    ? `<a href="tel:${c.phone}" class="contact-btn ph-btn">рџ“ћ Р—РІРѕРЅРѕРє</a>` : '';
         html += `
           <div class="card"><div class="card-body">
             <div style="font-weight:600;margin-bottom:2px">${c.name}</div>
@@ -1520,16 +1520,16 @@ const App = (() => {
     document.getElementById('tab-transfer').innerHTML = html;
   }
 
-  /* ─── FAQ ─────────────────────────────── */
+  /* в”Ђв”Ђв”Ђ FAQ в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   function getFAQ() {
     return getLang() === 'en' ? (TRANSLATIONS.en.faq || FAQ) : FAQ;
   }
 
   function openFAQ() {
     const titleEl = document.querySelector('#modal-faq h2');
-    if (titleEl) titleEl.textContent = T('Вопросы и ответы', 'FAQ');
+    if (titleEl) titleEl.textContent = T('Р’РѕРїСЂРѕСЃС‹ Рё РѕС‚РІРµС‚С‹', 'FAQ');
     const searchEl = document.getElementById('faq-search');
-    if (searchEl) searchEl.placeholder = T('🔍  Найти ответ...', '🔍  Search...');
+    if (searchEl) searchEl.placeholder = T('рџ”Ќ  РќР°Р№С‚Рё РѕС‚РІРµС‚...', 'рџ”Ќ  Search...');
     renderFAQ(getFAQ());
     document.getElementById('modal-faq').classList.add('open');
     setTimeout(() => document.getElementById('faq-search').focus(), 300);
@@ -1550,12 +1550,12 @@ const App = (() => {
   function renderFAQ(items) {
     const list = document.getElementById('faq-list');
     if (!items.length) {
-      list.innerHTML = `<div style="text-align:center;padding:32px;color:var(--text-hint)">${T('Ничего не найдено', 'Nothing found')}</div>`;
+      list.innerHTML = `<div style="text-align:center;padding:32px;color:var(--text-hint)">${T('РќРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ', 'Nothing found')}</div>`;
       return;
     }
     list.innerHTML = items.map((f, i) => `
       <div class="faq-item" id="faq-${i}" onclick="App.toggleFAQ(${i})">
-        <div class="faq-q"><span>${f.q}</span><span class="faq-chevron">›</span></div>
+        <div class="faq-q"><span>${f.q}</span><span class="faq-chevron">вЂє</span></div>
         <div class="faq-a">${f.a}</div>
       </div>`).join('');
   }
@@ -1570,7 +1570,7 @@ const App = (() => {
     else window.open(url, '_blank');
   }
 
-  /* ─── PUBLIC ──────────────────────────── */
+  /* в”Ђв”Ђв”Ђ PUBLIC в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
   return {
     init, switchTab, selectProgramDay, copyWifi,
     openFAQ, closeFAQ, searchFAQ, toggleFAQ,
@@ -1587,4 +1587,5 @@ const App = (() => {
 })();
 
 document.addEventListener('DOMContentLoaded', App.init);
+
 

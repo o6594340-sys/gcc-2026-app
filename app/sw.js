@@ -1,9 +1,9 @@
-const CACHE = 'gcc2026-v20260604c';
+﻿const CACHE = 'gcc2026-v20260604d';
 const ASSETS = [
   './manifest.json',
-  './css/main.css?v=20260604c',
-  './js/data.js?v=20260604c',
-  './js/app.js?v=20260604c',
+  './css/main.css?v=20260604d',
+  './js/data.js?v=20260604d',
+  './js/app.js?v=20260604d',
   './photo icon.jpg',
   './Elexus hotel.jpeg',
   './castle.jpg',
@@ -57,3 +57,4 @@ self.addEventListener('fetch', e => {
     })
   );
 });
+
